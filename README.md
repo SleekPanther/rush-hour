@@ -1,2 +1,1 @@
-# rush-hour
-C++ project
+# Rush Hour Game
