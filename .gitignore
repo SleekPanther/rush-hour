@@ -1,0 +1,5 @@
+#visual studio project files
+*.vcxproj*
+
+#visual studio build folder
+**/Debug
