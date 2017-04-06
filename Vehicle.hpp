@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Game.hpp"
 #include "Board.hpp"
 #include "Coordinate2D.hpp"
 

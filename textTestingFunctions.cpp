@@ -82,8 +82,8 @@ bool test_Vehicle() {
 
 	vector<unique_ptr<Vehicle>> vehicles;
 	vehicles.push_back(make_unique<HorizontalVehicle>());
-	//vehicles.push_back(make_unique<VerticalVehicle>());
-	///vehicles.push_back(make_unique<SpecialVehicle>());
+	vehicles.push_back(make_unique<VerticalVehicle>());
+	vehicles.push_back(make_unique<SpecialVehicle>());
 	
 	for (int i = 0; i < vehicles.size(); i++) {
 		// vehicles[i]->
@@ -95,7 +95,7 @@ bool test_Vehicle() {
 bool test_ScoreMetrics() {
 	bool passed = true;
 
-	//ScoreMetrics metrics;
+	ScoreMetrics metrics;
 
 	return passed;
 }

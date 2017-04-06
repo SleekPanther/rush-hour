@@ -4,10 +4,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 #include "GameSetup.hpp"
 #include "Board.hpp"
-#include "Coordinate2D.hpp"
-// #include "ScoreMetrics.hpp"
+#include "ScoreMetrics.hpp"
+#include "HorizontalVehicle.hpp"
+#include "VerticalVehicle.hpp"
+#include "SpecialVehicle.hpp"
 
 using namespace std;
 
@@ -18,6 +21,8 @@ private:
 public:
 	Game();
 	~Game();
+
+	vector<Vehicle> getVehicles();
 };
 
 #endif

@@ -15,7 +15,7 @@
 #include "HorizontalVehicle.hpp"
 #include "VerticalVehicle.hpp"
 #include "SpecialVehicle.hpp"
-// #include "ScoreMetrics.hpp"
+#include "ScoreMetrics.hpp"
 
 
 using namespace std;
