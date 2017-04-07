@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Vehicle.hpp"
 #include "HorizontalVehicle.hpp"
 #include "VerticalVehicle.hpp"
 #include "SpecialVehicle.hpp"

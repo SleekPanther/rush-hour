@@ -7,15 +7,15 @@
 #include <memory>
 #include <iomanip>
 #include <cmath>
-#include "Game.hpp"
-#include "GameSetup.hpp"
-#include "Board.hpp"
-#include "Coordinate2D.hpp"
 #include "Vehicle.hpp"
 #include "HorizontalVehicle.hpp"
 #include "VerticalVehicle.hpp"
 #include "SpecialVehicle.hpp"
 #include "ScoreMetrics.hpp"
+#include "Coordinate2D.hpp"
+#include "Board.hpp"
+#include "GameSetup.hpp"
+#include "Game.hpp"
 
 
 using namespace std;

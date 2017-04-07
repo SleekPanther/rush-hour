@@ -4,9 +4,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Game.hpp"
-#include "Board.hpp"
 #include "Coordinate2D.hpp"
+#include "Board.hpp"
+
+//CANNOT INCLUDE GAME, for some reason it breaks it.
+//maybe vehicle is being included twice somehow
+// #include "Game.hpp"
 
 using namespace std;
 

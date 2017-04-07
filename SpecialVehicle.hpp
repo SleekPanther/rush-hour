@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Vehicle.hpp"
 #include "HorizontalVehicle.hpp"
 
 using namespace std;

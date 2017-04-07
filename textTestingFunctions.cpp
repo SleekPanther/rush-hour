@@ -85,9 +85,9 @@ bool test_Vehicle() {
 	vehicles.push_back(make_unique<VerticalVehicle>());
 	vehicles.push_back(make_unique<SpecialVehicle>());
 	
-	for (int i = 0; i < vehicles.size(); i++) {
-		// vehicles[i]->
-	}
+	// for (int i = 0; i < vehicles.size(); i++) {
+	// 	// vehicles[i]->
+	// }
 
 	return passed;
 }
