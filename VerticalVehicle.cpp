@@ -4,6 +4,9 @@ VerticalVehicle::VerticalVehicle() {
 	cout << "\tnew vertical vehicle" << endl;
 }
 
+VerticalVehicle::VerticalVehicle(vector<Coordinate2D> coordinates): Vehicle(coordinates) {
+}
+
 VerticalVehicle::~VerticalVehicle() {
 }
 

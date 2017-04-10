@@ -14,12 +14,16 @@
 using namespace std;
 
 class Vehicle {
-private:
-	//fields
+protected:
+	vector<Coordinate2D> coordinates;
+	// Color color;
 
 public:
-	Vehicle();
+	Vehicle();		//shouldn't keep default constructor for long
+	Vehicle(vector<Coordinate2D> coordinates);
 	~Vehicle();
+
+	vector<Coordinate2D> getCoordinates() const;
 
 	virtual bool moveUp() = 0;
 

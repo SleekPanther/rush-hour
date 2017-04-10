@@ -81,9 +81,21 @@ bool test_Vehicle() {
 	bool passed = true;
 
 	vector<unique_ptr<Vehicle>> vehicles;
+	vector<Coordinate2D> inputCoords = {Coordinate2D(1, 2), Coordinate2D(2, 4)};
+	vector<Coordinate2D> inputCoords2 = {Coordinate2D(10, 11), Coordinate2D(30, 40)};
+	vehicles.push_back(make_unique<HorizontalVehicle>(inputCoords));
 	vehicles.push_back(make_unique<HorizontalVehicle>());
+	vehicles.push_back(make_unique<VerticalVehicle>(inputCoords2));
 	vehicles.push_back(make_unique<VerticalVehicle>());
 	vehicles.push_back(make_unique<SpecialVehicle>());
+	
+
+	vector<Coordinate2D> coord = vehicles[2]->getCoordinates();
+	cout << "\t" << coord.size() << endl;
+	for (int i = 0; i < coord.size(); i++) {
+		cout << coord[i].x << ", " << coord[i].y << endl;
+	}
+	
 	
 	// for (int i = 0; i < vehicles.size(); i++) {
 	// 	// vehicles[i]->
