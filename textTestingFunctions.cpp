@@ -66,13 +66,31 @@ bool test_Coordinate2D() {
 		passed=false;
 	}
 
-	int testX=10;
-	int testY=3;
-	Coordinate2D coordinate2(testX, testY);
-	if(coordinate2.x != testX || coordinate2.y !=testY){
-		cout << "Failed creating Coordinate2D with 2-arg constructor. Expected coordinate2.x==" << testX <<", Returned " << coordinate2.x << " Expected coordinate.y=="<< testY <<", Returned " << coordinate2.y << endl;
+	int test1X=10;
+	int test1Y=3;
+	Coordinate2D coordinate2(test1X, test1Y);
+	if(coordinate2.x != test1X || coordinate2.y !=test1Y){
+		cout << "Failed creating Coordinate2D with 2-arg constructor. Expected coordinate2.x==" << test1X <<", Returned " << coordinate2.x << " Expected coordinate.y=="<< test1Y <<", Returned " << coordinate2.y << endl;
 		passed=false;
 	}
+
+
+	int test2X = 3;
+	int test2Y = 2;
+	coordinate2.setCoordinate(test2X, test2Y);
+	if(coordinate2.x != test2X || coordinate2.y !=test2Y){
+		cout << "Failed setCoordinate(" << test2X << ", " << test2Y << "). Expected coordinate2.x==" << test2X <<", Returned " << coordinate2.x << ",  Expected coordinate.y=="<< test2Y <<", Returned " << coordinate2.y << endl;
+		passed=false;
+	}
+
+	Coordinate2D testCoord = coordinate2.getCoordinateObject();
+	if(testCoord.x != coordinate2.x || testCoord.y != coordinate2.y){
+		cout << "Failed Coordinate2D testCoord = coordinate2.getCoordinateObject(). Expected testCoord.x==" << coordinate2.x <<", Returned " << testCoord.x << ",  Expected coordinate.y=="<< coordinate2.y <<", Returned " << testCoord.y << endl;
+		passed=false;
+	}
+
+
+	cout << "Print Coordinate2D with overloaded << operator: " << testCoord << endl;
 
 	return passed;
 }
@@ -90,10 +108,10 @@ bool test_Vehicle() {
 	vehicles.push_back(make_unique<SpecialVehicle>());
 	
 
-	vector<Coordinate2D> coord = vehicles[2]->getCoordinates();
-	cout << "\t" << coord.size() << endl;
-	for (int i = 0; i < coord.size(); i++) {
-		cout << coord[i].x << ", " << coord[i].y << endl;
+	vector<Coordinate2D> coords = vehicles[2]->getCoordinates();
+	cout << "Test Printing vehicles[2] coordinates" << endl;
+	for (int i = 0; i < coords.size(); i++) {
+		cout << coords[i] << endl;
 	}
 	
 	
