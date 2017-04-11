@@ -21,11 +21,10 @@ bool HorizontalVehicle::moveDown() {
 bool HorizontalVehicle::moveLeft() {
 	bool canMove = true;
 
-	//check all potential new coordinates & verify they're lega moves
+	//check all potential new coordinates & verify they're legal moves
 	for(int i=0; i<coordinates.size(); i++){
-		int newXCoord = coordinates[i].x - 1;
-		//check if board is occupied
-		if( !board.isUnoccupiedSpace(coordinates[i])  ||  newXCoord < board.getMinXCoord()){
+		int newXCoord = coordinates[i].x - 1;	//where the vehicle ideally wants to go
+		if( !board.isUnoccupiedSpace(newXCoord, coordinates[i].y) ){	//check if new x coord & old y coordinate space is free
 			canMove=false;
 			break;
 		}

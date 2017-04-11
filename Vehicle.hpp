@@ -7,10 +7,6 @@
 #include "Coordinate2D.hpp"
 #include "Board.hpp"
 
-//CANNOT INCLUDE GAME, for some reason it breaks it.
-//maybe vehicle is being included twice somehow
-// #include "Game.hpp"
-
 using namespace std;
 
 class Vehicle {
@@ -28,7 +24,12 @@ public:
 
 	// Requires: nothing
 	// Modifies: nothing
-	// Effects: prints coordinates on screen for testing/debugging
+	// Effects: calculates & returns length of vehicle based on number of coordinates
+	int getLength() const;
+
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: prints coordinates on screen for testing
 	void printCoordinates() const;
 
 	virtual bool moveUp() = 0;

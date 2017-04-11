@@ -53,6 +53,36 @@ bool test_Board() {
 	bool passed = true;
 
 	Board board;
+	cout << "Printing board occupied squares\n" << board << endl;
+
+	int upperLeftX =0;
+	int upperLeftY =0;
+	if(!board.isUnoccupiedSpace(upperLeftX, upperLeftY)){
+		cout << "Failed new board, then board.isUnoccupiedSpace(" << upperLeftX << ", " <<upperLeftY << "). Expected true, Returned " << board.isUnoccupiedSpace(upperLeftX, upperLeftY) << endl;
+		passed=false;
+	}
+	int upperLeftBoundaryX =-1;				//check the actual board, since isUnoccupiedSpace() adjusts for vehicle coordinates
+	int upperLeftBoundaryY =-1;
+	if(board.isUnoccupiedSpace(upperLeftBoundaryX, upperLeftBoundaryY)){
+		cout << "Failed new board, then board.isUnoccupiedSpace(" << upperLeftBoundaryX << ", " <<upperLeftBoundaryY << "). Expected false, Returned " << board.isUnoccupiedSpace(upperLeftBoundaryX, upperLeftBoundaryY) << endl;
+		passed=false;
+	}
+
+	int centerIshSpaceX = 2;
+	int centerIshSpaceY = 3;
+	if(!board.isUnoccupiedSpace(centerIshSpaceX, centerIshSpaceY)){
+		cout << "Failed new board, then board.isUnoccupiedSpace(" << centerIshSpaceX << ", " <<centerIshSpaceY << "). Expected true, Returned " << board.isUnoccupiedSpace(centerIshSpaceX, centerIshSpaceY) << endl;
+		passed=false;
+	}
+
+	int winningX = 6;	//these are from the vehicle's perspective, getOccupiedSquares() checks 1 greater than these
+	int winningY = 2;
+	//The actual winning space is [3][7] in the 2D vector. Adjusted here by subtracting 1 from both x & y since isUnoccupiedSpace() adds 1
+	//and reversed x & y coordinates so it can be accessed (x, y),  not (y, x) like vectors do
+	if(!board.isUnoccupiedSpace(winningX, winningY)){
+		cout << "Failed new board, then board.isUnoccupiedSpace(" << winningX << ", " <<winningY << "). Expected true, Returned " << board.isUnoccupiedSpace(winningX, winningY) << endl;
+		passed=false;
+	}
 
 	return passed;
 }
@@ -128,12 +158,10 @@ bool test_Vehicle() {
 		cout << "Successfully moved left" << endl;
 	}
 	else{
-		cout << "Failed to move left" << endl;
+		cout << "Cannot to move left" << endl;
 	}
 	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
 	vehicles[0]->printCoordinates();
-
-	cout << "\t checking if free (0, 0) "<< testBoard.isUnoccupiedSpace(Coordinate2D(0, 0)) << endl;
 
 	
 	// for (int i = 0; i < vehicles.size(); i++) {
