@@ -3,7 +3,7 @@
 Vehicle::Vehicle() {
 }
 
-Vehicle::Vehicle(vector<Coordinate2D> coordinates) : coordinates(coordinates) {
+Vehicle::Vehicle(Board board, vector<Coordinate2D> coordinates) : board(board), coordinates(coordinates) {
 }
 
 Vehicle::~Vehicle() {
@@ -11,4 +11,11 @@ Vehicle::~Vehicle() {
 
 vector<Coordinate2D> Vehicle::getCoordinates() const {
 	return coordinates;
+}
+
+void Vehicle::printCoordinates() const {
+	cout << "Vehicle Coordinates:" << endl;
+	for (int i = 0; i < coordinates.size(); i++) {
+		cout << coordinates[i] << endl;
+	}
 }

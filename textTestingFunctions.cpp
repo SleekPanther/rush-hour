@@ -101,19 +101,40 @@ bool test_Vehicle() {
 	vector<unique_ptr<Vehicle>> vehicles;
 	vector<Coordinate2D> inputCoords = {Coordinate2D(1, 2), Coordinate2D(2, 4)};
 	vector<Coordinate2D> inputCoords2 = {Coordinate2D(10, 11), Coordinate2D(30, 40)};
-	vehicles.push_back(make_unique<HorizontalVehicle>(inputCoords));
+	Board testBoard;
+	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords));
 	vehicles.push_back(make_unique<HorizontalVehicle>());
-	vehicles.push_back(make_unique<VerticalVehicle>(inputCoords2));
+	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords2));
 	vehicles.push_back(make_unique<VerticalVehicle>());
 	vehicles.push_back(make_unique<SpecialVehicle>());
 	
 
-	vector<Coordinate2D> coords = vehicles[2]->getCoordinates();
-	cout << "Test Printing vehicles[2] coordinates" << endl;
-	for (int i = 0; i < coords.size(); i++) {
-		cout << coords[i] << endl;
+	vector<Coordinate2D> coords = vehicles[0]->getCoordinates();
+
+	cout << "Test Printing vehicles[0] coordinates (horizontal vehicle)" << endl;
+	vehicles[0]->printCoordinates();
+
+	if(vehicles[0]->moveLeft()){
+		cout << "Successfully moved left" << endl;
 	}
-	
+	else{
+		cout << "Failed to move left" << endl;
+	}
+	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
+	vehicles[0]->printCoordinates();
+
+	//move left again
+	if(vehicles[0]->moveLeft()){
+		cout << "Successfully moved left" << endl;
+	}
+	else{
+		cout << "Failed to move left" << endl;
+	}
+	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
+	vehicles[0]->printCoordinates();
+
+	cout << "\t checking if free (0, 0) "<< testBoard.isUnoccupiedSpace(Coordinate2D(0, 0)) << endl;
+
 	
 	// for (int i = 0; i < vehicles.size(); i++) {
 	// 	// vehicles[i]->

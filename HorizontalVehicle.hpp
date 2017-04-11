@@ -14,7 +14,7 @@ private:
 
 public:
 	HorizontalVehicle();
-	HorizontalVehicle(vector<Coordinate2D> coordinates);
+	HorizontalVehicle(Board board, vector<Coordinate2D> coordinates);
 	~HorizontalVehicle();
 
 	virtual bool moveUp() override;

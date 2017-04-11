@@ -16,14 +16,20 @@ using namespace std;
 class Vehicle {
 protected:
 	vector<Coordinate2D> coordinates;
+	Board board;
 	// Color color;
 
 public:
 	Vehicle();		//shouldn't keep default constructor for long
-	Vehicle(vector<Coordinate2D> coordinates);
+	Vehicle(Board board, vector<Coordinate2D> coordinates);
 	~Vehicle();
 
 	vector<Coordinate2D> getCoordinates() const;
+
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: prints coordinates on screen for testing/debugging
+	void printCoordinates() const;
 
 	virtual bool moveUp() = 0;
 
