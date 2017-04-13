@@ -7,19 +7,31 @@
 #include "Coordinate2D.hpp"
 #include "Board.hpp"
 
-//CANNOT INCLUDE GAME, for some reason it breaks it.
-//maybe vehicle is being included twice somehow
-// #include "Game.hpp"
-
 using namespace std;
 
 class Vehicle {
-private:
-	//fields
+protected:
+	vector<Coordinate2D> coordinates;
+	Board board;		//so the piece knows where to be drawn
+	// Color color;
+	static const int PIXELS_PER_COORDINATE_SCALE;		//could be declared somewhere else since board needs it too
 
 public:
-	Vehicle();
+	Vehicle();		//shouldn't keep default constructor for long
+	Vehicle(Board board, vector<Coordinate2D> coordinates);
 	~Vehicle();
+
+	vector<Coordinate2D> getCoordinates() const;
+
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: calculates & returns length of vehicle based on number of coordinates
+	int getLength() const;
+
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: prints coordinates on screen for testing
+	void printCoordinates() const;
 
 	virtual bool moveUp() = 0;
 
@@ -28,6 +40,8 @@ public:
 	virtual bool moveLeft() = 0;
 
 	virtual bool moveRight() = 0;
+
+	void draw();
 };
 
 #endif
