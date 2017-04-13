@@ -23,3 +23,7 @@ void Vehicle::printCoordinates() const {
 		cout << coordinates[i] << endl;
 	}
 }
+
+void Vehicle::draw(){
+	//loop through vector of coordinates & draw vehicle based on that location
+}

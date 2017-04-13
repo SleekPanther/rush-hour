@@ -34,6 +34,7 @@ public:
 	// Effects: tells you if space is free. Takes in a Coordinate2D so that we don't confuse x & y of the coordiante with x & y of the vector (which are (y, x))
 	bool isUnoccupiedSpace(int x, int y);
 
+	void draw();
 
 	friend ostream& operator << (ostream& outStream, const Board& board);
 };

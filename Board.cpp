@@ -70,6 +70,11 @@ bool Board::isUnoccupiedSpace(int x, int y) {
 	return !occupiedSquares[y+1][x+1];	//negate the value from grid since want to return if the is UN-occupied
 }
 
+void Board::draw() {
+	//draw board on screen
+	cout << "Draws board on screen" << endl;
+}
+
 
 ostream& operator << (ostream& outStream, const Board& board){
 	vector<vector<bool>> squares= board.getOccupiedSquares();

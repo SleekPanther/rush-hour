@@ -12,8 +12,9 @@ using namespace std;
 class Vehicle {
 protected:
 	vector<Coordinate2D> coordinates;
-	Board board;
+	Board board;		//so the piece knows where to be drawn
 	// Color color;
+	static const int PIXELS_PER_COORDINATE_SCALE;		//could be declared somewhere else since board needs it too
 
 public:
 	Vehicle();		//shouldn't keep default constructor for long
@@ -39,6 +40,8 @@ public:
 	virtual bool moveLeft() = 0;
 
 	virtual bool moveRight() = 0;
+
+	void draw();
 };
 
 #endif

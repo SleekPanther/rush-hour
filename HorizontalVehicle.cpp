@@ -34,6 +34,7 @@ bool HorizontalVehicle::moveLeft() {
 		for(int i=0; i<coordinates.size(); i++){
 			coordinates[i].x = coordinates[i].x - 1;
 		}
+		draw();		//only draw if it can move
 	}
 	return canMove;
 }
