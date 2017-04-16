@@ -6,10 +6,12 @@ HorizontalVehicle::HorizontalVehicle(Board & board, vector<Coordinate2D> coordin
 HorizontalVehicle::~HorizontalVehicle() {
 }
 
+//Horizontal Vehicles can only move left or right
 bool HorizontalVehicle::moveUp() {
 	return false;
 }
 
+//Horizontal Vehicles can only move left or right
 bool HorizontalVehicle::moveDown() {
 	return false;
 }

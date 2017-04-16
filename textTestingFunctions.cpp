@@ -275,7 +275,25 @@ bool test_Vehicle() {
 	cout << endl;
 
 
-	//check 
+	//Check horizontal Vehicles moving up & down
+	if(vehicles[0]->moveUp()){
+		cout << "Failed vehicles[0]->moveUp()  Expected false, returned: true" << endl;
+		passed=false;
+	}
+	if(vehicles[0]->moveDown()){
+		cout << "Failed vehicles[0]->moveDown()  Expected false, returned: true" << endl;
+		passed=false;
+	}
+
+	//Double check for Special Vehicle moveUp / moveDown()
+	if(vehicles[1]->moveUp()){
+		cout << "Failed vehicles[1]->moveUp()  Expected false, returned: true" << endl;
+		passed=false;
+	}
+	if(vehicles[1]->moveDown()){
+		cout << "Failed vehicles[1]->moveDown()  Expected false, returned: true" << endl;
+		passed=false;
+	}
 
 	
 	// for (int i = 0; i < vehicles.size(); i++) {
