@@ -174,7 +174,7 @@ bool test_Vehicle() {
 	Board testBoard;
 	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords));
 	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, inputCoords2));
-	// vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords3));
+	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords3));
 
 	if(vehicles[0]->isInWinningSpace()){	//default vehicle should not be placed in winning space
 		cout << "Failed creating a vehicle with coordinates " << inputCoordsCoord1 << ", " << inputCoordsCoord2 << " Expecting isInWinningSpace() false, returned " << vehicles[0]->isInWinningSpace() << endl;
@@ -295,10 +295,21 @@ bool test_Vehicle() {
 		passed=false;
 	}
 
-	
-	// for (int i = 0; i < vehicles.size(); i++) {
-	// 	// vehicles[i]->
-	// }
+
+
+	//TEST VerticalVehicles MOVEMENT
+	//move up / down here
+
+
+	if(vehicles[2]->moveLeft()){
+		cout << "Failed vehicles[2]->moveLeft()  Expected false, returned: true" << endl;
+		passed=false;
+	}
+	if(vehicles[2]->moveRight()){
+		cout << "Failed vehicles[2]->moveRight()  Expected false, returned: true" << endl;
+		passed=false;
+	}
+
 
 	return passed;
 }
