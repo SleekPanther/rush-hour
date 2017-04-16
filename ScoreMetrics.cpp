@@ -1,27 +1,24 @@
-//
-//  ScoreMetrics.cpp
-//  CS 120
-//
-//  Created by xiaosong chen on 4/13/17.
-//  Copyright © 2017 Xiaosong Chen. All rights reserved.
-//
-
 #include "ScoreMetrics.hpp"
 
-ScoreMetrics::ScoreMetrics(): moveCount(0) {
+ScoreMetrics::ScoreMetrics() {
+    cout << "\t new score metrics " << endl;
 }
 
 ScoreMetrics::~ScoreMetrics() {
 }
 
-int ScoreMetrics::getMoveCount() const{
-	return moveCount;
+void ScoreMetrics::increaseMoveCount(){
+    moveCount = moveCount +1;
 }
 
-void ScoreMetrics::increaseMoveCount(){
-	moveCount = moveCount +1;
-}
 
 void ScoreMetrics::reset() {
-	moveCount = 0;
+    moveCount = 0;
+    cout << "\t Game Reset" << endl;
 }
+
+
+int ScoreMetrics::getMoveCount(){
+    return moveCount;
+}
+
