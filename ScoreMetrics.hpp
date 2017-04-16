@@ -17,15 +17,23 @@ using namespace std;
 
 class ScoreMetrics {
 private:
-    int moveCount;		//how many moves
-    
+	int moveCount;		//how many moves
+
 public:
-    ScoreMetrics();
-    ~ScoreMetrics();
-    void increaseMoveCount();
-    void reset();
-    int getMoveCount();
-    
+	ScoreMetrics();
+	~ScoreMetrics();
+
+	int getMoveCount() const;
+
+	// Requires: nothing
+	// Modifies: moveCount
+	// Effects: Adds 1 to moveCount
+	void increaseMoveCount();
+
+	// Requires: nothing
+	// Modifies: moveCount
+	// Effects: resets moveCount to 0 when starting new game
+	void reset();
 };
 
 #endif

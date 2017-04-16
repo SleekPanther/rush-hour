@@ -359,6 +359,25 @@ bool test_ScoreMetrics() {
 	bool passed = true;
 
 	ScoreMetrics metrics;
+	if(metrics.getMoveCount() != 0){
+		cout << "Failed consturcting new ScoreMetrics and metrics.getMoveCount(). Expected 0, Returned: " << metrics.getMoveCount() << endl;
+		passed=false;
+	}
+
+	int testNumberOfMoves = 10;
+	for(int i=0; i< testNumberOfMoves; i++){
+		metrics.increaseMoveCount();
+	}
+	if(metrics.getMoveCount() != testNumberOfMoves){
+		cout << "Failed consturcting new ScoreMetrics and metrics.increaseMoveCount() " << testNumberOfMoves << " times. Expected metrics.getMoveCount()== " << testNumberOfMoves << ", Returned: " << metrics.getMoveCount() << endl;
+		passed=false;
+	}
+
+	metrics.reset();
+	if(metrics.getMoveCount() != 0){
+		cout << "Failed metrics.reset()  Expected metrics.getMoveCount()==0, Returned: " << metrics.getMoveCount() << endl;
+		passed=false;
+	}
 
 	return passed;
 }

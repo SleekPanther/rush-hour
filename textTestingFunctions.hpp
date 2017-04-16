@@ -20,7 +20,6 @@
 
 using namespace std;
 
-//Runs all tests
 void runAllTests();
 
 
