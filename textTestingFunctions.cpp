@@ -169,12 +169,12 @@ bool test_Vehicle() {
 	Coordinate2D inputCoordsCoord1(2, 4);
 	Coordinate2D inputCoordsCoord2(3, 4);
 	vector<Coordinate2D> inputCoords = {inputCoordsCoord1, inputCoordsCoord2};
-	vector<Coordinate2D> inputCoords2 = {Coordinate2D(5, 2), Coordinate2D(4, 2)};
+	vector<Coordinate2D> inputCoords2 = {Coordinate2D(4, 2), Coordinate2D(3, 2)};
 	vector<Coordinate2D> inputCoords3 = {Coordinate2D(1, 0), Coordinate2D(1, 1)};
 	Board testBoard;
 	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords));
-	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords2));
-	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords3));
+	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, inputCoords2));
+	// vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords3));
 
 	if(vehicles[0]->isInWinningSpace()){	//default vehicle should not be placed in winning space
 		cout << "Failed creating a vehicle with coordinates " << inputCoordsCoord1 << ", " << inputCoordsCoord2 << " Expecting isInWinningSpace() false, returned " << vehicles[0]->isInWinningSpace() << endl;
@@ -240,6 +240,42 @@ bool test_Vehicle() {
 	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
 	vehicles[0]->printCoordinates();
 	cout << endl;
+
+
+	if(vehicles[1]->moveRight()){
+		cout << "Successfully moved right " << endl;
+	}
+	else{
+		cout << "Cannot to move right " << endl;
+	}
+	if(vehicles[1]->isInWinningSpace()){
+		cout << "Failed vehicles[1]->moveRight() then vehicles[1]->isInWinningSpace()  Expected false, returned: " << vehicles[1]->isInWinningSpace() << endl;
+		passed=false;
+	}
+	cout << "Coordinates of vehicles[1] after moveRight()" << endl;
+	vehicles[1]->printCoordinates();
+	cout << endl;
+
+	//Move right again to win the game
+	if(vehicles[1]->moveRight()){
+		cout << "Successfully moved right " << endl;
+	}
+	else{
+		cout << "Cannot to move right " << endl;
+	}
+	if(vehicles[1]->isInWinningSpace()){
+		cout << "vehicles[1] isInWinningSpace, Game should end " << endl;
+	}
+	else{
+		cout << "Failed vehicles[1]->moveRight() then vehicles[1]->isInWinningSpace()  Expected true, returned: " << vehicles[1]->isInWinningSpace() << endl;
+		passed=false;
+	}
+	cout << "Coordinates of vehicles[1] after moveRight()" << endl;
+	vehicles[1]->printCoordinates();
+	cout << endl;
+
+
+	//check 
 
 	
 	// for (int i = 0; i < vehicles.size(); i++) {

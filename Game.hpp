@@ -18,6 +18,7 @@
 using namespace std;
 
 //Needs to call isInWinningSpace() after each Vehicle moves to see if the game should be over
+//IMPORTANT game must call isInWinningSpace() after EVERY attempted move, otherwise SpecialVehicle will check vector indexes that don't exist
 
 class Game{
 private:
