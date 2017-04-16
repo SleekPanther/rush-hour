@@ -34,6 +34,8 @@ void runAllTests() {
 }
 
 bool test_Game() {
+	cout << "\n**Begin test_Game() tests**\n" << endl;
+
 	bool passed = true;
 
 	Game game;
@@ -42,6 +44,8 @@ bool test_Game() {
 }
 
 bool test_GameSetup() {
+	cout << "\n**Begin test_GameSetup() tests**\n" << endl;
+
 	bool passed = true;
 
 	GameSetup setup;
@@ -50,6 +54,8 @@ bool test_GameSetup() {
 }
 
 bool test_Board() {
+	cout << "\n**Begin test_Board() tests**\n" << endl;
+
 	bool passed = true;
 
 	Board board;
@@ -97,10 +103,25 @@ bool test_Board() {
 		passed=false;
 	}
 
+
+	board.setSquareOccupied(2, 3);
+	if(board.isUnoccupiedSpace(2, 3)){
+		cout << "Failed new board, boad.setSquareOccupied(2, 3), then board.isUnoccupiedSpace(2, 3). Expected false, Returned " << board.isUnoccupiedSpace(2, 3) << endl;
+		passed=false;
+	}
+
+	board.setSquareVacant(2, 3);		//Clear the space
+	if(!board.isUnoccupiedSpace(2, 3)){
+		cout << "Failed new board, boad.setSquareVacant(2, 3), then board.isUnoccupiedSpace(2, 3). Expected true, Returned " << board.isUnoccupiedSpace(2, 3) << endl;
+		passed=false;
+	}
+
 	return passed;
 }
 
 bool test_Coordinate2D() {
+	cout << "\n**Begin test_Coordinate2D() tests**\n" << endl;
+
 	bool passed = true;
 
 	Coordinate2D coordinate;
@@ -139,6 +160,8 @@ bool test_Coordinate2D() {
 }
 
 bool test_Vehicle() {
+	cout << "\n**Begin test_Vehicle() tests**\n" << endl;
+
 	bool passed = true;
 
 
@@ -201,6 +224,8 @@ bool test_Vehicle() {
 }
 
 bool test_ScoreMetrics() {
+	cout << "\n**Begin test_ScoreMetrics() tests**\n" << endl;
+
 	bool passed = true;
 
 	ScoreMetrics metrics;
