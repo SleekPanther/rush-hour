@@ -166,11 +166,11 @@ bool test_Vehicle() {
 
 
 	vector<unique_ptr<Vehicle>> vehicles;
-	Coordinate2D inputCoordsCoord1(2, 2);
-	Coordinate2D inputCoordsCoord2(2, 3);
+	Coordinate2D inputCoordsCoord1(2, 4);
+	Coordinate2D inputCoordsCoord2(3, 4);
 	vector<Coordinate2D> inputCoords = {inputCoordsCoord1, inputCoordsCoord2};
-	vector<Coordinate2D> inputCoords2 = {Coordinate2D(5, 5), Coordinate2D(5, 4)};
-	vector<Coordinate2D> inputCoords3 = {Coordinate2D(3, 0), Coordinate2D(4, 0)};
+	vector<Coordinate2D> inputCoords2 = {Coordinate2D(5, 2), Coordinate2D(4, 2)};
+	vector<Coordinate2D> inputCoords3 = {Coordinate2D(1, 0), Coordinate2D(1, 1)};
 	Board testBoard;
 	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords));
 	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords2));
@@ -181,39 +181,65 @@ bool test_Vehicle() {
 		passed=false;
 	}
 
-	vector<Coordinate2D> coords = vehicles[0]->getCoordinates();
+	cout << "Test Printing vehicles[0] coordinates (horizontal vehicle)" << endl;
+	vehicles[0]->printCoordinates();
 
-	// cout << "Test Printing vehicles[0] coordinates (horizontal vehicle)" << endl;
-	// vehicles[0]->printCoordinates();
 
-	cout << "Board populated with vehicles before any movement \n" << testBoard << endl;
+	cout << "Board populated with vehicles before any movement\n" << testBoard << endl;
+
+	//Temporarily remove vehicle from board & make sure it's gone
+	vehicles[0]->vacateBoard();
+	cout << "Board after vehicles[0] has temporarily vacated \n" << testBoard << endl;
+	vector<Coordinate2D> vehicle0Coords = vehicles[0]->getCoordinates();
+	for(int i=0; i<vehicle0Coords.size(); i++){
+		int x=vehicle0Coords[i].x;
+		int y=vehicle0Coords[i].y;
+		if( !testBoard.isUnoccupiedSpace(x, y)){
+			cout << "Failed vehicles[0] vacating board, then testBoard.isUnoccupiedSpace("<<x<< ", "<<y<<")  Expected true, returned: " << testBoard.isUnoccupiedSpace(x, y) << endl;
+		}
+	}
+
+	vehicles[0]->reOccupyBoard();
+	cout << "Board after vehicles[0] has re-Occupied the board\n" << testBoard << endl;
+	for(int i=0; i<vehicle0Coords.size(); i++){
+		int x=vehicle0Coords[i].x;
+		int y=vehicle0Coords[i].y;
+		if( testBoard.isUnoccupiedSpace(x, y)){
+			cout << "Failed vehicles[0] reOccupyBoard board, then testBoard.isUnoccupiedSpace("<<x<< ", "<<y<<")  Expected false, returned: " << testBoard.isUnoccupiedSpace(x, y) << endl;
+		}
+	}
+
+
 	if(vehicles[0]->moveLeft()){
-		cout << "Successfully moved left" << endl;
+		cout << "Successfully moved left " << endl;
 	}
 	else{
-		cout << "Failed to move left" << endl;
+		cout << "Failed to move left " << endl;
 	}
 	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
 	vehicles[0]->printCoordinates();
+	cout << endl;
  
 	if(vehicles[0]->moveLeft()){
-		cout << "Successfully moved left" << endl;
+		cout << "Successfully moved left " << endl;
 	}
 	else{
-		cout << "Failed to move left" << endl;
+		cout << "Failed to move left " << endl;
 	}
 	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
 	vehicles[0]->printCoordinates();
+	cout << endl;
 
 	//move left again (should fail since hits left wall)
 	if(vehicles[0]->moveLeft()){
-		cout << "Successfully moved left" << endl;
+		cout << "Successfully moved left " << endl;
 	}
 	else{
-		cout << "Cannot to move left" << endl;
+		cout << "Cannot to move left " << endl;
 	}
 	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
 	vehicles[0]->printCoordinates();
+	cout << endl;
 
 	
 	// for (int i = 0; i < vehicles.size(); i++) {

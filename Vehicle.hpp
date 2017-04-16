@@ -9,6 +9,10 @@
 
 using namespace std;
 
+//Draw should draw indivual rectangles & just joined together due to proximity
+//Hovering over a piece should lighten the color
+// or we could have a function constantly changing to color to make it glow
+
 class Vehicle {
 protected:
 	vector<Coordinate2D> coordinates;
@@ -41,6 +45,16 @@ public:
 	virtual bool moveLeft() = 0;
 
 	virtual bool moveRight() = 0;
+
+	// Requires: nothing
+	// Modifies: board
+	// Effects: sets all coordinates of the vehicle to false in the board, so moving can be calculated without the vehicle itself getting in the way
+	void vacateBoard();
+
+	// Requires: nothing
+	// Modifies: board
+	// Effects: loops over coordinates and re-adds the vehicle to board (used after the move methods check if the vehicle can move)
+	void reOccupyBoard();
 
 	// Requires: nothing
 	// Modifies: nothing

@@ -26,6 +26,18 @@ void Vehicle::printCoordinates() const {
 	}
 }
 
+void Vehicle::vacateBoard(){
+	for(int i=0; i<coordinates.size(); i++){
+		board.setSquareVacant(coordinates[i].x, coordinates[i].y);
+	}
+}
+
+void Vehicle::reOccupyBoard(){
+	for(int i=0; i<coordinates.size(); i++){
+		board.setSquareOccupied(coordinates[i].x, coordinates[i].y);
+	}
+}
+
 bool Vehicle::isInWinningSpace() const{
 	return inWinningSpace;
 }
