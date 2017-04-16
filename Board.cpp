@@ -1,6 +1,7 @@
 #include "Board.hpp"
 
 Board::Board() {
+	winningSpace = Coordinate2D(6, 2);		//3rd row down, 7th column across is the 1 free space in the board boundary to win the game
 	occupiedSquares = {
 		{true, true, true, true, true, true, true, true},
 		{true, false, false, false, false, false, false, true},
@@ -64,6 +65,14 @@ bool Board::getSquareValueFromVehicleCoordinates(int x, int y) const{
 void Board::setSquareValueFromVehicleCoordinates(int x, int y, bool value){
 	//+1 to x & y since board has a border of occupied squares around the edge making the grid bigger
 	occupiedSquares[y+1][x+1] = value;
+}
+
+Coordinate2D Board::getWinningSpace() const{
+	return winningSpace;
+}
+
+bool Board::isWinningSpace(int x, int y) const{
+	return (x == winningSpace.x) && (y == winningSpace.y);
 }
 
 void Board::draw() {

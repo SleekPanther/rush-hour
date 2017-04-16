@@ -75,12 +75,25 @@ bool test_Board() {
 		passed=false;
 	}
 
-	int winningX = 6;	//these are from the vehicle's perspective, getOccupiedSquares() checks 1 greater than these
-	int winningY = 2;
+	int winningX = board.getWinningSpace().x;	//these are from the vehicle's perspective, getOccupiedSquares() checks 1 greater than these
+	int winningY = board.getWinningSpace().y;
 	//The actual winning space is [3][7] in the 2D vector. Adjusted here by subtracting 1 from both x & y since isUnoccupiedSpace() adds 1
 	//and reversed x & y coordinates so it can be accessed (x, y),  not (y, x) like vectors do
 	if(!board.isUnoccupiedSpace(winningX, winningY)){
 		cout << "Failed new board, then board.isUnoccupiedSpace(" << winningX << ", " <<winningY << "). Expected true, Returned " << board.isUnoccupiedSpace(winningX, winningY) << endl;
+		passed=false;
+	}
+
+
+	if(!board.isWinningSpace(winningX, winningY)){
+		cout << "Failed new board, then board.isWinningSpace(" << winningX << ", " <<winningY << "). Expected true, Returned " << board.isWinningSpace(winningX, winningY) << endl;
+		passed=false;
+	}
+
+	int nonWinningX = board.getWinningSpace().x -1;		//Check some other square to make sure it's not the winning space
+	int nonWinningY = board.getWinningSpace().y -1;
+	if(board.isWinningSpace(nonWinningX, nonWinningY)){
+		cout << "Failed new board, then board.isWinningSpace(" << nonWinningX << ", " <<nonWinningY << "). Expected false, Returned " << board.isWinningSpace(nonWinningX, nonWinningY) << endl;
 		passed=false;
 	}
 

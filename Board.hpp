@@ -34,6 +34,13 @@ public:
 	// Effects: Sets a square in the board to true (occupied)
 	void setSquareOccupied(int x, int y);
 
+	Coordinate2D getWinningSpace() const;
+
+	// Requires: Nothing
+	// Modifies: nothing
+	// Effects: tells you if a given coordinate is the winning space
+	bool isWinningSpace(int x, int y) const;
+
 	void draw();
 
 	friend ostream& operator << (ostream& outStream, const Board& board);
