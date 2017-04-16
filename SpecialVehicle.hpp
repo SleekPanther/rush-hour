@@ -16,9 +16,13 @@ private:
 	//fields
 
 public:
-	SpecialVehicle();
+	SpecialVehicle(Board & board, vector<Coordinate2D> coordinates);
 	~SpecialVehicle();
 
+	// Requires: nothing
+	// Modifies: inWinningSpace & board
+	// Effects: checks if any of the new coordinates are the winning space
+	virtual bool moveRight() override;
 };
 
 #endif
