@@ -1,10 +1,6 @@
 #include "HorizontalVehicle.hpp"
 
-HorizontalVehicle::HorizontalVehicle() {
-	cout << "\tnew horizontal vehicle" << endl;
-}
-
-HorizontalVehicle::HorizontalVehicle(Board board, vector<Coordinate2D> coordinates): Vehicle(board, coordinates) {
+HorizontalVehicle::HorizontalVehicle(Board & board, vector<Coordinate2D> coordinates): Vehicle(board, coordinates) {
 }
 
 HorizontalVehicle::~HorizontalVehicle() {
@@ -32,10 +28,15 @@ bool HorizontalVehicle::moveLeft() {
 
 	if(canMove){		//actually move if all new spaces are valid
 		for(int i=0; i<coordinates.size(); i++){
-			coordinates[i].x = coordinates[i].x - 1;
+			board.setSquareVacant(coordinates[i].x, coordinates[i].y);		//remove its old position before moving
+			coordinates[i].x = coordinates[i].x - 1;				//actually move
+			board.setSquareOccupied(coordinates[i].x, coordinates[i].y);	//set new position to be occupied
 		}
-		draw();		//only draw if it can move
 	}
+	if(debugPrintBoard){
+		cout << "Board after attempted move (in move method)\n" << board << endl;
+	}
+
 	return canMove;
 }
 

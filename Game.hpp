@@ -17,9 +17,11 @@
 
 using namespace std;
 
+//Needs to call isInWinningSpace() after each Vehicle moves to see if the game should be over
+
 class Game{
 private:
-	//fields
+	Board board;
 
 public:
 	Game();

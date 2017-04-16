@@ -13,8 +13,7 @@ private:
 	//fields
 
 public:
-	HorizontalVehicle();
-	HorizontalVehicle(Board board, vector<Coordinate2D> coordinates);
+	HorizontalVehicle(Board & board, vector<Coordinate2D> coordinates);
 	~HorizontalVehicle();
 
 	virtual bool moveUp() override;

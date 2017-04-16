@@ -12,13 +12,14 @@ using namespace std;
 class Vehicle {
 protected:
 	vector<Coordinate2D> coordinates;
-	Board board;		//so the piece knows where to be drawn
+	Board & board;		//so the piece knows where to be drawn.		MUST BE A REFERENCE
 	// Color color;
-	static const int PIXELS_PER_COORDINATE_SCALE;		//could be declared somewhere else since board needs it too
+	bool inWinningSpace;
+
+	bool debugPrintBoard;		//set true to display the contents of the board after each move method, false when not debugging
 
 public:
-	Vehicle();		//shouldn't keep default constructor for long
-	Vehicle(Board board, vector<Coordinate2D> coordinates);
+	Vehicle(Board & board, vector<Coordinate2D> coordinates);
 	~Vehicle();
 
 	vector<Coordinate2D> getCoordinates() const;
@@ -40,6 +41,11 @@ public:
 	virtual bool moveLeft() = 0;
 
 	virtual bool moveRight() = 0;
+
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: tells you if the vehicle is the square that wins the game. Only applies for SpecialVehicle
+	bool isInWinningSpace() const;
 
 	void draw();
 };

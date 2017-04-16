@@ -16,7 +16,7 @@ private:
 	//fields
 
 public:
-	SpecialVehicle();
+	// SpecialVehicle();
 	~SpecialVehicle();
 
 };
