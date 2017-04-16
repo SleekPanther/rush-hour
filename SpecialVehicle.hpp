@@ -16,7 +16,7 @@ private:
 	//fields
 
 public:
-	// SpecialVehicle();
+	SpecialVehicle(Board & board, vector<Coordinate2D> coordinates);
 	~SpecialVehicle();
 
 };

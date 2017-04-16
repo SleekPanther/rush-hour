@@ -1,8 +1,7 @@
 #include "SpecialVehicle.hpp"
 
-// SpecialVehicle::SpecialVehicle() {
-// 	cout << "\t\tspecial vehicle (also print horizontal constuctor) " << endl;
-// }
+SpecialVehicle::SpecialVehicle(Board & board, vector<Coordinate2D> coordinates): HorizontalVehicle(board, coordinates) {
+}
 
 SpecialVehicle::~SpecialVehicle() {
 }
