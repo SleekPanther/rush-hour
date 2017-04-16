@@ -232,7 +232,7 @@ bool test_Vehicle() {
 
 	//move left again (should fail since hits left wall)
 	if(vehicles[0]->moveLeft()){
-		cout << "Successfully moved left " << endl;
+		cout << "SHOULDN'T have moved left " << endl;
 	}
 	else{
 		cout << "Cannot to move left " << endl;
@@ -296,9 +296,48 @@ bool test_Vehicle() {
 	}
 
 
-
 	//TEST VerticalVehicles MOVEMENT
-	//move up / down here
+	if(vehicles[2]->moveDown()){
+		cout << "Successfully moved Down " << endl;
+	}
+	else{
+		cout << "Failed to move Down " << endl;
+	}
+	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
+	vehicles[2]->printCoordinates();
+	cout << endl;
+
+	if(vehicles[2]->moveDown()){
+		cout << "Successfully moved Down " << endl;
+	}
+	else{
+		cout << "Failed to move Down " << endl;
+	}
+	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
+	vehicles[2]->printCoordinates();
+	cout << endl;
+
+	//Cannot move down any further
+	if(vehicles[2]->moveDown()){
+		cout << "SHOULDN'T have moved Down " << endl;
+	}
+	else{
+		cout << "Cannot move Down " << endl;
+	}
+	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
+	vehicles[2]->printCoordinates();
+	cout << endl;
+
+	//Now Test moveUp
+	if(vehicles[2]->moveUp()){
+		cout << "Successfully moved Up " << endl;
+	}
+	else{
+		cout << "Failed to move Up " << endl;
+	}
+	cout << "Coordinates of vehicles[2] after moveUp()" << endl;
+	vehicles[2]->printCoordinates();
+	cout << endl;
 
 
 	if(vehicles[2]->moveLeft()){
