@@ -1,24 +1,19 @@
 #include "ScoreMetrics.hpp"
 
-ScoreMetrics::ScoreMetrics() {
-    cout << "\t new score metrics " << endl;
+ScoreMetrics::ScoreMetrics(): moveCount(0) {
 }
 
 ScoreMetrics::~ScoreMetrics() {
 }
 
-void ScoreMetrics::increaseMoveCount(){
-    moveCount = moveCount +1;
+int ScoreMetrics::getMoveCount() const{
+	return moveCount;
 }
 
+void ScoreMetrics::increaseMoveCount(){
+	moveCount = moveCount +1;
+}
 
 void ScoreMetrics::reset() {
-    moveCount = 0;
-    cout << "\t Game Reset" << endl;
+	moveCount = 0;
 }
-
-
-int ScoreMetrics::getMoveCount(){
-    return moveCount;
-}
-
