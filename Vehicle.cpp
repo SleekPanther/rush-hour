@@ -1,9 +1,9 @@
-#include "Vehicle.hpp"
+#include "Vehicle.h"
 
 //board(board) sets the reference in an initializer list. For some reason this cannot happen inside the body
 Vehicle::Vehicle(Board & board, vector<Coordinate2D> coordinates) : board(board), coordinates(coordinates), inWinningSpace(false) {
-	debugPrintBoard=true;		//change this to not the board when not testing
-	for(int i=0; i<coordinates.size(); i++){
+	debugPrintBoard = true;		//change this to not the board when not testing
+	for (int i = 0; i<coordinates.size(); i++) {
 		board.setSquareOccupied(coordinates[i].x, coordinates[i].y);	//set new position to be occupied
 	}
 }
@@ -15,7 +15,7 @@ vector<Coordinate2D> Vehicle::getCoordinates() const {
 	return coordinates;
 }
 
-int Vehicle::getLength() const{
+int Vehicle::getLength() const {
 	return coordinates.size();
 }
 
@@ -26,22 +26,26 @@ void Vehicle::printCoordinates() const {
 	}
 }
 
-void Vehicle::vacateBoard(){
-	for(int i=0; i<coordinates.size(); i++){
+void Vehicle::vacateBoard() {
+	for (int i = 0; i<coordinates.size(); i++) {
 		board.setSquareVacant(coordinates[i].x, coordinates[i].y);
 	}
 }
 
-void Vehicle::reOccupyBoard(){
-	for(int i=0; i<coordinates.size(); i++){
+void Vehicle::reOccupyBoard() {
+	for (int i = 0; i<coordinates.size(); i++) {
 		board.setSquareOccupied(coordinates[i].x, coordinates[i].y);
 	}
 }
 
-bool Vehicle::isInWinningSpace() const{
+bool Vehicle::isInWinningSpace() const {
 	return inWinningSpace;
 }
 
-void Vehicle::draw(){
+void Vehicle::draw() {
 	//loop through vector of coordinates & draw vehicle based on that location
+}
+bool Vehicle::testFunctionCall()
+{
+	return true;
 }
