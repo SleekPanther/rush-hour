@@ -24,10 +24,10 @@ void runAllTests() {
 	}
 	cout << endl << endl;
 
-	if (test_Vehicle()) {
-		cout << "Passed test_Vehicle() tests" << endl;
-	}
-	cout << endl << endl;
+	// if (test_Vehicle()) {
+	// 	cout << "Passed test_Vehicle() tests" << endl;
+	// }
+	// cout << endl << endl;
 
 	if (test_ScoreMetrics()) {
 		cout << "Passed test_ScoreMetrics() tests" << endl;
@@ -54,8 +54,14 @@ bool test_GameSetup() {
 	bool passed = true;
 
 	GameSetup setup;
+
+	string testFilename = "setUps2.txt";
+	vector<int> fileContents = GameSetup::readFile(testFilename);
+	for(int i=0; i<fileContents.size(); i++){
+		cout << fileContents[i] << ", ";
+	}
+	cout << endl;
 	
-	Board setupTestBoard;
 	//vector<unique_ptr<Vehicle> > theVehiclesFromSetup;
 	return passed;
 }

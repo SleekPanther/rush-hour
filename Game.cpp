@@ -1,22 +1,29 @@
 #include "Game.h"
 
 Game::Game() {
-	cout << "\tNew Game\n" << endl;
-	cout << "\tCalling retrieveVehicle member function...\n" << endl;
+	//Empty Board is already set up
 	retrieveVehicles(board);
-
 }
 
 Game::~Game() {
-
-
-	
-
 }
 
 vector<Vehicle> Game::getVehicles()
 {
 	return vector<Vehicle>();
+}
+
+void Game::load(){
+	string progressFilename = "progress.txt";
+	//vector<int> fileContents = GameSetup::readFile(progressFilename);
+}
+
+void Game::save(){
+
+}
+
+void Game::populateBoard(vector<int> fileContents){
+
 }
 
 void Game::retrieveVehicles(Board theBoard)

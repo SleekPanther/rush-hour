@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <iostream>
 #include "Vehicle.h"
 #include "HorizontalVehicle.h"
 #include "VerticalVehicle.h"
@@ -33,6 +35,10 @@ public:
 	~GameSetup();
 	//This method will return true untill all coordinates have been recieved and the vector of coordinates is empty
 	bool thereAreMore();
+
+	//static since any Game needs to be able to read files
+	static vector<int> readFile(string filename);
+
 	/*dataConversion
 	Requires:A file in the same folder to get game setups from
 	Modifies:The fields numOfVehicles, the vector vehicleLengths, the vector allCoords

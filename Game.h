@@ -25,12 +25,20 @@ private:
 	Board board;
 	GameSetup theSetup;
 
+	//vector<unique_ptr<Vehicle>>
+	vector<Vehicle*> vectorOfVehicles;
+
 public:
 	Game();
 	~Game();
 	//This is a vector of vehicle pointers that point to all the vehicles defined by the set up and then updated as the game progresses
-	vector<Vehicle*> vectorOfVehicles;
 	vector<Vehicle> getVehicles();
+
+	void populateBoard(vector<int> fileContents);
+
+	void load();
+
+	void save();
 	
 	/*tretrieveVehicles uses the information accesed from gameSetup to create the correct vehicles
 	*that will then be pointed to by the vector of vehicle pointers

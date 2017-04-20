@@ -1,10 +1,7 @@
 #include "GameSetup.h"
-#include <fstream>
-#include <iostream>
 
 
 GameSetup::GameSetup() {
-	cout << "\tnew game setup" << endl;
 	dataConversion();
 }
 
@@ -20,6 +17,20 @@ GameSetup::~GameSetup() {
 bool GameSetup::thereAreMore()
 {
 	return true;
+}
+
+vector<int> GameSetup::readFile(string filename){
+	vector<int> fileContents;
+
+	ifstream inputFile(filename);
+	if(inputFile){
+		int number;
+		while(inputFile >> number){			//go to the end of file. (This only contains integers so it should be OK)
+			fileContents.push_back(number);
+		}
+	}
+	inputFile.close();
+	return fileContents;
 }
 
 void GameSetup::dataConversion()
