@@ -1,5 +1,5 @@
-#ifndef textTestingFunctions_hpp
-#define textTestingFunctions_hpp
+#ifndef textTestingFunctions_h
+#define textTestingFunctions_h
 
 #include <iostream>
 #include <string>

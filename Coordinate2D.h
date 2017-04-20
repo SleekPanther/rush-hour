@@ -1,5 +1,5 @@
-#ifndef Coordinate2D_hpp
-#define Coordinate2D_hpp
+#ifndef Coordinate2D_h
+#define Coordinate2D_h
 
 #include <iostream>
 

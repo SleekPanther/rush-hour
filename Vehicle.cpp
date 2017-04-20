@@ -22,8 +22,9 @@ int Vehicle::getLength() const {
 void Vehicle::printCoordinates() const {
 	cout << "Vehicle Coordinates:" << endl;
 	for (int i = 0; i < coordinates.size(); i++) {
-		cout << coordinates[i] << endl;
+		cout << coordinates[i] << "  ";
 	}
+	cout << endl;
 }
 
 void Vehicle::vacateBoard() {

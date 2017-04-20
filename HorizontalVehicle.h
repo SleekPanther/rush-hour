@@ -1,10 +1,10 @@
-#ifndef HorizontalVehicle_hpp
-#define HorizontalVehicle_hpp
+#ifndef HorizontalVehicle_h
+#define HorizontalVehicle_h
 
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Vehicle.hpp"
+#include "Vehicle.h"
 
 using namespace std;
 

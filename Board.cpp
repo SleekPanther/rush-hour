@@ -1,4 +1,4 @@
-#include "Board.hpp"
+#include "Board.h"
 
 Board::Board() {
 	winningSpace = Coordinate2D(6, 2);		//3rd row down, 7th column across is the 1 free space in the board boundary to win the game

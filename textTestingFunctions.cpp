@@ -168,7 +168,7 @@ bool test_Coordinate2D() {
 
 bool test_Vehicle() {
 	
-	return true;
+	// return true;
 	
 	cout << "\n**Begin test_Vehicle() tests**\n" << endl;
 

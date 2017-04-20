@@ -1,4 +1,4 @@
-#include "Coordinate2D.hpp"
+#include "Coordinate2D.h"
 
 Coordinate2D::Coordinate2D(): x(0), y(0){
 }

@@ -1,5 +1,5 @@
-#ifndef ScoreMetrics_hpp
-#define ScoreMetrics_hpp
+#ifndef ScoreMetrics_h
+#define ScoreMetrics_h
 
 #include <iostream>
 #include <string>
