@@ -26,8 +26,7 @@ private:
 	GameSetup theSetup;
 	ScoreMetrics metrics;
 
-	//vector<unique_ptr<Vehicle>>
-	vector<Vehicle*> vectorOfVehicles;
+	vector<unique_ptr<Vehicle>> vectorOfVehicles;
 
 	string progressFilename;
 

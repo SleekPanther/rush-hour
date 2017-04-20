@@ -46,7 +46,7 @@ bool test_Game() {
 	Game game;
 	game.load();
 
-	game.save();
+	//game.save();
 
 	return passed;
 }
@@ -373,6 +373,9 @@ bool test_Vehicle() {
 		cout << "Failed vehicles[2]->moveRight()  Expected false, returned: true" << endl;
 		passed = false;
 	}
+
+	Game game;
+	game.save();
 
 
 	return passed;
