@@ -38,6 +38,11 @@ public:
 	// Effects: prints coordinates on screen for testing
 	void printCoordinates() const;
 
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: returns "vertical" or "horizontal" to differentate between vehicle.
+	virtual string getVehicleType() const = 0;
+
 	virtual bool moveUp() = 0;
 
 	virtual bool moveDown() = 0;

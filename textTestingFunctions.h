@@ -7,6 +7,8 @@
 #include <memory>
 #include <iomanip>
 #include <cmath>
+#include <fstream>
+#include <iostream>
 #include "Vehicle.h"
 #include "HorizontalVehicle.h"
 #include "VerticalVehicle.h"

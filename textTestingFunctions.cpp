@@ -44,6 +44,9 @@ bool test_Game() {
 	bool passed = true;
 
 	Game game;
+	game.load();
+
+	//game.save();
 
 	return passed;
 }
@@ -54,8 +57,15 @@ bool test_GameSetup() {
 	bool passed = true;
 
 	GameSetup setup;
+
+	cout << "Testing reading from file & placing in vector " << endl;
+	string testFilename = "setUps2.txt";
+	vector<int> fileContents = GameSetup::readFile(testFilename);
+	for(int i=0; i<fileContents.size(); i++){
+		cout << fileContents[i] << ", ";
+	}
+	cout << endl;
 	
-	Board setupTestBoard;
 	//vector<unique_ptr<Vehicle> > theVehiclesFromSetup;
 	return passed;
 }
@@ -167,9 +177,6 @@ bool test_Coordinate2D() {
 }
 
 bool test_Vehicle() {
-	
-	// return true;
-	
 	cout << "\n**Begin test_Vehicle() tests**\n" << endl;
 
 	bool passed = true;
@@ -185,6 +192,14 @@ bool test_Vehicle() {
 	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords));
 	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, inputCoords2));
 	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords3));
+
+
+	//Special vehicle is also a horizontal vehicle
+	for(int i=0; i< vehicles.size(); i++){
+		cout << "vehicle type: " << vehicles[i]->getVehicleType() <<endl;
+	}
+	cout << "\n\n";
+
 
 	if (vehicles[0]->isInWinningSpace()) {	//default vehicle should not be placed in winning space
 		cout << "Failed creating a vehicle with coordinates " << inputCoordsCoord1 << ", " << inputCoordsCoord2 << " Expecting isInWinningSpace() false, returned " << vehicles[0]->isInWinningSpace() << endl;
@@ -359,6 +374,9 @@ bool test_Vehicle() {
 		passed = false;
 	}
 
+	Game game;
+	game.save();
+
 
 	return passed;
 	
@@ -387,6 +405,13 @@ bool test_ScoreMetrics() {
 	metrics.reset();
 	if (metrics.getMoveCount() != 0) {
 		cout << "Failed metrics.reset()  Expected metrics.getMoveCount()==0, Returned: " << metrics.getMoveCount() << endl;
+		passed = false;
+	}
+
+	int oldHighScore = 10;
+	metrics.setMoveCount(oldHighScore);
+	if (metrics.getMoveCount() != oldHighScore) {
+		cout << "Failed metrics.setMoveCount(" << oldHighScore << ")  Expected metrics.getMoveCount()==" << oldHighScore << ", Returned: " << metrics.getMoveCount() << endl;
 		passed = false;
 	}
 

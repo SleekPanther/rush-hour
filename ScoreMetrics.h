@@ -19,6 +19,11 @@ public:
 
 	// Requires: nothing
 	// Modifies: moveCount
+	// Effects: used when continuing an old game to set the moveCount equal to an input parameter
+	void setMoveCount(int previousMoves);
+
+	// Requires: nothing
+	// Modifies: moveCount
 	// Effects: Adds 1 to moveCount
 	void increaseMoveCount();
 

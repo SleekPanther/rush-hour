@@ -6,6 +6,10 @@ VerticalVehicle::VerticalVehicle(Board & board, vector<Coordinate2D> coordinates
 VerticalVehicle::~VerticalVehicle() {
 }
 
+string VerticalVehicle::getVehicleType() const{
+	return "vertical";
+}
+
 bool VerticalVehicle::moveUp() {
 	bool canMove = true;
 
