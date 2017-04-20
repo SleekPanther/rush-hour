@@ -33,6 +33,13 @@ vector<int> GameSetup::readFile(string filename){
 	return fileContents;
 }
 
+void GameSetup::printVector(vector<int> vector){
+	for(int i=0; i<vector.size(); i++){
+		cout << vector[i] << ",  ";
+	}
+	cout << endl;
+}
+
 void GameSetup::dataConversion()
 {
 	ifstream inputFile;                        //Open the file

@@ -1,6 +1,7 @@
 #include "Game.h"
 
 Game::Game() {
+	progressFilename="progress.txt";
 	//Empty Board is already set up
 	retrieveVehicles(board);
 }
@@ -8,18 +9,29 @@ Game::Game() {
 Game::~Game() {
 }
 
-vector<Vehicle> Game::getVehicles()
-{
+vector<Vehicle> Game::getVehicles() {
 	return vector<Vehicle>();
 }
 
 void Game::load(){
-	string progressFilename = "progress.txt";
-	//vector<int> fileContents = GameSetup::readFile(progressFilename);
+	ifstream inputFile(progressFilename);
+	if(inputFile){		//if the file exists, attempt to load progress
+		vector<int> fileContents = GameSetup::readFile(progressFilename);
+		// GameSetup::printVector(fileContents);
+		int previousScore;
+		inputFile >> previousScore;		//save 1st number in file
+		fileContents.erase(fileContents.begin());	//erase the 1st number to just get the vehicles & coordinates
+		// GameSetup::printVector(fileContents);
+		metrics.setMoveCount(previousScore);
+		populateBoard(fileContents);
+	}
+	else{
+		//start new setup
+	}
 }
 
 void Game::save(){
-
+	//needs to check the types of vehicles
 }
 
 void Game::populateBoard(vector<int> fileContents){

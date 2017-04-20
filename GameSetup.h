@@ -39,6 +39,8 @@ public:
 	//static since any Game needs to be able to read files
 	static vector<int> readFile(string filename);
 
+	static void printVector(vector<int> vector);
+
 	/*dataConversion
 	Requires:A file in the same folder to get game setups from
 	Modifies:The fields numOfVehicles, the vector vehicleLengths, the vector allCoords

@@ -24,9 +24,12 @@ class Game {
 private:
 	Board board;
 	GameSetup theSetup;
+	ScoreMetrics metrics;
 
 	//vector<unique_ptr<Vehicle>>
 	vector<Vehicle*> vectorOfVehicles;
+
+	string progressFilename;
 
 public:
 	Game();

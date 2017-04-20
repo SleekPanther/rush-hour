@@ -44,6 +44,7 @@ bool test_Game() {
 	bool passed = true;
 
 	Game game;
+	game.load();
 
 	return passed;
 }
@@ -55,6 +56,7 @@ bool test_GameSetup() {
 
 	GameSetup setup;
 
+	cout << "Testing reading from file & placing in vector " << endl;
 	string testFilename = "setUps2.txt";
 	vector<int> fileContents = GameSetup::readFile(testFilename);
 	for(int i=0; i<fileContents.size(); i++){
@@ -393,6 +395,13 @@ bool test_ScoreMetrics() {
 	metrics.reset();
 	if (metrics.getMoveCount() != 0) {
 		cout << "Failed metrics.reset()  Expected metrics.getMoveCount()==0, Returned: " << metrics.getMoveCount() << endl;
+		passed = false;
+	}
+
+	int oldHighScore = 10;
+	metrics.setMoveCount(oldHighScore);
+	if (metrics.getMoveCount() != oldHighScore) {
+		cout << "Failed metrics.setMoveCount(" << oldHighScore << ")  Expected metrics.getMoveCount()==" << oldHighScore << ", Returned: " << metrics.getMoveCount() << endl;
 		passed = false;
 	}
 
