@@ -20,8 +20,8 @@ private:
 	//In the future this set up will come from a file. 
 
 	//Create vector that will contain pointers to objects that instances of children of Vehicle class
-	vector<unique_ptr<Vehicle> > allVehicles;
-	//vector<Vehicle*> allVehicles;
+	// vector<unique_ptr<Vehicle> > allVehicles;
+	vector<Vehicle*> allVehicles;
 
 public:
 	    //The folowing four fields provide all the needed infro for a board set up. (special vehicle always first)
