@@ -1,10 +1,10 @@
-#ifndef Board_hpp
-#define Board_hpp
+#ifndef Board_h
+#define Board_h
 
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Coordinate2D.hpp"
+#include "Coordinate2D.h"
 
 using namespace std;
 

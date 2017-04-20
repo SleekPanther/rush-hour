@@ -1,4 +1,4 @@
-#include "VerticalVehicle.hpp"
+#include "VerticalVehicle.h"
 
 VerticalVehicle::VerticalVehicle(Board & board, vector<Coordinate2D> coordinates): Vehicle(board, coordinates) {
 }
@@ -28,7 +28,7 @@ bool VerticalVehicle::moveUp() {
 		reOccupyBoard();		//move to new position by adding to the board
 	}
 	if(debugPrintBoard){
-		cout << "Board after attempted move (in move method)\n" << board;
+		cout << "Board after attempted move (from move method)\n" << board;
 	}
 
 	return canMove;
@@ -56,7 +56,7 @@ bool VerticalVehicle::moveDown() {
 		reOccupyBoard();		//move to new position by adding to the board
 	}
 	if(debugPrintBoard){
-		cout << "Board after attempted move (in move method)\n" << board;
+		cout << "Board after attempted move (from move method)\n" << board;
 	}
 
 	return canMove;

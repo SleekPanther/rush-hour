@@ -1,4 +1,4 @@
-#include "textTestingFunctions.hpp"
+#include "textTestingFunctions.h"
 //#include <GL/glut.h>
 
 int main() {

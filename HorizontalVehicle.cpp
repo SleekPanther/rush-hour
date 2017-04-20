@@ -1,4 +1,4 @@
-#include "HorizontalVehicle.hpp"
+#include "HorizontalVehicle.h"
 
 HorizontalVehicle::HorizontalVehicle(Board & board, vector<Coordinate2D> coordinates): Vehicle(board, coordinates) {
 }
@@ -38,7 +38,7 @@ bool HorizontalVehicle::moveLeft() {
 		reOccupyBoard();		//move to new position by adding to the board
 	}
 	if(debugPrintBoard){
-		cout << "Board after attempted move (in move method)\n" << board;
+		cout << "Board after attempted move (from move method)\n" << board;
 	}
 
 	return canMove;
@@ -66,7 +66,7 @@ bool HorizontalVehicle::moveRight() {
 		reOccupyBoard();		//move to new position by adding to the board
 	}
 	if(debugPrintBoard){
-		cout << "Board after attempted move (in move method)\n" << board;
+		cout << "Board after attempted move (from move method)\n" << board;
 	}
 
 	return canMove;

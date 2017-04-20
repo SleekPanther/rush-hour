@@ -1,4 +1,4 @@
-#include "ScoreMetrics.hpp"
+#include "ScoreMetrics.h"
 
 ScoreMetrics::ScoreMetrics(): moveCount(0) {
 }
