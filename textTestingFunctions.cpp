@@ -24,10 +24,10 @@ void runAllTests() {
 	}
 	cout << endl << endl;
 
-	// if (test_Vehicle()) {
-	// 	cout << "Passed test_Vehicle() tests" << endl;
-	// }
-	// cout << endl << endl;
+	if (test_Vehicle()) {
+		cout << "Passed test_Vehicle() tests" << endl;
+	}
+	cout << endl << endl;
 
 	if (test_ScoreMetrics()) {
 		cout << "Passed test_ScoreMetrics() tests" << endl;
@@ -45,6 +45,8 @@ bool test_Game() {
 
 	Game game;
 	game.load();
+
+	game.save();
 
 	return passed;
 }
@@ -175,9 +177,6 @@ bool test_Coordinate2D() {
 }
 
 bool test_Vehicle() {
-	
-	// return true;
-	
 	cout << "\n**Begin test_Vehicle() tests**\n" << endl;
 
 	bool passed = true;
@@ -193,6 +192,14 @@ bool test_Vehicle() {
 	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords));
 	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, inputCoords2));
 	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords3));
+
+
+	//Special vehicle is also a horizontal vehicle
+	for(int i=0; i< vehicles.size(); i++){
+		cout << "vehicle type: " << vehicles[i]->getVehicleType() <<endl;
+	}
+	cout << "\n\n";
+
 
 	if (vehicles[0]->isInWinningSpace()) {	//default vehicle should not be placed in winning space
 		cout << "Failed creating a vehicle with coordinates " << inputCoordsCoord1 << ", " << inputCoordsCoord2 << " Expecting isInWinningSpace() false, returned " << vehicles[0]->isInWinningSpace() << endl;

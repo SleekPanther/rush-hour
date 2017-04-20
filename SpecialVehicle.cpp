@@ -6,6 +6,10 @@ SpecialVehicle::SpecialVehicle(Board & board, vector<Coordinate2D> coordinates):
 SpecialVehicle::~SpecialVehicle() {
 }
 
+string SpecialVehicle::getVehicleType() const{
+	return "special";
+}
+
 bool SpecialVehicle::moveRight() {
 	bool canMove = true;
 

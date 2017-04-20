@@ -13,9 +13,10 @@ private:
 	//fields
 
 public:
-	VerticalVehicle();
 	VerticalVehicle(Board & board, vector<Coordinate2D> coordinates);
 	~VerticalVehicle();
+
+	virtual string getVehicleType() const override;
 
 	virtual bool moveUp() override;
 

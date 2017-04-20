@@ -19,6 +19,8 @@ public:
 	SpecialVehicle(Board & board, vector<Coordinate2D> coordinates);
 	~SpecialVehicle();
 
+	virtual string getVehicleType() const override;
+
 	// Requires: nothing
 	// Modifies: inWinningSpace & board
 	// Effects: checks if any of the new coordinates are the winning space

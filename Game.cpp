@@ -31,7 +31,58 @@ void Game::load(){
 }
 
 void Game::save(){
-	//needs to check the types of vehicles
+	string allVehicleInfo = "";		//string appended to while parsing the board, written to the file at the end
+	string horizontalInfo ="";
+	string verticalInfo = "";
+	int horizontalCount = 0;
+	int verticalCount = 0;
+
+	//deal with special vehicle 1st
+	// int vehicleLength = vectorOfVehicles[0]->length();
+	// allVehicleInfo = allVehicleInfo + to_string(vehicleLength) + "\n";
+	// vector<Coordinate2D> coords = vectorOfVehicles[0]->getCoordinates();
+	// for(int i=0; i<vehicleLength; i++){			//add each (x, y) coordinate separated by spaces
+	// 	allVehicleInfo = allVehicleInfo + to_string(coords[i].x) + " ";
+	// 	allVehicleInfo = allVehicleInfo + to_string(coords[i].y) + " ";
+	// }
+	// allVehicleInfo += "\n";
+
+	// //start loop from 1 since alread added special vehicle
+	// for(int i=1; i<vectorOfVehicles.size(); i++){
+	// 	string type = vectorOfVehicles[i]->getVehicleType();
+	// 	cout << type << endl;
+	// 	if(type=="horizontal"){
+	// 		horizontalCount++;		//we found a horizontal vehicle
+	// 		vehicleLength = vectorOfVehicles[i]->length();
+	// 		horizontalInfo = horizontalInfo + to_string(vehicleLength) + "\n";
+	// 		coords = vectorOfVehicles[i]->getCoordinates();
+	// 		for(int j=0; j<vehicleLength; j++){			//add each (x, y) coordinate separated by spaces
+	// 			horizontalInfo = horizontalInfo + to_string(coords[j].x) + " ";
+	// 			horizontalInfo = horizontalInfo + to_string(coords[j].y) + " ";
+	// 		}
+	// 		horizontalInfo += "\n";
+	// 	}else if(type=="vertical"){
+	// 		verticalCount++;		//we found a vertical vehicle
+	// 		vehicleLength = vectorOfVehicles[i]->length();
+	// 		verticalInfo + to_string(vehicleLength) + "\n";
+	// 		coords = vectorOfVehicles[i]->getCoordinates();
+	// 		for(int j=0; j<vehicleLength; j++){			//add each (x, y) coordinate separated by spaces
+	// 			verticalInfo + to_string(coords[j].x) + " ";
+	// 			verticalInfo + to_string(coords[j].y) + " ";
+	// 		}
+	// 		verticalInfo += "\n";
+	// 	}
+	// }
+
+	// //insert horizontal and vertical counts at the ver beginning of the string
+	// allVehicleInfo.insert(0, to_string(horizontalCount));
+	// allVehicleInfo.insert(1, " ");		//add a space between 2 numbers
+	// allVehicleInfo.insert(2, to_string(horizontalCount));
+
+	// //append horizontal & vertical coordinates to string
+	// allVehicleInfo = allVehicleInfo + horizontalInfo + verticalInfo;
+
+	//save to file
 }
 
 void Game::populateBoard(vector<int> fileContents){

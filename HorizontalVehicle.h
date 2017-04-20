@@ -16,6 +16,8 @@ public:
 	HorizontalVehicle(Board & board, vector<Coordinate2D> coordinates);
 	~HorizontalVehicle();
 
+	virtual string getVehicleType() const override;
+
 	virtual bool moveUp() override;
 
 	virtual bool moveDown() override;

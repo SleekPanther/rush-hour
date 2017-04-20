@@ -6,6 +6,10 @@ HorizontalVehicle::HorizontalVehicle(Board & board, vector<Coordinate2D> coordin
 HorizontalVehicle::~HorizontalVehicle() {
 }
 
+string HorizontalVehicle::getVehicleType() const{
+	return "horizontal";
+}
+
 //Horizontal Vehicles can only move left or right
 bool HorizontalVehicle::moveUp() {
 	return false;
