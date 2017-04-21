@@ -1,13 +1,15 @@
 #include "Game.h"
 
-Game::Game() {
+Game::Game() : Game(false) {
+}
+
+Game::Game(bool debugModeOn){
 	progressFilename="progress.txt";
-	debugPrintProgressFile=true;		//change this to NOT print progress to screen when saving
+	debugPrintProgressFile = debugModeOn;		//change this to NOT print progress to screen when saving
+	debugPrintPopulateBoard = debugModeOn;
 
-	debugPrintPopulateBoard=true;
 	//Empty Board is already set up
-	//GameSetup default constructor created a default layout
-
+	//GameSetup constructor created a default layout, use it to populate the board
 	populateBoard(theSetup.getSetupAsList());
 }
 
@@ -39,7 +41,6 @@ void Game::load(string filename) {
 	ifstream inputFile(filename);
 	if (inputFile) {		//if the file exists, attempt to load progress
 		vector<int> fileContents = GameSetup::readFile(filename);
-		// GameSetup::printVector(fileContents);
 		int previousScore;
 		inputFile >> previousScore;		//save 1st number in file
 		fileContents.erase(fileContents.begin());	//erase the 1st number to just get the vehicles & coordinates
@@ -74,7 +75,7 @@ void Game::save() {
 	}
 	allVehicleInfo += "\n";
 
-	//start loop from 1 since alread added special vehicle
+	//start loop from 1 since already added special vehicle
 	for (int i = 1; i<vectorOfVehicles.size(); i++) {
 		string type = vectorOfVehicles[i]->getVehicleType();		//to differentate between abstract vehicles
 		if (type == "horizontal") {

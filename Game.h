@@ -33,8 +33,8 @@ private:
 	bool debugPrintPopulateBoard;
 
 public:
-	Game();
-	Game(bool debugModeOn);		//calls other constructor setting debug mode on or off
+	Game();		//default constructor has debug mode off
+	Game(bool debugModeOn);		//setting option to print to screen on or off
 	~Game();
 
 	// Requires: nothing

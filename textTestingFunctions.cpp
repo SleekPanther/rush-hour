@@ -39,7 +39,7 @@ bool test_Game() {
 
 	bool passed = true;
 
-	Game game;
+	Game game(true);
 
 	game.setDebugPrintProgressFile(true);
 	if(!game.getDebugPrintProgressFile()){
@@ -323,7 +323,7 @@ bool test_Vehicle() {
 		cout << "Cannot to move right " << endl;
 	}
 	if (vehicles[1]->isInWinningSpace()) {
-		cout << "vehicles[1] isInWinningSpace, Game should end " << endl;
+		cout << "vehicles[1] isInWinningSpace, game should end " << endl;
 	}
 	else {
 		cout << "Failed vehicles[1]->moveRight() then vehicles[1]->isInWinningSpace()  Expected true, returned: " << vehicles[1]->isInWinningSpace() << endl;
@@ -409,7 +409,7 @@ bool test_Vehicle() {
 	}
 
 
-	Game game;
+	Game game(true);
 	cout << "Testing game.save()  Check Progress file for matching contents" << endl;
 	game.save();
 
@@ -458,7 +458,7 @@ void chooseLoadSave(){
 	int answer;
 	cin >> answer;
 	cout << "Default board setup\n";
-	Game game;
+	Game game(true);
 	//new game is default, open old game is the other option
 	if(answer==0){
 		cout << "Erasing board & Loading previous setup\n";
