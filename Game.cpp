@@ -26,7 +26,7 @@ bool Game::getDebugPrintProgressFile() const{
 	return debugPrintProgressFile;
 }
 
-bool Game::getGebugPrintPopulateBoard() const{
+bool Game::getDebugPrintPopulateBoard() const{
 	return debugPrintPopulateBoard;
 }
 
@@ -34,10 +34,14 @@ void Game::setDebugPrintPopulateBoard(bool value){
 	debugPrintPopulateBoard=value;
 }
 
-void Game::load() {
-	ifstream inputFile(progressFilename);
+void Game::load(){
+	load(progressFilename);
+}
+
+void Game::load(string filename) {
+	ifstream inputFile(filename);
 	if (inputFile) {		//if the file exists, attempt to load progress
-		vector<int> fileContents = GameSetup::readFile(progressFilename);
+		vector<int> fileContents = GameSetup::readFile(filename);
 		// GameSetup::printVector(fileContents);
 		int previousScore;
 		inputFile >> previousScore;		//save 1st number in file

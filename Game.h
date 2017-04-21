@@ -48,7 +48,7 @@ public:
 	//This is a vector of vehicle pointers that point to all the vehicles defined by the set up and then updated as the game progresses
 	vector<Vehicle> getVehicles();
 
-	bool getGebugPrintPopulateBoard() const;
+	bool getDebugPrintPopulateBoard() const;
 
 	// Requires: nothing
 	// Modifies: debugPrintPopulateBoard
@@ -57,10 +57,15 @@ public:
 
 	void populateBoard(vector<int> fileContents);
 
-	// Requires: progress file to have valid contents, or not exist (throws errors when reading from non-valid setups)
+	// Requires: nothing
 	// Modifies: board
-	// Effects: loads the progress file to resume gameplay
+	// Effects: calls overloaded load() to load the default progress file
 	void load();
+
+	// Requires: progress file to have valid contents, or not exist (throws errors when reading from non-valid setups)
+	// Modifies: board & vectorOfVehicles
+	// Effects: loads a specific file to resume playback
+	void load(string filename);
 
 	void save();
 };

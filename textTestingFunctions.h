@@ -38,5 +38,6 @@ bool test_Vehicle();
 bool test_ScoreMetrics();
 
 
+void chooseLoadSave();
 
 #endif
