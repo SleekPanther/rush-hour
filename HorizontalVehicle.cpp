@@ -41,9 +41,7 @@ bool HorizontalVehicle::moveLeft() {
 		}
 		reOccupyBoard();		//move to new position by adding to the board
 	}
-	if(debugPrintBoard){
-		cout << "Board after attempted move (from move method)\n" << board;
-	}
+	printBoardAndCoordinatesIfDebug();
 
 	return canMove;
 }
@@ -69,9 +67,7 @@ bool HorizontalVehicle::moveRight() {
 		}
 		reOccupyBoard();		//move to new position by adding to the board
 	}
-	if(debugPrintBoard){
-		cout << "Board after attempted move (from move method)\n" << board;
-	}
+	printBoardAndCoordinatesIfDebug();
 
 	return canMove;
 }

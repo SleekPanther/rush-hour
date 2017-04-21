@@ -6,5 +6,8 @@ int main() {
 	cout << "Testing Starts (in main)" << endl;
 	runAllTests();
 
+	cout << "\n\nUser testing load/save\n";
+	chooseLoadSave();
+
 	return 0;
 }

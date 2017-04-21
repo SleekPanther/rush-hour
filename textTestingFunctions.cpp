@@ -32,12 +32,6 @@ void runAllTests() {
 	if (test_ScoreMetrics()) {
 		cout << "Passed test_ScoreMetrics() tests" << endl;
 	}
-
-	
-	cout << "\n\n";
-
-	chooseLoadSave();
-	cout << "\n\n";
 }
 
 bool test_Game() {
@@ -45,15 +39,28 @@ bool test_Game() {
 
 	bool passed = true;
 
-	Game game;
+	Game game(true);
 
 	game.setDebugPrintProgressFile(true);
 	if(!game.getDebugPrintProgressFile()){
 		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(true) then game.getDebugPrintProgressFile(). Expected true, returned false" << endl;
+		passed=false;
 	}
 	game.setDebugPrintProgressFile(false);
 	if(game.getDebugPrintProgressFile()){
 		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(false) then game.getDebugPrintProgressFile(). Expected false, returned true" << endl;
+		passed=false;
+	}
+
+	game.setDebugPrintPopulateBoard(true);
+	if(!game.getDebugPrintPopulateBoard()){
+		cout << "Failed consturcting new game, game.setDebugPrintPopulateBoard(true) then game.getDebugPrintPopulateBoard(). Expected true, returned false" << endl;
+		passed=false;
+	}
+	game.setDebugPrintPopulateBoard(false);
+	if(game.getDebugPrintPopulateBoard()){
+		cout << "Failed consturcting new game, game.setDebugPrintPopulateBoard(false) then game.getDebugPrintPopulateBoard(). Expected false, returned true" << endl;
+		passed=false;
 	}
 
 	cout << "\nTesting game.load()\n";
@@ -65,14 +72,13 @@ bool test_Game() {
 }
 
 bool test_GameSetup() {
-	cout << "\n**Begin test_GameSetup() tests**\n" << endl;
-	cout << "\n**place the vehicles in the set up onto the board" << endl;
+	cout << "\n**Begin test_GameSetup() tests**\n\n";
 	bool passed = true;
 
 	GameSetup setup;
 
-	cout << "Testing reading from file & placing in vector " << endl;
-	string testFilename = "setUps2.txt";
+	string testFilename = "setup01.txt";
+	cout << "Testing reading from \"" << testFilename <<"\" & placing in vector " << endl;
 	vector<int> fileContents = GameSetup::readFile(testFilename);
 	GameSetup::printVector(fileContents);
 
@@ -220,6 +226,11 @@ bool test_Vehicle() {
 	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(4, 2), Coordinate2D(3, 2)}));
 	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(1, 0), Coordinate2D(1, 1)}));
 
+	//For testing, we want to see where the vehicles are on the board
+	for(int i=0; i<vehicles.size(); i++){
+		vehicles[i]->setDebugPrintBoard(true);
+	}
+
 
 	//Special vehicle is also a horizontal vehicle
 	for(int i=0; i< vehicles.size(); i++){
@@ -268,9 +279,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move left " << endl;
 	}
-	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
-	vehicles[0]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	if (vehicles[0]->moveLeft()) {
 		cout << "Successfully moved left " << endl;
@@ -278,9 +287,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move left " << endl;
 	}
-	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
-	vehicles[0]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	//move left again (should fail since hits left wall)
 	if (vehicles[0]->moveLeft()) {
@@ -289,9 +296,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Cannot to move left " << endl;
 	}
-	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
-	vehicles[0]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 
 	if (vehicles[1]->moveRight()) {
@@ -304,9 +309,7 @@ bool test_Vehicle() {
 		cout << "Failed vehicles[1]->moveRight() then vehicles[1]->isInWinningSpace()  Expected false, returned: " << vehicles[1]->isInWinningSpace() << endl;
 		passed = false;
 	}
-	cout << "Coordinates of vehicles[1] after moveRight()" << endl;
-	vehicles[1]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	//Move right again to win the game
 	if (vehicles[1]->moveRight()) {
@@ -316,15 +319,13 @@ bool test_Vehicle() {
 		cout << "Cannot to move right " << endl;
 	}
 	if (vehicles[1]->isInWinningSpace()) {
-		cout << "vehicles[1] isInWinningSpace, Game should end " << endl;
+		cout << "vehicles[1] isInWinningSpace, game should end " << endl;
 	}
 	else {
 		cout << "Failed vehicles[1]->moveRight() then vehicles[1]->isInWinningSpace()  Expected true, returned: " << vehicles[1]->isInWinningSpace() << endl;
 		passed = false;
 	}
-	cout << "Coordinates of vehicles[1] after moveRight()" << endl;
-	vehicles[1]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 
 	//Check horizontal Vehicles moving up & down
@@ -355,9 +356,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move Down " << endl;
 	}
-	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
-	vehicles[2]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	if (vehicles[2]->moveDown()) {
 		cout << "Successfully moved Down " << endl;
@@ -365,9 +364,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move Down " << endl;
 	}
-	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
-	vehicles[2]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	//Cannot move down any further
 	if (vehicles[2]->moveDown()) {
@@ -376,9 +373,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Cannot move Down " << endl;
 	}
-	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
-	vehicles[2]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	//Now Test moveUp
 	if (vehicles[2]->moveUp()) {
@@ -387,9 +382,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move Up " << endl;
 	}
-	cout << "Coordinates of vehicles[2] after moveUp()" << endl;
-	vehicles[2]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 
 	if (vehicles[2]->moveLeft()) {
@@ -402,7 +395,7 @@ bool test_Vehicle() {
 	}
 
 
-	Game game;
+	Game game(true);
 	cout << "Testing game.save()  Check Progress file for matching contents" << endl;
 	game.save();
 
@@ -422,7 +415,7 @@ bool test_ScoreMetrics() {
 	}
 
 	int testNumberOfMoves = 10;
-	for (int i = 0; i< testNumberOfMoves; i++) {
+	for (int i = 0; i<testNumberOfMoves; i++) {
 		metrics.increaseMoveCount();
 	}
 	if (metrics.getMoveCount() != testNumberOfMoves) {
@@ -447,12 +440,14 @@ bool test_ScoreMetrics() {
 }
 
 void chooseLoadSave(){
-	Game game;
-	cout << "\nNew Game started. Enter 1 to start new, 0 to open previous game: ";
+	cout << "New Game started. Enter 1 to start new, 0 to open previous game: ";
 	int answer;
 	cin >> answer;
+	cout << "Default board setup\n";
+	Game game(true);
 	//new game is default, open old game is the other option
 	if(answer==0){
+		cout << "Erasing board & Loading previous setup\n";
 		game.load("progress-backup.txt");
 	}
 
@@ -460,10 +455,10 @@ void chooseLoadSave(){
 	cin >> answer;
 	if(answer==1){
 		game.save();
-		cout << "Game saved, check progress.txt\n";
+		cout << "Game saved, check \"progress.txt\"\n";
 	}
 	else{
-		cout << "Game Progress erased";
+		cout << "Game Progress erased\n";
 	}
 
 }

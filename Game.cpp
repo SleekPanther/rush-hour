@@ -1,13 +1,15 @@
 #include "Game.h"
 
-Game::Game() {
+Game::Game() : Game(false) {
+}
+
+Game::Game(bool debugModeOn){
 	progressFilename="progress.txt";
-	debugPrintProgressFile=true;		//change this to NOT print progress to screen when saving
+	debugPrintProgressFile = debugModeOn;		//change this to NOT print progress to screen when saving
+	debugPrintPopulateBoard = debugModeOn;
 
-	debugPrintPopulateBoard=true;
 	//Empty Board is already set up
-	//GameSetup default constructor created a default layout
-
+	//GameSetup constructor created a default layout, use it to populate the board
 	populateBoard(theSetup.getSetupAsList());
 }
 
@@ -22,12 +24,12 @@ bool Game::getDebugPrintProgressFile() const{
 	return debugPrintProgressFile;
 }
 
-bool Game::getDebugPrintPopulateBoard() const{
-	return debugPrintPopulateBoard;
-}
-
 void Game::setDebugPrintPopulateBoard(bool value){
 	debugPrintPopulateBoard=value;
+}
+
+bool Game::getDebugPrintPopulateBoard() const{
+	return debugPrintPopulateBoard;
 }
 
 
@@ -39,7 +41,6 @@ void Game::load(string filename) {
 	ifstream inputFile(filename);
 	if (inputFile) {		//if the file exists, attempt to load progress
 		vector<int> fileContents = GameSetup::readFile(filename);
-		// GameSetup::printVector(fileContents);
 		int previousScore;
 		inputFile >> previousScore;		//save 1st number in file
 		fileContents.erase(fileContents.begin());	//erase the 1st number to just get the vehicles & coordinates
@@ -74,7 +75,7 @@ void Game::save() {
 	}
 	allVehicleInfo += "\n";
 
-	//start loop from 1 since alread added special vehicle
+	//start loop from 1 since already added special vehicle
 	for (int i = 1; i<vectorOfVehicles.size(); i++) {
 		string type = vectorOfVehicles[i]->getVehicleType();		//to differentate between abstract vehicles
 		if (type == "horizontal") {
@@ -117,7 +118,7 @@ void Game::save() {
 	allVehicleInfo = allVehicleInfo + horizontalInfo + verticalInfo;
 
 	if(debugPrintProgressFile){		//only display for testing
-		cout << allVehicleInfo << endl;
+		cout << "Text to be written to Progress File:\n" << allVehicleInfo << endl;
 	}
 
 	//save to file
@@ -132,7 +133,7 @@ void Game::populateBoard(vector<int> fileContents) {
 	board = Board();	//clear the board
 	vectorOfVehicles.clear();
 
-	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as it's used
+	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as each number has been read
 
 	int numOfHorizontal = fileContents[vectorIteratorIndex++];
 	int numOfVertical = fileContents[vectorIteratorIndex++];
@@ -190,9 +191,8 @@ void Game::populateBoard(vector<int> fileContents) {
 	if(debugPrintPopulateBoard){
 		cout << "populateBoard()\n";
 		for (int i=0; i < vectorOfVehicles.size(); i++) {
-			cout << "Vehicle number " << i << " is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. And it has these coordinates: "<<endl; 
-			vectorOfVehicles[i]->printCoordinates();
+			cout << "Vehicle [" << i << "] is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. " << vectorOfVehicles[i]->getStringCoordinates() << '\n'; 
 		}
-		cout << "Board with vehicles from populateBoard()\n" << board << endl;
+		cout << "Board with vehicles from populateBoard()\n" << board << '\n';
 	}
 }

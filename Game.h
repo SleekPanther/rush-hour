@@ -33,7 +33,8 @@ private:
 	bool debugPrintPopulateBoard;
 
 public:
-	Game();
+	Game();		//default constructor has debug mode off
+	Game(bool debugModeOn);		//setting option to print to screen on or off
 	~Game();
 
 	// Requires: nothing
@@ -43,9 +44,9 @@ public:
 
 	bool getDebugPrintProgressFile() const;
 
-	bool getDebugPrintPopulateBoard() const;
-
 	void setDebugPrintPopulateBoard(bool value);
+
+	bool getDebugPrintPopulateBoard() const;
 
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board

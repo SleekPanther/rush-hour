@@ -31,9 +31,7 @@ bool VerticalVehicle::moveUp() {
 		}
 		reOccupyBoard();		//move to new position by adding to the board
 	}
-	if(debugPrintBoard){
-		cout << "Board after attempted move (from move method)\n" << board;
-	}
+	printBoardAndCoordinatesIfDebug();
 
 	return canMove;
 }
@@ -59,9 +57,7 @@ bool VerticalVehicle::moveDown() {
 		}
 		reOccupyBoard();		//move to new position by adding to the board
 	}
-	if(debugPrintBoard){
-		cout << "Board after attempted move (from move method)\n" << board;
-	}
+	printBoardAndCoordinatesIfDebug();
 
 	return canMove;
 }
