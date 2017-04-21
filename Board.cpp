@@ -12,30 +12,6 @@ Board::Board() {
 		{true, false, false, false, false, false, false, true},
 		{true, true, true, true, true, true, true, true},
 	};
-
-	//all false for testing
-	// occupiedSquares = {
-	// 	{false, false, false, false, false, false, false, false},
-	// 	{false, false, false, false, false, false, false, false},
-	// 	{false, false, false, false, false, false, false, false},
-	// 	{false, false, false, false, false, false, false, true},	//winning square
-	// 	{false, false, false, false, false, false, false, false},
-	// 	{false, false, false, false, false, false, false, false},
-	// 	{false, false, false, false, false, false, false, false},
-	// 	{false, false, false, false, false, false, false, false},
-	// };
-
-	//more testing
-	// occupiedSquares = {
-	// 	{true, true, true, true, true, true, true, true},
-	// 	{true, true, true, true, true, true, true, true},
-	// 	{true, true, true, true, true, true, true, true},
-	// 	{true, true, true, true, true, true, true, false},	//winning square
-	// 	{true, true, true, true, true, true, true, true},
-	// 	{true, true, true, true, true, true, true, true},
-	// 	{true, true, true, true, true, true, true, true},
-	// 	{true, true, true, true, true, true, true, true},
-	// };
 }
 
 Board::~Board() {

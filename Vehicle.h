@@ -32,7 +32,7 @@ public:
 	// Modifies: nothing
 	// Effects: calculates & returns length of vehicle based on number of coordinates
 	int getLength() const;
-	bool testFunctionCall();
+	
 	// Requires: nothing
 	// Modifies: nothing
 	// Effects: prints coordinates on screen for testing

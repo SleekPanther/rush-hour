@@ -9,9 +9,6 @@
 using namespace std;
 
 class HorizontalVehicle: public Vehicle {
-private:
-	//fields
-
 public:
 	HorizontalVehicle(Board & board, vector<Coordinate2D> coordinates);
 	~HorizontalVehicle();

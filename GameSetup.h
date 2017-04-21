@@ -1,6 +1,5 @@
 #ifndef GameSetup_hpp
 #define GameSetup_hpp
-#include <memory>
 #include <iostream>
 #include <string>
 #include <vector>

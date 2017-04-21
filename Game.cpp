@@ -14,10 +14,6 @@ Game::Game() {
 Game::~Game() {
 }
 
-vector<Vehicle> Game::getVehicles() {
-	return vector<Vehicle>();
-}
-
 void Game::setDebugPrintProgressFile(bool value){
 	debugPrintProgressFile=value;
 }
@@ -33,6 +29,7 @@ bool Game::getDebugPrintPopulateBoard() const{
 void Game::setDebugPrintPopulateBoard(bool value){
 	debugPrintPopulateBoard=value;
 }
+
 
 void Game::load(){
 	load(progressFilename);
