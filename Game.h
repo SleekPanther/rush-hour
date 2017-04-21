@@ -39,6 +39,9 @@ public:
 
 	bool getGebugPrintPopulateBoard() const;
 
+	// Requires: nothing
+	// Modifies: debugPrintPopulateBoard
+	// Effects: used to toggle debug info on/off
 	void setDebugPrintPopulateBoard(bool value);
 
 	void populateBoard(vector<int> fileContents);

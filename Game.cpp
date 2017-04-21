@@ -105,62 +105,59 @@ void Game::save() {
 
 void Game::populateBoard(vector<int> fileContents) {
 	vectorOfVehicles.clear();
-	int numOfVertical = fileContents[0];
-	int numOfHorizontal = fileContents[1];
-	int lengthOfSpecial = fileContents[2];
+
+	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as it's used
+
+	int numOfVertical = fileContents[vectorIteratorIndex++];
+	int numOfHorizontal = fileContents[vectorIteratorIndex++];
+	int lengthOfSpecial = fileContents[vectorIteratorIndex++];
 	
-	//Temp vector that will be used for all vehicles
-	vector<Coordinate2D> tempCoordinates;
-	
-	//CREATE SPECIAL PIECE 
-	//Use loop to create vector of coordinates
+	vector<Coordinate2D> tempCoordinates;	//Temp vector that will be used for all vehicles
+	int xComponentIndex, yComponentIndex;	//updated for every coordinate created
+
+
+	//CREATE SPECIAL VEHICLE 
+	//loop over length of vehicle to create vector of coordinates
 	for (int i = 0; i < lengthOfSpecial; i++) {
-		Coordinate2D temp(fileContents[3+i], fileContents[4+i]);
-		
-		tempCoordinates.push_back(temp);
+		xComponentIndex = vectorIteratorIndex++;
+		yComponentIndex = vectorIteratorIndex++;
+		tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
 	}
 	vectorOfVehicles.push_back(make_unique<SpecialVehicle>(board, tempCoordinates));
 	tempCoordinates.clear();
-
 	
 	
-	//Ofset starts at 8 as that is how many values 
-	int offset = 2;
 	//CREATE VERTICAL VEHICLES
 	for (int i = 0; i < numOfVertical; i++) {
-		//This offset allows loop to take correct values regardless of the number of vertical cars
 		//Take in as many coordinate as needed
-		int lengthOfThisVertical = fileContents[6 +offset];
-			for(int j = 0; j < lengthOfThisVertical; j++) {
-				Coordinate2D temp(fileContents[8 + 2 * j], fileContents[9 + 2 * j]);
-				tempCoordinates.push_back(temp);		
-			}//End of loop that collects all the coordinates for a single vertical vehicle
-			//for (int i = 0; i < tempCoordinates.size(); i++) {cout << tempCoordinates[i];}
-		
-			//Create the vertical vehicle from this loop and add the pointer to the vector of pointers
-			vectorOfVehicles.push_back(make_unique<VerticalVehicle>(board, tempCoordinates));
-			offset += (1 + 2 * lengthOfThisVertical);
-			
+		int lengthOfThisVertical = fileContents[vectorIteratorIndex++];
+		for(int j = 0; j < lengthOfThisVertical; j++) {
+			xComponentIndex = vectorIteratorIndex++;
+			yComponentIndex = vectorIteratorIndex++;
+			tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
+		}//End of loop that collects all the coordinates for a single vertical vehicle
+
+		//Create the vertical vehicle from this loop and add the pointer to the vector of pointers
+		vectorOfVehicles.push_back(make_unique<VerticalVehicle>(board, tempCoordinates));
+
+		tempCoordinates.clear();
 	}//End of create all vertical vehicles loop
 	
-	tempCoordinates.clear();
-	
-	offset += 5;
-	int startIndexOfHorizontal = offset;
-	int newOffset = 0;
+
 	//HORIZONTAL VEHICLES
 	for (int i = 0; i < numOfHorizontal; i++) {
 		//Take in as many coordinate as needed
-		int lengthOfThisHorizontal = fileContents[startIndexOfHorizontal + newOffset];
+		int lengthOfThisHorizontal = fileContents[vectorIteratorIndex++];
 		for (int j = 0; j < lengthOfThisHorizontal; j++) {
-			Coordinate2D temp(fileContents[startIndexOfHorizontal + 1 + 2 * j + newOffset], fileContents[startIndexOfHorizontal + 2 + 2 * j + newOffset]);
-			tempCoordinates.push_back(temp);
+			xComponentIndex = vectorIteratorIndex++;
+			yComponentIndex = vectorIteratorIndex++;
+			tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
 		}//End of loop that collects all the coordinates for a single vertical vehicle
+
 		 //Create the vertical vehicle from this loop and add the pointer to the vector of pointers
 		vectorOfVehicles.push_back(make_unique<HorizontalVehicle>(board, tempCoordinates));
-		newOffset += (1 + 2 * lengthOfThisHorizontal);
+
 		tempCoordinates.clear();
-		
 	}//End of create all horizontal vehicles loop
 
 	if(debugPrintPopulateBoard){
