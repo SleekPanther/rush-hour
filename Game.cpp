@@ -191,9 +191,8 @@ void Game::populateBoard(vector<int> fileContents) {
 	if(debugPrintPopulateBoard){
 		cout << "populateBoard()\n";
 		for (int i=0; i < vectorOfVehicles.size(); i++) {
-			cout << "Vehicle number " << i << " is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. And it has these coordinates: "<<endl; 
-			vectorOfVehicles[i]->printCoordinates();
+			cout << "Vehicle [" << i << "] is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. " << vectorOfVehicles[i]->getStringCoordinates() << '\n'; 
 		}
-		cout << "Board with vehicles from populateBoard()\n" << board << endl;
+		cout << "Board with vehicles from populateBoard()\n" << board << '\n';
 	}
 }

@@ -28,7 +28,7 @@ int Vehicle::getLength() const {
 }
 
 string Vehicle::getStringCoordinates() const {
-	string coordString = "Vehicle Coordinates:";
+	string coordString = "Vehicle Coordinates: ";
 	for (int i = 0; i < coordinates.size(); i++) {
 		coordString = coordString + coordinates[i].toString() + "  ";
 	}
