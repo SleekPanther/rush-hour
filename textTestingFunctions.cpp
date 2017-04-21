@@ -72,14 +72,13 @@ bool test_Game() {
 }
 
 bool test_GameSetup() {
-	cout << "\n**Begin test_GameSetup() tests**\n" << endl;
-	cout << "\n**place the vehicles in the set up onto the board" << endl;
+	cout << "\n**Begin test_GameSetup() tests**\n\n";
 	bool passed = true;
 
 	GameSetup setup;
 
-	cout << "Testing reading from file & placing in vector " << endl;
-	string testFilename = "setUps2.txt";
+	string testFilename = "setup01.txt";
+	cout << "Testing reading from \"" << testFilename <<"\" & placing in vector " << endl;
 	vector<int> fileContents = GameSetup::readFile(testFilename);
 	GameSetup::printVector(fileContents);
 
@@ -429,7 +428,7 @@ bool test_ScoreMetrics() {
 	}
 
 	int testNumberOfMoves = 10;
-	for (int i = 0; i< testNumberOfMoves; i++) {
+	for (int i = 0; i<testNumberOfMoves; i++) {
 		metrics.increaseMoveCount();
 	}
 	if (metrics.getMoveCount() != testNumberOfMoves) {

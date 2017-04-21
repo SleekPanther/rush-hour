@@ -133,7 +133,7 @@ void Game::populateBoard(vector<int> fileContents) {
 	board = Board();	//clear the board
 	vectorOfVehicles.clear();
 
-	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as it's used
+	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as each number has been read
 
 	int numOfHorizontal = fileContents[vectorIteratorIndex++];
 	int numOfVertical = fileContents[vectorIteratorIndex++];

@@ -1,7 +1,7 @@
 #include "Board.h"
 
 Board::Board() {
-	winningSpace = Coordinate2D(6, 2);		//3rd row down, 7th column across is the 1 free space in the board boundary to win the game
+	winningSpace = Coordinate2D(6, 2);		//row index 3, column index 7  is the 1 free space in the board boundary to win the game. Listed here as a vehicle coordinate (hence the intentional off-by-one mismatch)
 	occupiedSquares = {
 		{true, true, true, true, true, true, true, true},
 		{true, false, false, false, false, false, false, true},
@@ -19,6 +19,14 @@ Board::~Board() {
 
 vector<vector<bool>> Board::getOccupiedSquares() const{
 	return occupiedSquares;
+}
+
+Coordinate2D Board::getWinningSpace() const{
+	return winningSpace;
+}
+
+bool Board::isWinningSpace(int x, int y) const{
+	return (x == winningSpace.x) && (y == winningSpace.y);
 }
 
 bool Board::isUnoccupiedSpace(int x, int y) const{
@@ -43,13 +51,6 @@ void Board::setSquareValueFromVehicleCoordinates(int x, int y, bool value){
 	occupiedSquares[y+1][x+1] = value;
 }
 
-Coordinate2D Board::getWinningSpace() const{
-	return winningSpace;
-}
-
-bool Board::isWinningSpace(int x, int y) const{
-	return (x == winningSpace.x) && (y == winningSpace.y);
-}
 
 void Board::draw() {
 	//draw board itself

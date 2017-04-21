@@ -19,6 +19,13 @@ public:
 
 	vector<vector<bool>> getOccupiedSquares() const;
 
+	Coordinate2D getWinningSpace() const;
+
+	// Requires: Nothing
+	// Modifies: nothing
+	// Effects: tells you if a given coordinate is the winning space
+	bool isWinningSpace(int x, int y) const;
+
 	// Requires: coordinate with x & y components inside valid board dimensions
 	// Modifies: nothing
 	// Effects: tells you if space is free. Takes in a Coordinate2D so that we don't confuse x & y of the coordiante with x & y of the vector (which are (y, x))
@@ -33,13 +40,6 @@ public:
 	// Modifies: board
 	// Effects: Sets a square in the board to true (occupied)
 	void setSquareOccupied(int x, int y);
-
-	Coordinate2D getWinningSpace() const;
-
-	// Requires: Nothing
-	// Modifies: nothing
-	// Effects: tells you if a given coordinate is the winning space
-	bool isWinningSpace(int x, int y) const;
 
 	void draw();
 
