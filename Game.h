@@ -29,10 +29,21 @@ private:
 	vector<unique_ptr<Vehicle>> vectorOfVehicles;
 
 	string progressFilename;
+	string defaultSetupFilename;
+
+	bool debugPrintProgressFile;
 
 public:
 	Game();
 	~Game();
+
+	// Requires: nothing
+	// Modifies: setDebugPrintProgressFile
+	// Effects: Sets the value of setDebugPrintProgressFile. Allows you to see the contents of what's being printed to the progress file in save()
+	void setDebugPrintProgressFile(bool value);
+
+	bool getDebugPrintProgressFile() const;
+
 	//This is a vector of vehicle pointers that point to all the vehicles defined by the set up and then updated as the game progresses
 	vector<Vehicle> getVehicles();
 

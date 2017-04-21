@@ -44,6 +44,16 @@ bool test_Game() {
 	bool passed = true;
 
 	Game game;
+
+	game.setDebugPrintProgressFile(true);
+	if(!game.getDebugPrintProgressFile()){
+		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(true) then game.getDebugPrintProgressFile(). Expected true, returned false" << endl;
+	}
+	game.setDebugPrintProgressFile(false);
+	if(game.getDebugPrintProgressFile()){
+		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(false) then game.getDebugPrintProgressFile(). Expected false, returned true" << endl;
+	}
+
 	game.load();
 
 	//game.save();
@@ -182,16 +192,15 @@ bool test_Vehicle() {
 	bool passed = true;
 
 
-	vector<unique_ptr<Vehicle>> vehicles;
-	Coordinate2D inputCoordsCoord1(2, 4);
-	Coordinate2D inputCoordsCoord2(3, 4);
-	vector<Coordinate2D> inputCoords = { inputCoordsCoord1, inputCoordsCoord2 };
-	vector<Coordinate2D> inputCoords2 = { Coordinate2D(4, 2), Coordinate2D(3, 2) };
-	vector<Coordinate2D> inputCoords3 = { Coordinate2D(1, 0), Coordinate2D(1, 1) };
 	Board testBoard;
-	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords));
-	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, inputCoords2));
-	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords3));
+	vector<unique_ptr<Vehicle>> vehicles;
+	
+	Coordinate2D inputCoordsCoord1(2, 4);		//used to print where the 1st vehicle is drawn, but not actually used when adding to vector
+	Coordinate2D inputCoordsCoord2(3, 4);
+
+	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(2, 4), Coordinate2D(3, 4)}));
+	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(4, 2), Coordinate2D(3, 2)}));
+	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(1, 0), Coordinate2D(1, 1)}));
 
 
 	//Special vehicle is also a horizontal vehicle
@@ -375,11 +384,11 @@ bool test_Vehicle() {
 	}
 
 	Game game;
+	cout << "Testing game.save()  Check Progress file for matching contents" << endl;
 	game.save();
 
 
 	return passed;
-	
 }
 
 bool test_ScoreMetrics() {

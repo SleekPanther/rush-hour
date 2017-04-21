@@ -2,7 +2,12 @@
 
 Game::Game() {
 	progressFilename="progress.txt";
+	debugPrintProgressFile=true;		//change this to NOT print progress to screen when saving
+
 	//Empty Board is already set up
+
+	//GameSetup::readFile("setUps.txt")
+	//populateboars()
 
 	vectorOfVehicles.push_back(make_unique<SpecialVehicle>(board, vector<Coordinate2D>{ Coordinate2D(4, 2), Coordinate2D(3, 2)}));
 	vectorOfVehicles.push_back(make_unique<HorizontalVehicle>(board, vector<Coordinate2D>{ Coordinate2D(2, 4), Coordinate2D(3, 4)}));
@@ -18,6 +23,14 @@ vector<Vehicle> Game::getVehicles() {
 	return vector<Vehicle>();
 }
 
+void Game::setDebugPrintProgressFile(bool value){
+	debugPrintProgressFile=value;
+}
+
+bool Game::getDebugPrintProgressFile() const{
+	return debugPrintProgressFile;
+}
+
 void Game::load(){
 	ifstream inputFile(progressFilename);
 	if(inputFile){		//if the file exists, attempt to load progress
@@ -31,7 +44,7 @@ void Game::load(){
 		populateBoard(fileContents);
 	}
 	else{
-		//start new setup
+		cout << "There was no game saved" << endl;
 	}
 }
 
@@ -41,6 +54,10 @@ void Game::save(){
 	string verticalInfo = "";
 	int horizontalCount = 0;
 	int verticalCount = 0;
+
+	//Save current score of game
+	int currentMoveCount = metrics.getMoveCount();
+	allVehicleInfo = allVehicleInfo + to_string(currentMoveCount) + "\n\n";		//add 2 newlines after to differentiate from vehicle info
 
 	//deal with special vehicle 1st
 	int vehicleLength = vectorOfVehicles[0]->getLength();
@@ -79,17 +96,29 @@ void Game::save(){
 	}
 
 	//insert horizontal and vertical counts at the ver beginning of the string
-	allVehicleInfo.insert(0, to_string(horizontalCount));
-	allVehicleInfo.insert(1, " ");		//add a space between 2 numbers
-	allVehicleInfo.insert(2, to_string(horizontalCount));
-	allVehicleInfo.insert(3, "\n");		//add newline
+	//first calculate the length of the score (how many digits) to see where to insert the other vehicle info
+	int currentMoveCountLength = to_string(currentMoveCount).length();		//how many digits long the number is
+	int newlineCount = 2;		//above we added 2 newlines after the score
+	int vehicleInfStringOffset = currentMoveCountLength + newlineCount;		//how many characters in de we insert the data for horizontalCount & verticalCount
+
+	//insert 2 vehicle counts with separation characters afterward, starting from vehicleInfStringOffset and increasing by 1 every time
+	allVehicleInfo.insert(vehicleInfStringOffset, to_string(horizontalCount));		//1st 1-3 characters are number of moves, followed by 5 blank lines so insert after those
+	allVehicleInfo.insert(vehicleInfStringOffset+1, " ");		//add a space between 2 numbers
+	allVehicleInfo.insert(vehicleInfStringOffset+2, to_string(horizontalCount));
+	allVehicleInfo.insert(vehicleInfStringOffset+3, "\n");		//add newline
 
 	//append horizontal & vertical coordinates to string
 	allVehicleInfo = allVehicleInfo + horizontalInfo + verticalInfo;
 
-	//save to file
-	cout << allVehicleInfo << endl;
+	if(debugPrintProgressFile){		//display for testing
+		cout << allVehicleInfo << endl;
+	}
 
+	//save to file
+	ofstream progressFile(progressFilename);
+	if(progressFile){
+		progressFile << allVehicleInfo;
+	}
 }
 
 void Game::populateBoard(vector<int> fileContents){
