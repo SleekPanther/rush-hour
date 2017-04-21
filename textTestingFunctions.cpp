@@ -2,8 +2,6 @@
 
 
 void runAllTests() {
-	cout << "Started text testing" << endl;
-
 	if (test_Game()) {
 		cout << "Passed test_Game() tests" << endl;
 	}
