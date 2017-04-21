@@ -49,6 +49,9 @@ public:
 
 	void populateBoard(vector<int> fileContents);
 
+	// Requires: progress file to have valid contents, or not exist (throws errors when reading from non-valid setups)
+	// Modifies: board
+	// Effects: loads the progress file to resume gameplay
 	void load();
 
 	void save();

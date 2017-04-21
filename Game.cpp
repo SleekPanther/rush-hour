@@ -46,6 +46,7 @@ void Game::load(){
 	else{
 		cout << "There was no game saved" << endl;
 	}
+	inputFile.close();
 }
 
 void Game::save(){
@@ -119,6 +120,7 @@ void Game::save(){
 	if(progressFile){
 		progressFile << allVehicleInfo;
 	}
+	progressFile.close();
 }
 
 void Game::populateBoard(vector<int> fileContents){
