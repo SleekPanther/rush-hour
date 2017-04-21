@@ -128,6 +128,7 @@ void Game::save() {
 }
 
 void Game::populateBoard(vector<int> fileContents) {
+	board = Board();	//clear the board
 	vectorOfVehicles.clear();
 
 	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as it's used
@@ -191,5 +192,6 @@ void Game::populateBoard(vector<int> fileContents) {
 			cout << "Vehicle number " << i << " is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. And it has these coordinates: "<<endl; 
 			vectorOfVehicles[i]->printCoordinates();
 		}
+		cout << "Board with vehicles from populateBoard()\n" << board << endl;
 	}
 }
