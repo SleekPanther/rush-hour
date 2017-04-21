@@ -72,10 +72,11 @@ bool test_GameSetup() {
 	cout << "Testing reading from file & placing in vector " << endl;
 	string testFilename = "setUps2.txt";
 	vector<int> fileContents = GameSetup::readFile(testFilename);
-	for(int i=0; i<fileContents.size(); i++){
-		cout << fileContents[i] << ", ";
-	}
-	cout << endl;
+	GameSetup::printVector(fileContents);
+
+	vector<int> testNumbers = {1, 2, 3};
+	cout << "Testing GameSetup::printVector() on {1, 2, 3}. Expecting \"1, 2, 3, \"  function returns:\n" ;
+	GameSetup::printVector(testNumbers);
 
 	int randomNumber=0;
 	int lowerBound =0;
