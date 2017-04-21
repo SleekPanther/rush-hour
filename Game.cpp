@@ -108,8 +108,8 @@ void Game::populateBoard(vector<int> fileContents) {
 
 	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as it's used
 
-	int numOfVertical = fileContents[vectorIteratorIndex++];
 	int numOfHorizontal = fileContents[vectorIteratorIndex++];
+	int numOfVertical = fileContents[vectorIteratorIndex++];
 	int lengthOfSpecial = fileContents[vectorIteratorIndex++];
 	
 	vector<Coordinate2D> tempCoordinates;	//Temp vector that will be used for all vehicles
@@ -125,6 +125,23 @@ void Game::populateBoard(vector<int> fileContents) {
 	}
 	vectorOfVehicles.push_back(make_unique<SpecialVehicle>(board, tempCoordinates));
 	tempCoordinates.clear();
+
+
+	//HORIZONTAL VEHICLES
+	for (int i = 0; i < numOfHorizontal; i++) {
+		//Take in as many coordinate as needed
+		int lengthOfThisHorizontal = fileContents[vectorIteratorIndex++];
+		for (int j = 0; j < lengthOfThisHorizontal; j++) {
+			xComponentIndex = vectorIteratorIndex++;
+			yComponentIndex = vectorIteratorIndex++;
+			tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
+		}//End of loop that collects all the coordinates for a single vertical vehicle
+
+		 //Create the vertical vehicle from this loop and add the pointer to the vector of pointers
+		vectorOfVehicles.push_back(make_unique<HorizontalVehicle>(board, tempCoordinates));
+
+		tempCoordinates.clear();
+	}//End of create all horizontal vehicles loop
 	
 	
 	//CREATE VERTICAL VEHICLES
@@ -142,23 +159,7 @@ void Game::populateBoard(vector<int> fileContents) {
 
 		tempCoordinates.clear();
 	}//End of create all vertical vehicles loop
-	
 
-	//HORIZONTAL VEHICLES
-	for (int i = 0; i < numOfHorizontal; i++) {
-		//Take in as many coordinate as needed
-		int lengthOfThisHorizontal = fileContents[vectorIteratorIndex++];
-		for (int j = 0; j < lengthOfThisHorizontal; j++) {
-			xComponentIndex = vectorIteratorIndex++;
-			yComponentIndex = vectorIteratorIndex++;
-			tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
-		}//End of loop that collects all the coordinates for a single vertical vehicle
-
-		 //Create the vertical vehicle from this loop and add the pointer to the vector of pointers
-		vectorOfVehicles.push_back(make_unique<HorizontalVehicle>(board, tempCoordinates));
-
-		tempCoordinates.clear();
-	}//End of create all horizontal vehicles loop
 
 	if(debugPrintPopulateBoard){
 		cout << "populateBoard()\n";
