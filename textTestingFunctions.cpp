@@ -34,8 +34,10 @@ void runAllTests() {
 	}
 
 	
-	cout << endl << endl;
-	
+	cout << "\n\n";
+
+	chooseLoadSave();
+	cout << "\n\n";
 }
 
 bool test_Game() {
@@ -444,7 +446,24 @@ bool test_ScoreMetrics() {
 	return passed;
 }
 
-void play_game_text()
-{
-	cout << "now we are playing the game" << endl;
+void chooseLoadSave(){
+	Game game;
+	cout << "\nNew Game started. Enter 1 to start new, 0 to open previous game: ";
+	int answer;
+	cin >> answer;
+	//new game is default, open old game is the other option
+	if(answer==0){
+		game.load("progress-backup.txt");
+	}
+
+	cout << "Enter 1 to save game: ";
+	cin >> answer;
+	if(answer==1){
+		game.save();
+		cout << "Game saved, check progress.txt\n";
+	}
+	else{
+		cout << "Game Progress erased";
+	}
+
 }
