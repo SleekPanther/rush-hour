@@ -5,9 +5,9 @@ Game::Game() {
 	debugPrintProgressFile=true;		//change this to NOT print progress to screen when saving
 
 	//Empty Board is already set up
+	//GameSetup default constructor created a default layout
 
-	//GameSetup::readFile("setUps.txt")
-	//populateboars()
+	populateBoard(theSetup.getSetupAsList());
 
 	vectorOfVehicles.push_back(make_unique<SpecialVehicle>(board, vector<Coordinate2D>{ Coordinate2D(4, 2), Coordinate2D(3, 2)}));
 	vectorOfVehicles.push_back(make_unique<HorizontalVehicle>(board, vector<Coordinate2D>{ Coordinate2D(2, 4), Coordinate2D(3, 4)}));
@@ -110,7 +110,7 @@ void Game::save(){
 	//append horizontal & vertical coordinates to string
 	allVehicleInfo = allVehicleInfo + horizontalInfo + verticalInfo;
 
-	if(debugPrintProgressFile){		//display for testing
+	if(debugPrintProgressFile){		//only display for testing
 		cout << allVehicleInfo << endl;
 	}
 

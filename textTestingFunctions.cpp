@@ -75,8 +75,22 @@ bool test_GameSetup() {
 		cout << fileContents[i] << ", ";
 	}
 	cout << endl;
+
+	int randomNumber=0;
+	int lowerBound =0;
+	int upperBound=5;
+	for(int i=0; i<20; i++){
+		randomNumber = GameSetup::getRandomInt(lowerBound, upperBound);
+		if(randomNumber<(lowerBound)){
+			cout << "Failed random number generation. lowerBound=" << lowerBound << ", Random number=" << randomNumber << ",  " << randomNumber << "<" << lowerBound << endl;
+			passed=false;
+		}
+		else if(randomNumber>upperBound){
+			cout << "Failed random number generation. upperBound=" << upperBound << ", Random number=" << randomNumber << ",  " << randomNumber << ">" << upperBound << endl;
+			passed=false;
+		}
+	}
 	
-	//vector<unique_ptr<Vehicle> > theVehiclesFromSetup;
 	return passed;
 }
 
@@ -382,6 +396,7 @@ bool test_Vehicle() {
 		cout << "Failed vehicles[2]->moveRight()  Expected false, returned: true" << endl;
 		passed = false;
 	}
+
 
 	Game game;
 	cout << "Testing game.save()  Check Progress file for matching contents" << endl;
