@@ -226,6 +226,11 @@ bool test_Vehicle() {
 	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(4, 2), Coordinate2D(3, 2)}));
 	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(1, 0), Coordinate2D(1, 1)}));
 
+	//For testing, we want to see where the vehicles are on the board
+	for(int i=0; i<vehicles.size(); i++){
+		vehicles[i]->setDebugPrintBoard(true);
+	}
+
 
 	//Special vehicle is also a horizontal vehicle
 	for(int i=0; i< vehicles.size(); i++){
@@ -274,9 +279,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move left " << endl;
 	}
-	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
-	vehicles[0]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	if (vehicles[0]->moveLeft()) {
 		cout << "Successfully moved left " << endl;
@@ -284,9 +287,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move left " << endl;
 	}
-	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
-	vehicles[0]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	//move left again (should fail since hits left wall)
 	if (vehicles[0]->moveLeft()) {
@@ -295,9 +296,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Cannot to move left " << endl;
 	}
-	cout << "Coordinates of vehicles[0] after moveLeft()" << endl;
-	vehicles[0]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 
 	if (vehicles[1]->moveRight()) {
@@ -310,9 +309,7 @@ bool test_Vehicle() {
 		cout << "Failed vehicles[1]->moveRight() then vehicles[1]->isInWinningSpace()  Expected false, returned: " << vehicles[1]->isInWinningSpace() << endl;
 		passed = false;
 	}
-	cout << "Coordinates of vehicles[1] after moveRight()" << endl;
-	vehicles[1]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	//Move right again to win the game
 	if (vehicles[1]->moveRight()) {
@@ -328,9 +325,7 @@ bool test_Vehicle() {
 		cout << "Failed vehicles[1]->moveRight() then vehicles[1]->isInWinningSpace()  Expected true, returned: " << vehicles[1]->isInWinningSpace() << endl;
 		passed = false;
 	}
-	cout << "Coordinates of vehicles[1] after moveRight()" << endl;
-	vehicles[1]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 
 	//Check horizontal Vehicles moving up & down
@@ -361,9 +356,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move Down " << endl;
 	}
-	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
-	vehicles[2]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	if (vehicles[2]->moveDown()) {
 		cout << "Successfully moved Down " << endl;
@@ -371,9 +364,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move Down " << endl;
 	}
-	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
-	vehicles[2]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	//Cannot move down any further
 	if (vehicles[2]->moveDown()) {
@@ -382,9 +373,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Cannot move Down " << endl;
 	}
-	cout << "Coordinates of vehicles[2] after moveDown()" << endl;
-	vehicles[2]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 	//Now Test moveUp
 	if (vehicles[2]->moveUp()) {
@@ -393,9 +382,7 @@ bool test_Vehicle() {
 	else {
 		cout << "Failed to move Up " << endl;
 	}
-	cout << "Coordinates of vehicles[2] after moveUp()" << endl;
-	vehicles[2]->printCoordinates();
-	cout << endl;
+	cout << '\n';
 
 
 	if (vehicles[2]->moveLeft()) {

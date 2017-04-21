@@ -2,6 +2,7 @@
 #define Coordinate2D_h
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -28,6 +29,7 @@ public:
 	// Effects: updates fields with input parameters
 	void setCoordinate(int x, int y);
 
+	string toString() const;
 
 	friend ostream& operator << (ostream& outStream, const Coordinate2D& coordinate);
 };

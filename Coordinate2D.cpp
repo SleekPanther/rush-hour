@@ -15,7 +15,12 @@ void Coordinate2D::setCoordinate(int x, int y) {
 	this->y = y;
 }
 
+string Coordinate2D::toString() const{
+	string coordString = "";
+	return coordString + "(" + to_string(this->x) + ", " + to_string(this->y) + ")";
+}
+
 ostream& operator << (ostream& outStream, const Coordinate2D& coordinate){
-	cout << "(" << coordinate.x << ", " << coordinate.y << ")";
+	cout << coordinate.toString();
 	return outStream;
 }

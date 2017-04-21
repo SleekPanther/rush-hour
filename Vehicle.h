@@ -26,6 +26,13 @@ public:
 	Vehicle(Board & board, vector<Coordinate2D> coordinates);
 	~Vehicle();
 
+	// Requires: nothing
+	// Modifies: debugPrintBoard
+	// Effects: toggles debug information to print board after every move
+	void setDebugPrintBoard(bool debugPrintBoardOn);
+
+	bool getDebugPrintBoard() const;
+
 	vector<Coordinate2D> getCoordinates() const;
 
 	// Requires: nothing
@@ -37,6 +44,16 @@ public:
 	// Modifies: nothing
 	// Effects: prints coordinates on screen for testing
 	void printCoordinates() const;
+
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: gets a string of the vehicle's coordinates
+	string getStringCoordinates() const;
+
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: called in move() methods to print lovations (only if debug mode is ont)
+	void printBoardAndCoordinatesIfDebug() const;
 
 	// Requires: nothing
 	// Modifies: nothing
