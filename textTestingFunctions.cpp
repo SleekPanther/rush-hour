@@ -54,9 +54,10 @@ bool test_Game() {
 		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(false) then game.getDebugPrintProgressFile(). Expected false, returned true" << endl;
 	}
 
+	cout << "\nTesting game.load()\n";
 	game.load();
 
-	//game.save();
+	//game.save() is tested in test_Vehicle() since we add vehicles to the board
 
 	return passed;
 }

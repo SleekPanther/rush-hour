@@ -32,6 +32,7 @@ private:
 	string defaultSetupFilename;
 
 	bool debugPrintProgressFile;
+	bool debugPrintPopulateBoard;
 
 public:
 	Game();
@@ -47,6 +48,13 @@ public:
 	//This is a vector of vehicle pointers that point to all the vehicles defined by the set up and then updated as the game progresses
 	vector<Vehicle> getVehicles();
 
+	bool getGebugPrintPopulateBoard() const;
+
+	// Requires: nothing
+	// Modifies: debugPrintPopulateBoard
+	// Effects: used to toggle debug info on/off
+	void setDebugPrintPopulateBoard(bool value);
+
 	void populateBoard(vector<int> fileContents);
 
 	// Requires: progress file to have valid contents, or not exist (throws errors when reading from non-valid setups)
@@ -55,14 +63,6 @@ public:
 	void load();
 
 	void save();
-	
-	/*tretrieveVehicles uses the information accesed from gameSetup to create the correct vehicles
-	*that will then be pointed to by the vector of vehicle pointers
-	*Requiers: File to exist in same folder and for it to be of the correct format
-	*Modifies: The vector of pointers to vehicles in this class
-	*Effects: Creates the set of vehicles from a given set up and adds pointers to them to the vector of pointers
-	*/
-	void retrieveVehicles(Board theBoard);
 };
 
 #endif
