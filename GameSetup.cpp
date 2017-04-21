@@ -2,16 +2,28 @@
 
 
 GameSetup::GameSetup() {
+	setupFilename = "setUps.txt";
+	//Pick from more setups later on
+
+	vehicleLocations = GameSetup::readFile(setupFilename);
+
 	dataConversion();
 }
 
-GameSetup::GameSetup(int whichSetUp, Board theBoard)
-{
-
-	
+GameSetup::GameSetup(int whichSetUp, Board theBoard) {	
 }
 
 GameSetup::~GameSetup() {
+}
+
+int GameSetup::getRandomInt(int lowerBound, int upperBound){
+	random_device randomGenerator;
+	int range = upperBound - lowerBound +1;		//+1 to make upperBound inclusive
+	return randomGenerator() % range  + lowerBound;
+}
+
+vector<int> GameSetup::getSetupAsList() const{
+	return vehicleLocations;
 }
 
 bool GameSetup::thereAreMore()
@@ -77,10 +89,6 @@ void GameSetup::dataConversion()
 	Coordinate2D fourthCoord(4, 3);
 	allCoords.push_back(thirdCoord);
 	allCoords.push_back(fourthCoord);
-
-
-
-
 
 	//Now we push back a pointer to a new vehicle that we create using the values above. 
 	//allVehicles.push_back(make_unique<HorizontalVehicle>(theBoard, theCoords));

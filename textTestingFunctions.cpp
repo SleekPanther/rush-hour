@@ -44,10 +44,20 @@ bool test_Game() {
 	bool passed = true;
 
 	Game game;
-	cout << "Testing game.load()\n";
+
+	game.setDebugPrintProgressFile(true);
+	if(!game.getDebugPrintProgressFile()){
+		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(true) then game.getDebugPrintProgressFile(). Expected true, returned false" << endl;
+	}
+	game.setDebugPrintProgressFile(false);
+	if(game.getDebugPrintProgressFile()){
+		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(false) then game.getDebugPrintProgressFile(). Expected false, returned true" << endl;
+	}
+
+	cout << "\nTesting game.load()\n";
 	game.load();
 
-	//game.save();
+	//game.save() is tested in test_Vehicle() since we add vehicles to the board
 
 	return passed;
 }
@@ -66,8 +76,22 @@ bool test_GameSetup() {
 		cout << fileContents[i] << ", ";
 	}
 	cout << endl;
+
+	int randomNumber=0;
+	int lowerBound =0;
+	int upperBound=5;
+	for(int i=0; i<20; i++){
+		randomNumber = GameSetup::getRandomInt(lowerBound, upperBound);
+		if(randomNumber<(lowerBound)){
+			cout << "Failed random number generation. lowerBound=" << lowerBound << ", Random number=" << randomNumber << ",  " << randomNumber << "<" << lowerBound << endl;
+			passed=false;
+		}
+		else if(randomNumber>upperBound){
+			cout << "Failed random number generation. upperBound=" << upperBound << ", Random number=" << randomNumber << ",  " << randomNumber << ">" << upperBound << endl;
+			passed=false;
+		}
+	}
 	
-	//vector<unique_ptr<Vehicle> > theVehiclesFromSetup;
 	return passed;
 }
 
@@ -183,16 +207,15 @@ bool test_Vehicle() {
 	bool passed = true;
 
 
-	vector<unique_ptr<Vehicle>> vehicles;
-	Coordinate2D inputCoordsCoord1(2, 4);
-	Coordinate2D inputCoordsCoord2(3, 4);
-	vector<Coordinate2D> inputCoords = { inputCoordsCoord1, inputCoordsCoord2 };
-	vector<Coordinate2D> inputCoords2 = { Coordinate2D(4, 2), Coordinate2D(3, 2) };
-	vector<Coordinate2D> inputCoords3 = { Coordinate2D(1, 0), Coordinate2D(1, 1) };
 	Board testBoard;
-	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, inputCoords));
-	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, inputCoords2));
-	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, inputCoords3));
+	vector<unique_ptr<Vehicle>> vehicles;
+	
+	Coordinate2D inputCoordsCoord1(2, 4);		//used to print where the 1st vehicle is drawn, but not actually used when adding to vector
+	Coordinate2D inputCoordsCoord2(3, 4);
+
+	vehicles.push_back(make_unique<HorizontalVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(2, 4), Coordinate2D(3, 4)}));
+	vehicles.push_back(make_unique<SpecialVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(4, 2), Coordinate2D(3, 2)}));
+	vehicles.push_back(make_unique<VerticalVehicle>(testBoard, vector<Coordinate2D>{ Coordinate2D(1, 0), Coordinate2D(1, 1)}));
 
 
 	//Special vehicle is also a horizontal vehicle
@@ -375,12 +398,13 @@ bool test_Vehicle() {
 		passed = false;
 	}
 
+
 	Game game;
+	cout << "Testing game.save()  Check Progress file for matching contents" << endl;
 	game.save();
 
 
 	return passed;
-	
 }
 
 bool test_ScoreMetrics() {

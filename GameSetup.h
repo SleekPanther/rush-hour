@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <random>
 #include "Vehicle.h"
 #include "HorizontalVehicle.h"
 #include "VerticalVehicle.h"
@@ -15,7 +16,9 @@ using namespace std;
 
 class GameSetup {
 private:
-	//fields
+	vector<int> vehicleLocations;
+	string setupFilename;		//the specific setup the constructor should open
+
 	//For now I will out in a harcoded set of vehicles that will be loaded as the board set up. 
 	//In the future this set up will come from a file. 
 
@@ -24,19 +27,31 @@ private:
 	vector<Vehicle*> allVehicles;
 
 public:
-	    //The folowing four fields provide all the needed infro for a board set up. (special vehicle always first)
-		int numOfVehicles;
-		vector<int> vehicleLengths;
-		vector<Coordinate2D> allCoords;
+//The folowing four fields provide all the needed infro for a board set up. (special vehicle always first)
+int numOfVehicles;
+vector<int> vehicleLengths;
+vector<Coordinate2D> allCoords;
 		
 	GameSetup();
+
 	//This constructor WILL allow us to select from the set ups located in our save file
 	GameSetup(int whichSetUp, Board theBoard);
 	~GameSetup();
+
+	// Requires: lowerBound < higherBound
+	// Modifies: nothing
+	// Effects: returns a random number in the specified range
+	static int getRandomInt(int lowerBound, int upperBound);
+
+	vector<int> getSetupAsList() const;
+
 	//This method will return true untill all coordinates have been recieved and the vector of coordinates is empty
 	bool thereAreMore();
 
 	//static since any Game needs to be able to read files
+	// Requires: a valid filename (does nothing if can't open), file must contain only integers
+	// Modifies: nothing
+	// Effects: reads a file of integers & returns a vector
 	static vector<int> readFile(string filename);
 
 	static void printVector(vector<int> vector);

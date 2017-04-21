@@ -1,15 +1,14 @@
 #include "Game.h"
 
 Game::Game() {
+	progressFilename="progress.txt";
+	debugPrintProgressFile=true;		//change this to NOT print progress to screen when saving
+
 	debugPrintPopulateBoard=true;
-	progressFilename = "progress.txt";
 	//Empty Board is already set up
+	//GameSetup default constructor created a default layout
 
-	vectorOfVehicles.push_back(make_unique<SpecialVehicle>(board, vector<Coordinate2D>{ Coordinate2D(4, 2), Coordinate2D(3, 2)}));
-	vectorOfVehicles.push_back(make_unique<HorizontalVehicle>(board, vector<Coordinate2D>{ Coordinate2D(2, 4), Coordinate2D(3, 4)}));
-	vectorOfVehicles.push_back(make_unique<VerticalVehicle>(board, vector<Coordinate2D>{ Coordinate2D(1, 0), Coordinate2D(1, 1)}));
-
-	//retrieveVehicles(board);
+	populateBoard(theSetup.getSetupAsList());
 }
 
 Game::~Game() {
@@ -17,6 +16,14 @@ Game::~Game() {
 
 vector<Vehicle> Game::getVehicles() {
 	return vector<Vehicle>();
+}
+
+void Game::setDebugPrintProgressFile(bool value){
+	debugPrintProgressFile=value;
+}
+
+bool Game::getDebugPrintProgressFile() const{
+	return debugPrintProgressFile;
 }
 
 bool Game::getGebugPrintPopulateBoard() const{
@@ -35,14 +42,14 @@ void Game::load() {
 		int previousScore;
 		inputFile >> previousScore;		//save 1st number in file
 		fileContents.erase(fileContents.begin());	//erase the 1st number to just get the vehicles & coordinates
-													// GameSetup::printVector(fileContents);
+
 		metrics.setMoveCount(previousScore);
 		populateBoard(fileContents);
-		
 	}
-	else {
-		//start new setup
+	else{
+		cout << "There was no game saved" << endl;
 	}
+	inputFile.close();
 }
 
 void Game::save() {
@@ -51,6 +58,10 @@ void Game::save() {
 	string verticalInfo = "";
 	int horizontalCount = 0;
 	int verticalCount = 0;
+
+	//Save current score of game
+	int currentMoveCount = metrics.getMoveCount();
+	allVehicleInfo = allVehicleInfo + to_string(currentMoveCount) + "\n\n";		//add 2 newlines after to differentiate from vehicle info
 
 	//deal with special vehicle 1st
 	int vehicleLength = vectorOfVehicles[0]->getLength();
@@ -90,17 +101,30 @@ void Game::save() {
 	}
 
 	//insert horizontal and vertical counts at the ver beginning of the string
-	allVehicleInfo.insert(0, to_string(horizontalCount));
-	allVehicleInfo.insert(1, " ");		//add a space between 2 numbers
-	allVehicleInfo.insert(2, to_string(horizontalCount));
-	allVehicleInfo.insert(3, "\n");		//add newline
+	//first calculate the length of the score (how many digits) to see where to insert the other vehicle info
+	int currentMoveCountLength = to_string(currentMoveCount).length();		//how many digits long the number is
+	int newlineCount = 2;		//above we added 2 newlines after the score
+	int vehicleInfStringOffset = currentMoveCountLength + newlineCount;		//how many characters in de we insert the data for horizontalCount & verticalCount
 
-										//append horizontal & vertical coordinates to string
+	//insert 2 vehicle counts with separation characters afterward, starting from vehicleInfStringOffset and increasing by 1 every time
+	allVehicleInfo.insert(vehicleInfStringOffset, to_string(horizontalCount));		//1st 1-3 characters are number of moves, followed by 5 blank lines so insert after those
+	allVehicleInfo.insert(vehicleInfStringOffset+1, " ");		//add a space between 2 numbers
+	allVehicleInfo.insert(vehicleInfStringOffset+2, to_string(horizontalCount));
+	allVehicleInfo.insert(vehicleInfStringOffset+3, "\n");		//add newline
+
+	//append horizontal & vertical coordinates to string
 	allVehicleInfo = allVehicleInfo + horizontalInfo + verticalInfo;
 
-	//save to file
-	cout << allVehicleInfo << endl;
+	if(debugPrintProgressFile){		//only display for testing
+		cout << allVehicleInfo << endl;
+	}
 
+	//save to file
+	ofstream progressFile(progressFilename);
+	if(progressFile){
+		progressFile << allVehicleInfo;
+	}
+	progressFile.close();
 }
 
 void Game::populateBoard(vector<int> fileContents) {
@@ -169,61 +193,3 @@ void Game::populateBoard(vector<int> fileContents) {
 		}
 	}
 }
-
-void Game::retrieveVehicles(Board theBoard)
-{//Hard coded values used for testing, these values will be retrived from the set up file via a gameSetup member function
- // int numOfVehicles = 3;
-
- // //Each of the groups of six/eight values below represent all of the info required to set up vehicles.  
- // int sizeOfVOne = 2;
- // bool vOneIsVertical = false;
- // int xCoord1VOne = 1;
- // int yCoord1VOne = 3;
- // int xCoord2VOne = 2;
- // int yCoord2VOne = 3;
- // Coordinate2D v1FirstCoord(xCoord1VOne, yCoord1VOne);
- // Coordinate2D v1SecondCoord(xCoord2VOne, yCoord2VOne);
- // vector<Coordinate2D> vectOfCoords;
- // vectOfCoords.push_back(v1FirstCoord);
- // vectOfCoords.push_back(v1SecondCoord);
- // //Now create this special vehicle passing first a board and second a vector of coordinates
- // SpecialVehicle special(theBoard, vectOfCoords);
- // //Create a pointer to this vehicle
- // Vehicle * specialPoint = &special;
- // //Add this pointer to the array of pointers
- // vectorOfVehicles.push_back(specialPoint);
- // //Test to see if we are able to call member functions on this vehicle via the vector of pointers
- // cout << "\tAttempting to use vector of pointers to access specialVehicles member functions: " << endl;
- // if(vectorOfVehicles[0]->testFunctionCall()) {
- // 	cout << "\tMember function called succsesfullly" << endl;
- // }
- // else {
- // 	cout << "\tFailed to call member function" << endl;
- // }
-
-
- // int sizeOfVtwo = 3;
- // bool vTwoIsVertical = true;
- // int xCoord1VTwo = 3;
- // int yCoord1VTwo = 4;
- // int xCoord2VTwo = 3;
- // int yCoord2VTwo = 5;
- // int xCoord3VTwo = 3;
- // int yCoord3VTwo = 6;
-
- // int sizeOfVThree = 2;
- // bool vThreeIsVertical = false;
- // int xCoord1VThree = 3;
- // int yCoord1VThree = 2;
- // int xCoord2VThree = 4;
- // int yCoord3VThree = 2;
-
-
-
-
-
-
-}
-
-//This is where we take the info from the file that GameSetup opens and turns it into vehicles on the board
-
