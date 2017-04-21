@@ -11,6 +11,7 @@ Game::Game(bool debugModeOn){
 	//Empty Board is already set up
 	//GameSetup constructor created a default layout, use it to populate the board
 	populateBoard(theSetup.getSetupAsList());
+	selectedVehicle=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
 }
 
 Game::~Game() {

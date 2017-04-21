@@ -24,6 +24,7 @@ private:
 	Board board;
 	GameSetup theSetup;
 	vector<unique_ptr<Vehicle>> vectorOfVehicles;
+	int selectedVehicle;	//An integer index in vectorOfVehicles. So that movement only applies to 1 vehicle at a time
 	ScoreMetrics metrics;
 
 	string progressFilename;
