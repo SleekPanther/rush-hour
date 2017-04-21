@@ -34,6 +34,7 @@ private:
 
 public:
 	Game();
+	Game(bool debugModeOn);		//calls other constructor setting debug mode on or off
 	~Game();
 
 	// Requires: nothing
@@ -43,9 +44,9 @@ public:
 
 	bool getDebugPrintProgressFile() const;
 
-	bool getDebugPrintPopulateBoard() const;
-
 	void setDebugPrintPopulateBoard(bool value);
+
+	bool getDebugPrintPopulateBoard() const;
 
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board

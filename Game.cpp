@@ -22,12 +22,12 @@ bool Game::getDebugPrintProgressFile() const{
 	return debugPrintProgressFile;
 }
 
-bool Game::getDebugPrintPopulateBoard() const{
-	return debugPrintPopulateBoard;
-}
-
 void Game::setDebugPrintPopulateBoard(bool value){
 	debugPrintPopulateBoard=value;
+}
+
+bool Game::getDebugPrintPopulateBoard() const{
+	return debugPrintPopulateBoard;
 }
 
 
@@ -117,7 +117,7 @@ void Game::save() {
 	allVehicleInfo = allVehicleInfo + horizontalInfo + verticalInfo;
 
 	if(debugPrintProgressFile){		//only display for testing
-		cout << allVehicleInfo << endl;
+		cout << "Text to be written to Progress File:\n" << allVehicleInfo << endl;
 	}
 
 	//save to file

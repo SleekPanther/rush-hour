@@ -32,12 +32,6 @@ void runAllTests() {
 	if (test_ScoreMetrics()) {
 		cout << "Passed test_ScoreMetrics() tests" << endl;
 	}
-
-	
-	cout << "\n\n";
-
-	chooseLoadSave();
-	cout << "\n\n";
 }
 
 bool test_Game() {
@@ -50,10 +44,23 @@ bool test_Game() {
 	game.setDebugPrintProgressFile(true);
 	if(!game.getDebugPrintProgressFile()){
 		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(true) then game.getDebugPrintProgressFile(). Expected true, returned false" << endl;
+		passed=false;
 	}
 	game.setDebugPrintProgressFile(false);
 	if(game.getDebugPrintProgressFile()){
 		cout << "Failed consturcting new game, game.setDebugPrintProgressFile(false) then game.getDebugPrintProgressFile(). Expected false, returned true" << endl;
+		passed=false;
+	}
+
+	game.setDebugPrintPopulateBoard(true);
+	if(!game.getDebugPrintPopulateBoard()){
+		cout << "Failed consturcting new game, game.setDebugPrintPopulateBoard(true) then game.getDebugPrintPopulateBoard(). Expected true, returned false" << endl;
+		passed=false;
+	}
+	game.setDebugPrintPopulateBoard(false);
+	if(game.getDebugPrintPopulateBoard()){
+		cout << "Failed consturcting new game, game.setDebugPrintPopulateBoard(false) then game.getDebugPrintPopulateBoard(). Expected false, returned true" << endl;
+		passed=false;
 	}
 
 	cout << "\nTesting game.load()\n";
@@ -447,12 +454,14 @@ bool test_ScoreMetrics() {
 }
 
 void chooseLoadSave(){
-	Game game;
-	cout << "\nNew Game started. Enter 1 to start new, 0 to open previous game: ";
+	cout << "New Game started. Enter 1 to start new, 0 to open previous game: ";
 	int answer;
 	cin >> answer;
+	cout << "Default board setup\n";
+	Game game;
 	//new game is default, open old game is the other option
 	if(answer==0){
+		cout << "Erasing board & Loading previous setup\n";
 		game.load("progress-backup.txt");
 	}
 
@@ -460,10 +469,10 @@ void chooseLoadSave(){
 	cin >> answer;
 	if(answer==1){
 		game.save();
-		cout << "Game saved, check progress.txt\n";
+		cout << "Game saved, check \"progress.txt\"\n";
 	}
 	else{
-		cout << "Game Progress erased";
+		cout << "Game Progress erased\n";
 	}
 
 }
