@@ -44,6 +44,7 @@ bool test_Game() {
 	bool passed = true;
 
 	Game game;
+	cout << "Testing game.load()\n";
 	game.load();
 
 	//game.save();

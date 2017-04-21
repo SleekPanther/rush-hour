@@ -29,12 +29,17 @@ private:
 	vector<unique_ptr<Vehicle>> vectorOfVehicles;
 
 	string progressFilename;
+	bool debugPrintPopulateBoard;
 
 public:
 	Game();
 	~Game();
 	//This is a vector of vehicle pointers that point to all the vehicles defined by the set up and then updated as the game progresses
 	vector<Vehicle> getVehicles();
+
+	bool getGebugPrintPopulateBoard() const;
+
+	void setDebugPrintPopulateBoard(bool value);
 
 	void populateBoard(vector<int> fileContents);
 

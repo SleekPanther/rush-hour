@@ -1,6 +1,7 @@
 #include "Game.h"
 
 Game::Game() {
+	debugPrintPopulateBoard=true;
 	progressFilename = "progress.txt";
 	//Empty Board is already set up
 
@@ -16,6 +17,14 @@ Game::~Game() {
 
 vector<Vehicle> Game::getVehicles() {
 	return vector<Vehicle>();
+}
+
+bool Game::getGebugPrintPopulateBoard() const{
+	return debugPrintPopulateBoard;
+}
+
+void Game::setDebugPrintPopulateBoard(bool value){
+	debugPrintPopulateBoard=value;
 }
 
 void Game::load() {
@@ -153,10 +162,13 @@ void Game::populateBoard(vector<int> fileContents) {
 		tempCoordinates.clear();
 		
 	}//End of create all horizontal vehicles loop
-	cout << "\n\n";
-	for (int i=0; i < vectorOfVehicles.size(); i++) {
-		cout << "Vehicle number " << i << " is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. And it has these coordinates: "<<endl; 
-		vectorOfVehicles[i]->printCoordinates();
+
+	if(debugPrintPopulateBoard){
+		cout << "populateBoard()\n";
+		for (int i=0; i < vectorOfVehicles.size(); i++) {
+			cout << "Vehicle number " << i << " is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. And it has these coordinates: "<<endl; 
+			vectorOfVehicles[i]->printCoordinates();
+		}
 	}
 }
 
