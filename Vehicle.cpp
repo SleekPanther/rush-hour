@@ -46,7 +46,3 @@ bool Vehicle::isInWinningSpace() const {
 void Vehicle::draw() {
 	//loop through vector of coordinates & draw vehicle based on that location
 }
-bool Vehicle::testFunctionCall()
-{
-	return true;
-}

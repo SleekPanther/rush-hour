@@ -14,10 +14,6 @@ Game::Game() {
 Game::~Game() {
 }
 
-vector<Vehicle> Game::getVehicles() {
-	return vector<Vehicle>();
-}
-
 void Game::setDebugPrintProgressFile(bool value){
 	debugPrintProgressFile=value;
 }
@@ -26,7 +22,7 @@ bool Game::getDebugPrintProgressFile() const{
 	return debugPrintProgressFile;
 }
 
-bool Game::getGebugPrintPopulateBoard() const{
+bool Game::getDebugPrintPopulateBoard() const{
 	return debugPrintPopulateBoard;
 }
 
@@ -34,10 +30,15 @@ void Game::setDebugPrintPopulateBoard(bool value){
 	debugPrintPopulateBoard=value;
 }
 
-void Game::load() {
-	ifstream inputFile(progressFilename);
+
+void Game::load(){
+	load(progressFilename);
+}
+
+void Game::load(string filename) {
+	ifstream inputFile(filename);
 	if (inputFile) {		//if the file exists, attempt to load progress
-		vector<int> fileContents = GameSetup::readFile(progressFilename);
+		vector<int> fileContents = GameSetup::readFile(filename);
 		// GameSetup::printVector(fileContents);
 		int previousScore;
 		inputFile >> previousScore;		//save 1st number in file
@@ -128,6 +129,7 @@ void Game::save() {
 }
 
 void Game::populateBoard(vector<int> fileContents) {
+	board = Board();	//clear the board
 	vectorOfVehicles.clear();
 
 	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as it's used
@@ -191,5 +193,6 @@ void Game::populateBoard(vector<int> fileContents) {
 			cout << "Vehicle number " << i << " is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. And it has these coordinates: "<<endl; 
 			vectorOfVehicles[i]->printCoordinates();
 		}
+		cout << "Board with vehicles from populateBoard()\n" << board << endl;
 	}
 }
