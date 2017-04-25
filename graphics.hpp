@@ -32,17 +32,25 @@ void reshape(int w, int h);
 void refresh(void);
 
 // Trap and process keyboard events
-void kbd(unsigned char key, int x, int y);
+void keyboard(unsigned char key, int x, int y);
+
+// Process modifier/special keys
+void keyboardSpecial(unsigned char key, int x, int y);
 
 // Handle "mouse cursor moved" events 
 void cursor(int x, int y);
 
+//handle mouse click events
+void mouse(int button, int state, int x, int y);
+
 // Handle "mouse moved with button pressed" events
 void drag(int x, int y);
 
-// Handle mouse button pressed and released events
-void mouse(int button, int state, int x, int y);
+//for glutTimerFunc
+void timer(int extra);
 
-int graphicsPlay(int argc, char *argv[]);
+
+//initialize glut & OpenGL & register callback functions
+void runGame(int argc, char** argv);
 
 #endif

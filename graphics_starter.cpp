@@ -37,9 +37,14 @@ void display() {
 	glFlush();  // Render now
 }
 
+void reshape(int w, int h){
+}
+
+void refresh(void){
+}
+
 // http://www.theasciicode.com.ar/ascii-control-characters/escape-ascii-code-27.html
-void kbd(unsigned char key, int x, int y)
-{
+void keyboard(unsigned char key, int x, int y) {
 	// escape
 	if (key == 27) {
 		glutDestroyWindow(wd);
@@ -51,7 +56,7 @@ void kbd(unsigned char key, int x, int y)
 	return;
 }
 
-void kbdS(int key, int x, int y) {
+void keyboardSpecial(int key, int x, int y) {
 	switch(key) {
 		case GLUT_KEY_DOWN:
 			
@@ -68,8 +73,6 @@ void kbdS(int key, int x, int y) {
 	}
 	
 	glutPostRedisplay();
-	
-	return;
 }
 
 void cursor(int x, int y) {
@@ -85,6 +88,9 @@ void mouse(int button, int state, int x, int y) {
 	
 	
 	glutPostRedisplay();
+}
+
+void drag(int x, int y){
 }
 
 void timer(int extra) {
@@ -113,10 +119,10 @@ void runGame(int argc, char** argv){
 	
 	// register keyboard press event processing function
 	// works for numbers, letters, spacebar, etc.
-	glutKeyboardFunc(kbd);
+	glutKeyboardFunc(keyboard);
 	
 	// register special event: function keys, arrows, etc.
-	glutSpecialFunc(kbdS);
+	glutSpecialFunc(keyboardSpecial);
 	
 	// handles mouse movement
 	glutPassiveMotionFunc(cursor);
