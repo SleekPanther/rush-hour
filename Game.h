@@ -49,6 +49,10 @@ public:
 
 	bool getDebugPrintPopulateBoard() const;
 
+	// Requires: nothing
+	// Modifies: vectorOfvehicles
+	// Effects: loops through all vehicles & makes them display the board after each movement
+	void setDebugPrintVehicleLocations(bool printBoard);
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board
 	// Effects: parses a list of numbers & creates vehicles from their coordinates

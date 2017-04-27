@@ -33,6 +33,18 @@ bool Game::getDebugPrintPopulateBoard() const{
 	return debugPrintPopulateBoard;
 }
 
+void Game::setDebugPrintVehicleLocations(bool value){
+	if(value){
+		for(int i=0; i<vectorOfVehicles.size(); i++){
+			vectorOfVehicles[i]->setDebugPrintBoard(true);
+		}
+	}
+	else{
+		for(int i=0; i<vectorOfVehicles.size(); i++){
+			vectorOfVehicles[i]->setDebugPrintBoard(false);
+		}
+	}
+}
 
 void Game::load(){
 	load(progressFilename);
