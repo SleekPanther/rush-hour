@@ -1,12 +1,46 @@
 #include "graphics.hpp"
 #include "textTestingFunctions.h"
 
+enum screen_state {menu, game_begin, game_save, game_end};
+
 GLdouble width, height;
 int wd;
+screen_state screen;
+
+void display_menu() {
+    string message = "Click anywhere to begin";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(100, 250);
+    for (int i = 0; i < message.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+    }
+}
+
+void display_game_begin() {
+
+}
+
+void display_game_end() {
+    // draw a string message
+    string message = "Game Ended";
+    glColor3f(1, 1, 0);
+    glRasterPos2i(100, 250);
+    for (int i = 0; i < message.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+    }
+}
+
+void display_game_save() {
+
+}
+
+
 
 void init() {
 	width = 500;
 	height = 500;
+	
+	screen = menu;
 }
 
 /* Initialize OpenGL Graphics */
@@ -33,6 +67,21 @@ void display() {
 	
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	
+	switch(screen) {
+        case menu:
+            display_menu();
+            break;
+        case game_begin:
+            display_game_begin();
+            break;
+        case game_end:
+            display_game_over();
+            break;
+	case game_save:
+            display_game_save();
+            break;		
+        }
+
 	
 	glFlush();  // Render now
 }
@@ -57,6 +106,7 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 void keyboardSpecial(int key, int x, int y) {
+	if (screen == game_begin) {
 	switch(key) {
 		case GLUT_KEY_DOWN:
 			
@@ -70,21 +120,33 @@ void keyboardSpecial(int key, int x, int y) {
 		case GLUT_KEY_UP:
 			
 			break;
-	}
+	    }
+        }
 	
 	glutPostRedisplay();
 }
 
 void cursor(int x, int y) {
+	if (screen == game_begin) {
+		
+		
 	
-	
+		
+		
+		
+		
+		
+	}
 	glutPostRedisplay();
 }
 
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
-	
+
+	if (button == GLUT_LEFT_BUTTON && state == GLUT_UP && screen == menu) {
+              screen = game_begin;
+         }
 	
 	
 	glutPostRedisplay();
