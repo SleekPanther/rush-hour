@@ -4,11 +4,16 @@
 GLdouble width, height;
 int wd;
 
+enum class GameState {playing, won};
+GameState currentGameState;
+
 Game game;
 
 void init() {
 	width = 500;
 	height = 500;
+
+	currentGameState=GameState::playing;
 
 	game.setDebugPrintVehicleLocations(true);
 }
@@ -61,21 +66,31 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 void keyboardSpecial(int key, int x, int y) {
-	switch(key) {
-		case GLUT_KEY_DOWN:
-			cout << "Down\n";
-			break;
-		case GLUT_KEY_LEFT:
-			game.getSelectedVehicle()->moveLeft();
-			cout << "Left\n";
-			break;
-		case GLUT_KEY_RIGHT:
-			game.getSelectedVehicle()->moveRight();
-			cout << "Right\n";
-			break;
-		case GLUT_KEY_UP:
-			cout << "Up\n";
-			break;
+	if(currentGameState==GameState::playing) {
+		if(key==GLUT_KEY_DOWN){
+				game.getSelectedVehicle()->moveDown();
+				cout << "Down\n";
+			}
+		else if(key==GLUT_KEY_LEFT){
+				game.getSelectedVehicle()->moveLeft();
+				cout << "Left\n";
+			}
+		else if(key==GLUT_KEY_RIGHT){
+			if(!game.getSelectedVehicle()->isInWinningSpace()){		//only move if the game isn't over
+				game.getSelectedVehicle()->moveRight();
+				cout << "Right\n";
+			}
+			else{
+				currentGameState= GameState::won;
+			}
+		}
+		else if(key==GLUT_KEY_UP){
+				game.getSelectedVehicle()->moveUp();
+				cout << "Up\n";
+			}
+	}
+	else{
+		cout << "Game is over, can't move\n";
 	}
 	
 	glutPostRedisplay();
