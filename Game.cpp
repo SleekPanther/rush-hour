@@ -11,7 +11,7 @@ Game::Game(bool debugModeOn){
 	//Empty Board is already set up
 	//GameSetup constructor created a default layout, use it to populate the board
 	populateBoard(theSetup.getSetupAsList());
-	selectedVehicle=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
+	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
 }
 
 Game::~Game() {
@@ -44,6 +44,25 @@ void Game::setDebugPrintVehicleLocations(bool printBoard){
 			vectorOfVehicles[i]->setDebugPrintBoard(false);
 		}
 	}
+}
+
+
+int Game::getSelectedVehicleIndex() const {
+	return selectedVehicleIndex;
+}
+
+vector<unique_ptr<Vehicle>> const& Game::getVehicles() const {
+	return vectorOfVehicles;
+}
+
+// unique_ptr<Vehicle> Game::getSelectedVehicle() const {
+unique_ptr<Vehicle> const& Game::getSelectedVehicle() const {
+	return vectorOfVehicles[selectedVehicleIndex];
+	// return vector<unique_ptr<Vehicle>>vectorOfVehicles[selectedVehicleIndex] ;
+	// return *vectorOfVehicles[selectedVehicleIndex];
+	// return &vectorOfVehicles[selectedVehicleIndex];
+	// return move(&vectorOfVehicles[selectedVehicleIndex]);
+	// return vectorOfVehicles[selectedVehicleIndex];
 }
 
 void Game::load(){

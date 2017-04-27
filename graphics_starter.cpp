@@ -4,9 +4,13 @@
 GLdouble width, height;
 int wd;
 
+Game game;
+
 void init() {
 	width = 500;
 	height = 500;
+
+	game.setDebugPrintVehicleLocations(true);
 }
 
 /* Initialize OpenGL Graphics */
@@ -59,16 +63,18 @@ void keyboard(unsigned char key, int x, int y) {
 void keyboardSpecial(int key, int x, int y) {
 	switch(key) {
 		case GLUT_KEY_DOWN:
-			
+			cout << "Down\n";
 			break;
 		case GLUT_KEY_LEFT:
-			
+			game.getVehicles()[0]->moveLeft();
+			cout << "Left\n";
 			break;
 		case GLUT_KEY_RIGHT:
-			
+			game.getVehicles()[0]->moveRight();
+			cout << "Right\n";
 			break;
 		case GLUT_KEY_UP:
-			
+			cout << "Up\n";
 			break;
 	}
 	
