@@ -65,3 +65,8 @@ bool Vehicle::isInWinningSpace() const {
 void Vehicle::draw() {
 	//loop through vector of coordinates & draw vehicle based on that location
 }
+
+bool Vehicle::isOverlapping(int x, int y) const {
+	//Need to check if (x, y) point is inside the vehicle boundary
+	return false;
+}

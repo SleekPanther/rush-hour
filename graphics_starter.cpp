@@ -97,7 +97,14 @@ void keyboardSpecial(int key, int x, int y) {
 }
 
 void cursor(int x, int y) {
-	
+	//Loop over all vehicles & check if the cursor overlaps with any of them
+	for(int i=0; i<game.getVehicles().size(); i++){
+		if(game.getVehicles()[i]->isOverlapping(x, y)){
+			//change hover color or something
+		}
+		// game.getVehicles()[i]->printCoordinates();
+	}
+	// cout << "\n";
 	
 	glutPostRedisplay();
 }
@@ -105,8 +112,16 @@ void cursor(int x, int y) {
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
-	
-	
+	if(state==GLUT_DOWN){	//only register clicks, not releases
+		cout << "Mouse clicked\n\n";
+
+		//Loop over vehicles to see if mouse actually clicked any of them
+		for(int i=0; i<game.getVehicles().size(); i++){
+			if(game.getVehicles()[i]->isOverlapping(x, y)){	//if point is inside the vehicle boundary
+				game.setSelectedVehicleIndex(i);		//we found a vehicle that was clicked, so update to be the vehicle to be moved
+			}
+		}
+	}
 	
 	glutPostRedisplay();
 }
