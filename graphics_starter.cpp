@@ -1,12 +1,21 @@
 #include "graphics.hpp"
 #include "textTestingFunctions.h"
 
-GLdouble width, height;
-int wd;
+GLdouble windowWidth, windowHeight;
+int window;
+
+enum class GameState {playing, won};
+GameState currentGameState;
+
+Game game;
 
 void init() {
-	width = 500;
-	height = 500;
+	windowWidth = 500;
+	windowHeight = 500;
+
+	currentGameState=GameState::playing;
+
+	game.setDebugPrintVehicleLocations(true);
 }
 
 /* Initialize OpenGL Graphics */
@@ -19,13 +28,13 @@ void initGL() {
  whenever the window needs to be re-painted. */
 void display() {
 	// tell OpenGL to use the whole window for drawing
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, windowWidth, windowHeight);
 	
 	// do an orthographic parallel projection with the coordinate
 	// system set to first quadrant, limited by screen/window size
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0.0, width, height, 0.0, -1.f, 1.f);
+	glOrtho(0.0, windowWidth, windowHeight, 0.0, -1.f, 1.f);
 	
 
 	
@@ -47,7 +56,7 @@ void refresh(void){
 void keyboard(unsigned char key, int x, int y) {
 	// escape
 	if (key == 27) {
-		glutDestroyWindow(wd);
+		glutDestroyWindow(window);
 		exit(0);
 	}
 	
@@ -57,26 +66,45 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 void keyboardSpecial(int key, int x, int y) {
-	switch(key) {
-		case GLUT_KEY_DOWN:
-			
-			break;
-		case GLUT_KEY_LEFT:
-			
-			break;
-		case GLUT_KEY_RIGHT:
-			
-			break;
-		case GLUT_KEY_UP:
-			
-			break;
+	if(currentGameState==GameState::playing) {
+		if(key==GLUT_KEY_DOWN){
+				game.getSelectedVehicle()->moveDown();
+				cout << "Down\n";
+			}
+		else if(key==GLUT_KEY_LEFT){
+				game.getSelectedVehicle()->moveLeft();
+				cout << "Left\n";
+			}
+		else if(key==GLUT_KEY_RIGHT){
+			if(!game.getSelectedVehicle()->isInWinningSpace()){		//only move if the game isn't over
+				game.getSelectedVehicle()->moveRight();
+				cout << "Right\n";
+			}
+			else{
+				currentGameState= GameState::won;
+			}
+		}
+		else if(key==GLUT_KEY_UP){
+				game.getSelectedVehicle()->moveUp();
+				cout << "Up\n";
+			}
+	}
+	else{
+		cout << "Game is over, can't move\n";
 	}
 	
 	glutPostRedisplay();
 }
 
 void cursor(int x, int y) {
-	
+	//Loop over all vehicles & check if the cursor overlaps with any of them
+	for(int i=0; i<game.getVehicles().size(); i++){
+		if(game.getVehicles()[i]->isOverlapping(x, y)){
+			//change hover color or something
+		}
+		// game.getVehicles()[i]->printCoordinates();
+	}
+	// cout << "\n";
 	
 	glutPostRedisplay();
 }
@@ -84,8 +112,16 @@ void cursor(int x, int y) {
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
-	
-	
+	if(state==GLUT_DOWN){	//only register clicks, not releases
+		cout << "Mouse clicked\n\n";
+
+		//Loop over vehicles to see if mouse actually clicked any of them
+		for(int i=0; i<game.getVehicles().size(); i++){
+			if(game.getVehicles()[i]->isOverlapping(x, y)){	//if point is inside the vehicle boundary
+				game.setSelectedVehicleIndex(i);		//we found a vehicle that was clicked, so update to be the vehicle to be moved
+			}
+		}
+	}
 	
 	glutPostRedisplay();
 }
@@ -106,10 +142,10 @@ void runGame(int argc, char** argv){
 	
 	glutInitDisplayMode(GLUT_RGBA);
 	
-	glutInitWindowSize((int)width, (int)height);
+	glutInitWindowSize((int)windowWidth, (int)windowHeight);
 	glutInitWindowPosition(100, 100); // Position the window's initial top-left corner
-	/* create the window and store the handle to it */
-	wd = glutCreateWindow("Fun with Drawing!" /* title */ );
+
+	window = glutCreateWindow("Rush Hour");		// create the window and store the handle to it
 	
 	// Register callback handler for window re-paint event
 	glutDisplayFunc(display);

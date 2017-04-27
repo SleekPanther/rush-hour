@@ -24,7 +24,7 @@ private:
 	Board board;
 	GameSetup theSetup;
 	vector<unique_ptr<Vehicle>> vectorOfVehicles;
-	int selectedVehicle;	//An integer index in vectorOfVehicles. So that movement only applies to 1 vehicle at a time
+	int selectedVehicleIndex;	//An integer index in vectorOfVehicles. So that movement only applies to 1 vehicle at a time
 	ScoreMetrics metrics;
 
 	string progressFilename;
@@ -48,6 +48,23 @@ public:
 	void setDebugPrintPopulateBoard(bool value);
 
 	bool getDebugPrintPopulateBoard() const;
+
+	// Requires: nothing
+	// Modifies: vectorOfvehicles
+	// Effects: loops through all vehicles & makes them display the board after each movement
+	void setDebugPrintVehicleLocations(bool printBoard);
+
+
+	// Requires: INDEX in the range of the vector (>0 and < number of vehicles)
+	// Modifies: selectedVehicleIndex
+	// Effects: sets selectedVehicleIndex. Used when cursor() moves over a piece
+	void setSelectedVehicleIndex(int vehicleIndex);
+
+	//return pointer to currently selected vehicle. Movement only acts on this 1 vehicle at a time
+	unique_ptr<Vehicle> const& getSelectedVehicle() const;
+
+	// Return reference to vector of vehicles
+	vector<unique_ptr<Vehicle>> const& getVehicles() const;
 
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board

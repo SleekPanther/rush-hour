@@ -11,7 +11,7 @@ Game::Game(bool debugModeOn){
 	//Empty Board is already set up
 	//GameSetup constructor created a default layout, use it to populate the board
 	populateBoard(theSetup.getSetupAsList());
-	selectedVehicle=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
+	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
 }
 
 Game::~Game() {
@@ -33,6 +33,31 @@ bool Game::getDebugPrintPopulateBoard() const{
 	return debugPrintPopulateBoard;
 }
 
+void Game::setDebugPrintVehicleLocations(bool printBoard){
+	if(printBoard){
+		for(int i=0; i<vectorOfVehicles.size(); i++){
+			vectorOfVehicles[i]->setDebugPrintBoard(true);
+		}
+	}
+	else{
+		for(int i=0; i<vectorOfVehicles.size(); i++){
+			vectorOfVehicles[i]->setDebugPrintBoard(false);
+		}
+	}
+}
+
+
+void Game::setSelectedVehicleIndex(int vehicleIndex) {
+	selectedVehicleIndex=vehicleIndex;
+}
+
+unique_ptr<Vehicle> const& Game::getSelectedVehicle() const {
+	return vectorOfVehicles[selectedVehicleIndex];
+}
+
+vector<unique_ptr<Vehicle>> const& Game::getVehicles() const {
+	return vectorOfVehicles;
+}
 
 void Game::load(){
 	load(progressFilename);

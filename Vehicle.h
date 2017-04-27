@@ -84,6 +84,11 @@ public:
 	bool isInWinningSpace() const;
 
 	void draw();
+
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: checks if a (x, y) point is inside the vehicle boundary
+	bool isOverlapping(int x, int y) const;
 };
 
 #endif
