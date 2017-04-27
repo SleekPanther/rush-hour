@@ -33,8 +33,8 @@ bool Game::getDebugPrintPopulateBoard() const{
 	return debugPrintPopulateBoard;
 }
 
-void Game::setDebugPrintVehicleLocations(bool value){
-	if(value){
+void Game::setDebugPrintVehicleLocations(bool printBoard){
+	if(printBoard){
 		for(int i=0; i<vectorOfVehicles.size(); i++){
 			vectorOfVehicles[i]->setDebugPrintBoard(true);
 		}
