@@ -1,8 +1,8 @@
 #include "graphics.hpp"
 #include "textTestingFunctions.h"
 
-GLdouble width, height;
-int wd;
+GLdouble windowWidth, windowHeight;
+int window;
 
 enum class GameState {playing, won};
 GameState currentGameState;
@@ -10,8 +10,8 @@ GameState currentGameState;
 Game game;
 
 void init() {
-	width = 500;
-	height = 500;
+	windowWidth = 500;
+	windowHeight = 500;
 
 	currentGameState=GameState::playing;
 
@@ -28,13 +28,13 @@ void initGL() {
  whenever the window needs to be re-painted. */
 void display() {
 	// tell OpenGL to use the whole window for drawing
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, windowWidth, windowHeight);
 	
 	// do an orthographic parallel projection with the coordinate
 	// system set to first quadrant, limited by screen/window size
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0.0, width, height, 0.0, -1.f, 1.f);
+	glOrtho(0.0, windowWidth, windowHeight, 0.0, -1.f, 1.f);
 	
 
 	
@@ -56,7 +56,7 @@ void refresh(void){
 void keyboard(unsigned char key, int x, int y) {
 	// escape
 	if (key == 27) {
-		glutDestroyWindow(wd);
+		glutDestroyWindow(window);
 		exit(0);
 	}
 	
@@ -127,10 +127,10 @@ void runGame(int argc, char** argv){
 	
 	glutInitDisplayMode(GLUT_RGBA);
 	
-	glutInitWindowSize((int)width, (int)height);
+	glutInitWindowSize((int)windowWidth, (int)windowHeight);
 	glutInitWindowPosition(100, 100); // Position the window's initial top-left corner
-	/* create the window and store the handle to it */
-	wd = glutCreateWindow("Fun with Drawing!" /* title */ );
+
+	window = glutCreateWindow("Rush Hour");		// create the window and store the handle to it
 	
 	// Register callback handler for window re-paint event
 	glutDisplayFunc(display);
