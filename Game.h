@@ -54,9 +54,6 @@ public:
 	// Effects: loops through all vehicles & makes them display the board after each movement
 	void setDebugPrintVehicleLocations(bool printBoard);
 
-	int getSelectedVehicleIndex() const;
-
-	vector<unique_ptr<Vehicle>> const& getVehicles() const;
 
 	unique_ptr<Vehicle> const& getSelectedVehicle() const;
 

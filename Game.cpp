@@ -47,22 +47,8 @@ void Game::setDebugPrintVehicleLocations(bool printBoard){
 }
 
 
-int Game::getSelectedVehicleIndex() const {
-	return selectedVehicleIndex;
-}
-
-vector<unique_ptr<Vehicle>> const& Game::getVehicles() const {
-	return vectorOfVehicles;
-}
-
-// unique_ptr<Vehicle> Game::getSelectedVehicle() const {
 unique_ptr<Vehicle> const& Game::getSelectedVehicle() const {
 	return vectorOfVehicles[selectedVehicleIndex];
-	// return vector<unique_ptr<Vehicle>>vectorOfVehicles[selectedVehicleIndex] ;
-	// return *vectorOfVehicles[selectedVehicleIndex];
-	// return &vectorOfVehicles[selectedVehicleIndex];
-	// return move(&vectorOfVehicles[selectedVehicleIndex]);
-	// return vectorOfVehicles[selectedVehicleIndex];
 }
 
 void Game::load(){

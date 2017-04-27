@@ -66,11 +66,11 @@ void keyboardSpecial(int key, int x, int y) {
 			cout << "Down\n";
 			break;
 		case GLUT_KEY_LEFT:
-			game.getVehicles()[0]->moveLeft();
+			game.getSelectedVehicle()->moveLeft();
 			cout << "Left\n";
 			break;
 		case GLUT_KEY_RIGHT:
-			game.getVehicles()[0]->moveRight();
+			game.getSelectedVehicle()->moveRight();
 			cout << "Right\n";
 			break;
 		case GLUT_KEY_UP:
