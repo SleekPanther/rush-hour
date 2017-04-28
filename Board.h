@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "Coordinate2D.h"
+#include "graphics.h"
 
 using namespace std;
 
@@ -12,6 +13,15 @@ class Board {
 private:
 	vector<vector<bool>> occupiedSquares;
 	Coordinate2D winningSpace;		//Used by Special Vehicle to check if it won the game
+
+	int upperCornerX;
+	int upperCornerY;
+	int borderSize;		//
+	int squareSize;		//how wide a square on the board is. Width of vehicle, used to draw board
+	int squareSizeAdjusted;		//how wide a square on the board is. Width of vehicle, used to draw board
+
+	Color borderColor;
+	Color squareColor;
 
 public:
 	Board();
@@ -41,7 +51,7 @@ public:
 	// Effects: Sets a square in the board to true (occupied)
 	void setSquareOccupied(int x, int y);
 
-	void draw();
+	void draw() const;
 
 	friend ostream& operator << (ostream& outStream, const Board& board);
 

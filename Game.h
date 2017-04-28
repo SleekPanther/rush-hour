@@ -85,6 +85,9 @@ public:
 	// Modifies: progress file
 	// Effects: loops over vectorOfVehicles & converts current positions to text information about the game state
 	void save();
+
+	
+	void draw() const;
 };
 
 #endif

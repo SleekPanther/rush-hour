@@ -222,3 +222,7 @@ void Game::populateBoard(vector<int> fileContents) {
 		cout << "Board with vehicles from populateBoard()\n" << board << '\n';
 	}
 }
+
+void Game::draw() const{
+	board.draw();
+}
