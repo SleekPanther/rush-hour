@@ -77,10 +77,10 @@ void Board::draw() const{
 	for(int i=0; i<6; i++){	//-2 since 8X8 grid & only draw 6X6
 		glBegin(GL_QUADS);
 		glColor3f(squareColor.red, squareColor.green, squareColor.blue);
-		glVertex2i(upperCornerX +(squareSize)*i, upperCornerY);		//top left
-		glVertex2i(upperCornerX + squareSizeAdjusted + (squareSizeAdjusted+borderSize)*i, upperCornerY);		//top right
-		glVertex2i(upperCornerX + squareSizeAdjusted + (squareSizeAdjusted+borderSize)*i, upperCornerY + squareSize);		//bottom right
-		glVertex2i(upperCornerX +(squareSizeAdjusted+borderSize)*i, upperCornerY + squareSize );		//bottom left
+		glVertex2i(upperCornerX +squareSize*i, upperCornerY);		//top left
+		glVertex2i(upperCornerX + squareSizeAdjusted + +squareSize*i, upperCornerY);		//top right
+		glVertex2i(upperCornerX + squareSizeAdjusted + +squareSize*i, upperCornerY + squareSize);		//bottom right
+		glVertex2i(upperCornerX +squareSize*i, upperCornerY + squareSize );		//bottom left
 
 		// glVertex2i(upperCornerX +(squareSize-5+borderSize)*i, upperCornerY);		//top left
 		// glVertex2i(upperCornerX + squareSize-5 + (squareSize+borderSize)*i, upperCornerY);		//top right
