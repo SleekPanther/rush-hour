@@ -79,19 +79,14 @@ void Board::draw() const{
 	for(int i=0; i<rowAndColumnCount; i++){		//i controls how many columns are drawn, x values (left to right)
 		for(int j=0; j<rowAndColumnCount; j++){		//j controls how many rows in a column, y values (top to bottom)
 			glBegin(GL_QUADS);
-			if(i==0){
-				glColor3f(squareColor.red, squareColor.green, squareColor.blue);
-			}
-			else{
-				glColor3f(1, 1, 1);
-			}
-			cout << "tl ("<<(upperCornerX +squareSize*i)<<", "<<(upperCornerY +squareSize*j) <<")";
+			glColor3f(1, 1, 1);
+			// cout << "tl ("<<(upperCornerX +squareSize*i)<<", "<<(upperCornerY +squareSize*j) <<")";
 			glVertex2i(upperCornerX +squareSize*i, upperCornerY +squareSize*j);		//top left
-			cout << "\ttr ("<<(upperCornerX + squareSizeMinusBorder +squareSize*i)<<", "<< (upperCornerY +squareSize*j ) << ")";
+			// cout << "\ttr ("<<(upperCornerX + squareSizeMinusBorder +squareSize*i)<<", "<< (upperCornerY +squareSize*j ) << ")";
 			glVertex2i(upperCornerX + squareSizeMinusBorder +squareSize*i, upperCornerY +squareSize*j);		//top right
-			cout << "\t\tbr ("<<(upperCornerX + squareSizeMinusBorder +squareSize*i)<<", "<<(upperCornerY+squareSizeMinusBorder + squareSize*j)<<")";
+			// cout << "\t\tbr ("<<(upperCornerX + squareSizeMinusBorder +squareSize*i)<<", "<<(upperCornerY+squareSizeMinusBorder + squareSize*j)<<")";
 			glVertex2i(upperCornerX + squareSizeMinusBorder +squareSize*i, upperCornerY+squareSizeMinusBorder + squareSize*j);		//bottom right
-			cout << "\tbl ("<<(upperCornerX +squareSize*i)<<", "<<(upperCornerY+squareSizeMinusBorder +squareSize*j ) <<")\n";
+			// cout << "\tbl ("<<(upperCornerX +squareSize*i)<<", "<<(upperCornerY+squareSizeMinusBorder +squareSize*j ) <<")\n";
 			glVertex2i(upperCornerX +squareSize*i, upperCornerY+squareSizeMinusBorder +squareSize*j);		//bottom left
 			glEnd();
 		}
