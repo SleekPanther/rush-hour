@@ -63,26 +63,22 @@ bool Vehicle::isInWinningSpace() const {
 }
 
 void Vehicle::draw() const{
-	// for(int i=0; i<coordinates.size(); i++){
 	int x=0;	//temporary variables to store each coordinate component
 	int y=0;
+	int upCornerX=globalPositions.getUpperCornerX();
+	int upCornerY=globalPositions.getUpperCornerY();
+	int squareSize=globalPositions.getSquareSize();
 	for(int i=0; i<coordinates.size(); i++){
-		cout << coordinates[i] <<'\n';
-
 		x=coordinates[i].x;
 		y=coordinates[i].y;
 
 		glColor3f(1, 1, 0);
 		glBegin(GL_QUADS);
-		cout <<"   tl "<< (globalPositions.getUpperCornerX() +globalPositions.getSquareSize()*x) <<", " << (globalPositions.getUpperCornerY() +globalPositions.getSquareSize()*y);
-		cout << "\ttr "<< (globalPositions.getUpperCornerX()+globalPositions.getSquareSize() +globalPositions.getSquareSize()*x) <<", " << (globalPositions.getUpperCornerY() +globalPositions.getSquareSize()*y);
-		cout << "\tbr "<< (globalPositions.getUpperCornerX()+globalPositions.getSquareSize() +globalPositions.getSquareSize()*x) <<", " << (globalPositions.getUpperCornerY()+globalPositions.getSquareSize() +globalPositions.getSquareSize()*y);
-		cout << "\tbL "<< (globalPositions.getUpperCornerX() +globalPositions.getSquareSize()*x) <<", " << (globalPositions.getUpperCornerY()+globalPositions.getSquareSize() +globalPositions.getSquareSize()*y) << '\n';
 		
-		glVertex2i(globalPositions.getUpperCornerX() +globalPositions.getSquareSize()*x,  globalPositions.getUpperCornerY() +globalPositions.getSquareSize()*y);		//top left
-		glVertex2i(globalPositions.getUpperCornerX()+globalPositions.getSquareSize() +globalPositions.getSquareSize()*x,  globalPositions.getUpperCornerY() +globalPositions.getSquareSize()*y);		//top right
-		glVertex2i(globalPositions.getUpperCornerX()+globalPositions.getSquareSize() +globalPositions.getSquareSize()*x,  globalPositions.getUpperCornerY()+globalPositions.getSquareSize() +globalPositions.getSquareSize()*y);		//bottom right
-		glVertex2i(globalPositions.getUpperCornerX() +globalPositions.getSquareSize()*x,  globalPositions.getUpperCornerY()+globalPositions.getSquareSize() +globalPositions.getSquareSize()*y);		//bottom left
+		glVertex2i(upCornerX +squareSize*x,  upCornerY +squareSize*y);		//top left
+		glVertex2i(upCornerX+squareSize +squareSize*x,  upCornerY +squareSize*y);		//top right
+		glVertex2i(upCornerX+squareSize +squareSize*x,  upCornerY+squareSize +squareSize*y);		//bottom right
+		glVertex2i(upCornerX +squareSize*x,  upCornerY+squareSize +squareSize*y);		//bottom left
 		glEnd();
 	}
 }

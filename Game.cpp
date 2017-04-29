@@ -226,8 +226,6 @@ void Game::populateBoard(vector<int> fileContents) {
 void Game::draw() const{
 	board.draw();
 	for(int i=0; i<vectorOfVehicles.size(); i++){
-		cout << "Vehcle " << i << "  ";
 		vectorOfVehicles[i]->draw();
-		cout << '\n';
 	}
 }
