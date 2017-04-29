@@ -6,6 +6,8 @@
 #include <vector>
 #include "Coordinate2D.h"
 #include "Board.h"
+#include "GlobalWindowPositions.h"
+#include "graphics.h"
 
 using namespace std;
 

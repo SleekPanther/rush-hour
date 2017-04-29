@@ -13,13 +13,13 @@ Board::Board() {
 		{true, true, true, true, true, true, true, true},
 	};
 
-	borderSize = 5;
+	borderSize = globalPositions.getBorderSize();
 	upperCornerX = globalPositions.getUpperCornerX() +borderSize;
 	upperCornerY = globalPositions.getUpperCornerY() +borderSize;
 	boardUpperCornerX = upperCornerX -borderSize;
 	boardUpperCornerY = upperCornerY -borderSize;
 	squareSize = globalPositions.getSquareSize();
-	squareSizeMinusBorder = squareSize - borderSize;
+	squareSizeMinusBorder = globalPositions.getSquareSizeMinusBorder();
 
 	borderColor = {0, 0, 0};
 	squareColor = {0, 1, 0};

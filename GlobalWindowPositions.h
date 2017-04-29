@@ -7,6 +7,8 @@ private:
 	static int upperCornerX;
 	static int upperCornerY;
 	static int squareSize;
+	static int borderSize;
+	static int squareSizeMinusBorder;
 
 public:
 	int getUpperCornerX() const;
@@ -14,6 +16,10 @@ public:
 	int getUpperCornerY() const;
 	
 	int getSquareSize() const;
+
+	int getBorderSize() const;
+
+	int getSquareSizeMinusBorder() const;
 };
 
 #endif
