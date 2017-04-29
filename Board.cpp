@@ -14,11 +14,11 @@ Board::Board() {
 	};
 
 	borderSize = 5;
-	upperCornerX = 0 +borderSize;
-	upperCornerY = 0 +borderSize;
+	upperCornerX = globalPositions.getUpperCornerX() +borderSize;
+	upperCornerY = globalPositions.getUpperCornerY() +borderSize;
 	boardUpperCornerX = upperCornerX -borderSize;
 	boardUpperCornerY = upperCornerY -borderSize;
-	squareSize = 50;
+	squareSize = globalPositions.getSquareSize();
 	squareSizeMinusBorder = squareSize - borderSize;
 
 	borderColor = {0, 0, 0};
