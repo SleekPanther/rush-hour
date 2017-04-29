@@ -16,9 +16,11 @@ private:
 
 	int upperCornerX;
 	int upperCornerY;
+	int boardUpperCornerX;	//used by board so border extends on upper left of 1st square drawn
+	int boardUpperCornerY;	//used by board so border extends on upper left of 1st square drawn
 	int borderSize;		//
 	int squareSize;		//how wide a square on the board is. Width of vehicle, used to draw board
-	int squareSizeAdjusted;		//how wide a square on the board is. Width of vehicle, used to draw board
+	int squareSizeMinusBorder;		//how wide a square on the board is. Width of vehicle, used to draw board
 
 	Color borderColor;
 	Color squareColor;

@@ -13,11 +13,13 @@ Board::Board() {
 		{true, true, true, true, true, true, true, true},
 	};
 
-	upperCornerX = 0;
-	upperCornerY = 0;
 	borderSize = 5;
+	upperCornerX = 0 +borderSize;
+	upperCornerY = 0 +borderSize;
+	boardUpperCornerX = upperCornerX -borderSize;
+	boardUpperCornerY = upperCornerY -borderSize;
 	squareSize = 50;
-	squareSizeAdjusted = squareSize - borderSize;
+	squareSizeMinusBorder = squareSize - borderSize;
 
 	borderColor = {0, 0, 0};
 	squareColor = {0, 1, 0};
@@ -62,32 +64,37 @@ void Board::setSquareValueFromVehicleCoordinates(int x, int y, bool value){
 
 
 void Board::draw() const{
-	//draw board itself (acts as the border, inner squares are drawn smaller)
+	//draw board background container (acts as the border because inner squares are drawn smaller to give the illusion of a border)
 	glBegin(GL_QUADS);
 	glColor3f(borderColor.red, borderColor.green, borderColor.blue);
-	int boardPixelSpan = (occupiedSquares.size()-2) * squareSize;
-	glVertex2i(upperCornerX, upperCornerY);		//top left
-	glVertex2i(upperCornerX + boardPixelSpan, upperCornerY);		//top right
-	glVertex2i(upperCornerX + boardPixelSpan, upperCornerY + boardPixelSpan);	//bottom right
-	glVertex2i(upperCornerX, upperCornerY + boardPixelSpan);		//bottom left
+	int boardPixelSpan = (occupiedSquares.size()-2) * squareSize +borderSize;	//make containing background square that's as big as the squares inside, but also accounts for the border
+	glVertex2i(boardUpperCornerX, boardUpperCornerY);		//top left
+	glVertex2i(boardUpperCornerX + boardPixelSpan, boardUpperCornerY);		//top right
+	glVertex2i(boardUpperCornerX + boardPixelSpan, boardUpperCornerY + boardPixelSpan);	//bottom right
+	glVertex2i(boardUpperCornerX, boardUpperCornerY + boardPixelSpan);		//bottom left
 	glEnd();
 
-	//draw grid squares
-	// for(int i=0; i<occupiedSquares.size()-2; i++){	//-2 since 8X8 grid & only draw 6X6
-	for(int i=0; i<6; i++){	//-2 since 8X8 grid & only draw 6X6
-		glBegin(GL_QUADS);
-		glColor3f(squareColor.red, squareColor.green, squareColor.blue);
-		glVertex2i(upperCornerX +squareSize*i, upperCornerY);		//top left
-		glVertex2i(upperCornerX + squareSizeAdjusted + +squareSize*i, upperCornerY);		//top right
-		glVertex2i(upperCornerX + squareSizeAdjusted + +squareSize*i, upperCornerY + squareSize);		//bottom right
-		glVertex2i(upperCornerX +squareSize*i, upperCornerY + squareSize );		//bottom left
-
-		// glVertex2i(upperCornerX +(squareSize-5+borderSize)*i, upperCornerY);		//top left
-		// glVertex2i(upperCornerX + squareSize-5 + (squareSize+borderSize)*i, upperCornerY);		//top right
-		// glVertex2i(upperCornerX + squareSize-5 + (squareSize+borderSize)*i, upperCornerY + squareSize);		//bottom right
-		// glVertex2i(upperCornerX +(squareSize+borderSize)*i, upperCornerY + squareSize );		//bottom left
-
-		glEnd();
+	//draw grid square 	DRAWS VERTICAL COLUMNS TOP TO BOTTOM, THEN COLUMNS LEFT TO RIGHT
+	int rowAndColumnCount = occupiedSquares.size()-2;		//-2 since 8X8 grid & only draw 6X6
+	for(int i=0; i<rowAndColumnCount; i++){		//i controls how many columns are drawn, x values (left to right)
+		for(int j=0; j<rowAndColumnCount; j++){		//j controls how many rows in a column, y values (top to bottom)
+			glBegin(GL_QUADS);
+			if(i==0){
+				glColor3f(squareColor.red, squareColor.green, squareColor.blue);
+			}
+			else{
+				glColor3f(1, 1, 1);
+			}
+			cout << "tl ("<<(upperCornerX +squareSize*i)<<", "<<(upperCornerY +squareSize*j) <<")";
+			glVertex2i(upperCornerX +squareSize*i, upperCornerY +squareSize*j);		//top left
+			cout << "\ttr ("<<(upperCornerX + squareSizeMinusBorder +squareSize*i)<<", "<< (upperCornerY +squareSize*j ) << ")";
+			glVertex2i(upperCornerX + squareSizeMinusBorder +squareSize*i, upperCornerY +squareSize*j);		//top right
+			cout << "\t\tbr ("<<(upperCornerX + squareSizeMinusBorder +squareSize*i)<<", "<<(upperCornerY+squareSizeMinusBorder + squareSize*j)<<")";
+			glVertex2i(upperCornerX + squareSizeMinusBorder +squareSize*i, upperCornerY+squareSizeMinusBorder + squareSize*j);		//bottom right
+			cout << "\tbl ("<<(upperCornerX +squareSize*i)<<", "<<(upperCornerY+squareSizeMinusBorder +squareSize*j ) <<")\n";
+			glVertex2i(upperCornerX +squareSize*i, upperCornerY+squareSizeMinusBorder +squareSize*j);		//bottom left
+			glEnd();
+		}
 	}
 	//then loop through vehicles & draw
 	//don't need to worry about order of drawing vehicles since they can't overlap

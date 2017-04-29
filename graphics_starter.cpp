@@ -131,7 +131,7 @@ void keyboardSpecial(int key, int x, int y) {
 void cursor(int x, int y) {
 	mouseXPosition = x;
 	mouseYPosition = y;
-	cout << "Mouse: (" << mouseXPosition << ", " << mouseYPosition << "\n";
+	cout << "Mouse: (" << mouseXPosition << ", " << mouseYPosition << ")\n";
 
 	if(currentGameState == GameState::playing){
 		//Loop over all vehicles & check if the cursor overlaps with any of them
