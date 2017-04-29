@@ -1,8 +1,10 @@
-#include "graphics.hpp"
+#include "graphics.h"
 #include "textTestingFunctions.h"
 
 GLdouble windowWidth, windowHeight;
 int window;
+int mouseXPosition;		//cursor function updates these positions
+int mouseYPosition;
 
 enum class GameState {menu, playing, won};
 GameState currentGameState;
@@ -13,7 +15,8 @@ void init() {
 	windowWidth = 500;
 	windowHeight = 500;
 
-	currentGameState=GameState::menu;
+	currentGameState=GameState::playing;
+	// currentGameState=GameState::menu;
 
 	game.setDebugPrintVehicleLocations(true);
 }
@@ -28,7 +31,7 @@ void displayMenu() {
 }
 
 void displayGameBegin() {
-
+	game.draw();
 }
 
 void displayGameEnd() {
@@ -126,6 +129,10 @@ void keyboardSpecial(int key, int x, int y) {
 }
 
 void cursor(int x, int y) {
+	mouseXPosition = x;
+	mouseYPosition = y;
+	cout << "Mouse: (" << mouseXPosition << ", " << mouseYPosition << "\n";
+
 	if(currentGameState == GameState::playing){
 		//Loop over all vehicles & check if the cursor overlaps with any of them
 		for(int i=0; i<game.getVehicles().size(); i++){
