@@ -14,8 +14,8 @@ Board::Board() {
 	};
 
 	borderSize = globalPositions.getBorderSize();
-	upperCornerX = globalPositions.getUpperCornerX() +borderSize;
-	upperCornerY = globalPositions.getUpperCornerY() +borderSize;
+	upperCornerX = globalPositions.getUpperCornerX();
+	upperCornerY = globalPositions.getUpperCornerY();
 	boardUpperCornerX = upperCornerX -borderSize;
 	boardUpperCornerY = upperCornerY -borderSize;
 	squareSize = globalPositions.getSquareSize();
@@ -91,8 +91,6 @@ void Board::draw() const{
 			glEnd();
 		}
 	}
-	//then loop through vehicles & draw
-	//don't need to worry about order of drawing vehicles since they can't overlap
 }
 
 

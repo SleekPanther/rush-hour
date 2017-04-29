@@ -24,6 +24,8 @@ protected:
 
 	bool debugPrintBoard;		//set true to display the contents of the board after each move method, false when not debugging
 
+	GlobalWindowPositions globalPositions;	//used to get constants shared with Vehicle about positions & sizes
+
 public:
 	Vehicle(Board & board, vector<Coordinate2D> coordinates);
 	~Vehicle();
@@ -85,7 +87,7 @@ public:
 	// Effects: tells you if the vehicle is the square that wins the game. Only applies for SpecialVehicle
 	bool isInWinningSpace() const;
 
-	void draw();
+	void draw() const;
 
 	// Requires: nothing
 	// Modifies: nothing
