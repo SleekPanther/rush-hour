@@ -112,7 +112,8 @@ void keyboardSpecial(int key, int x, int y) {
 				game.getSelectedVehicle()->moveRight();
 				cout << "Right\n";
 			}
-			else{
+			
+			if(game.getSelectedVehicle()->isInWinningSpace()){	//Check if that move made them win the game
 				currentGameState= GameState::won;
 			}
 		}
