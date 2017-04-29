@@ -72,9 +72,7 @@ void Vehicle::draw() const{
 		x=coordinates[i].x;
 		y=coordinates[i].y;
 
-		glColor3f(1, 1, 0);
 		glBegin(GL_QUADS);
-		
 		glVertex2i(upCornerX +squareSize*x,  upCornerY +squareSize*y);		//top left
 		glVertex2i(upCornerX+squareSize +squareSize*x,  upCornerY +squareSize*y);		//top right
 		glVertex2i(upCornerX+squareSize +squareSize*x,  upCornerY+squareSize +squareSize*y);		//bottom right

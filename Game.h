@@ -13,6 +13,7 @@
 #include "Coordinate2D.h"
 #include "Board.h"
 #include "GameSetup.h"
+#include "graphics.h"
 
 
 using namespace std;
@@ -32,6 +33,8 @@ private:
 
 	bool debugPrintProgressFile;
 	bool debugPrintPopulateBoard;
+
+	vector<vector<double>> colors;
 
 public:
 	Game();		//default constructor has debug mode off

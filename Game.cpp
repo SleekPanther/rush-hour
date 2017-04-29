@@ -12,6 +12,18 @@ Game::Game(bool debugModeOn){
 	//GameSetup constructor created a default layout, use it to populate the board
 	populateBoard(theSetup.getSetupAsList());
 	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
+
+	colors = {
+			{1, 1, 0},
+			{0, 0, 1},
+			{0, 1, 0},
+
+			{1, 0, 1},
+			{1, 0, 1},
+			{1, 0, 1},
+			{1, 0, 1},
+			{1, 0, 1}
+			};
 }
 
 Game::~Game() {
@@ -226,6 +238,7 @@ void Game::populateBoard(vector<int> fileContents) {
 void Game::draw() const{
 	board.draw();
 	for(int i=0; i<vectorOfVehicles.size(); i++){
+		glColor3f(colors[i][0], colors[i][1], colors[i][2]);
 		vectorOfVehicles[i]->draw();
 	}
 }
