@@ -38,6 +38,24 @@ void Vehicle::setColor(vector<double> rbg){
 	color.blue=rbg[2];
 }
 
+void Vehicle::setColor(Color newColor){
+	color=newColor;
+}
+
+Color Vehicle::getColor() const{
+	return color;
+}
+
+void Vehicle::setInitialColor(vector<double> rbg){
+	initialColor.red = rbg[0];
+	initialColor.green = rbg[1];
+	initialColor.blue = rbg[2];
+}
+
+Color Vehicle::getInitialColor() const{
+	return initialColor;
+}
+
 string Vehicle::getStringCoordinates() const {
 	string coordString = "Vehicle Coordinates: ";
 	for (int i = 0; i < coordinates.size(); i++) {
@@ -109,8 +127,6 @@ bool Vehicle::isOverlapping(int mouseX, int mouseY) const {
 			break;
 		}
 	}
-	if(overlapsWithVehicle){
-		cout << overlapsWithVehicle << ":  overlapped " << "(" << mouseX << ", " << mouseY << ")\n";
-	}
+	
 	return overlapsWithVehicle;
 }

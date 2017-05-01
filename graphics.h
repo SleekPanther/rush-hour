@@ -14,11 +14,18 @@
 #include <GL/glut.h>
 #endif
 
+#include <vector>
+
 struct Color {
 	double red;
 	double green;
 	double blue;
 };
+
+
+//Lightens an input color by x percent & returns a new color
+// vector<double> lightenColor(Color color, double percentToLighten);
+
 
 // Program initialization NOT OpenGL/GLUT dependent,
 // as we haven't created a GLUT window yet
@@ -58,5 +65,6 @@ void timer(int extra);
 
 //initialize glut & OpenGL & register callback functions
 void runGame(int argc, char** argv);
+
 
 #endif

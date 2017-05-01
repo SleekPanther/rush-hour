@@ -6,10 +6,21 @@ int window;
 int mouseXPosition;		//cursor function updates these positions
 int mouseYPosition;
 
+double maxColorValue = 255;		//colors go from 0 to 255
+double HOVER_PERCENT_CHANGE = 30;	//how much to brighten/darken a color
+double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/darken a color
+
 enum class GameState {menu, playing, won};
 GameState currentGameState;
 
 Game game;
+
+vector<double> lightenColor(Color color, double percentToLighten){
+	double red= color.red + percentToLighten/maxColorValue;
+	double green = color.green + percentToLighten/maxColorValue;
+	double blue = color.blue + percentToLighten/maxColorValue;
+	return {red, green, blue};
+}
 
 void init() {
 	windowWidth = 500;
@@ -132,17 +143,20 @@ void keyboardSpecial(int key, int x, int y) {
 void cursor(int x, int y) {
 	mouseXPosition = x;
 	mouseYPosition = y;
-	// cout << "Mouse: (" << mouseXPosition << ", " << mouseYPosition << ")\n";
 
 	if(currentGameState == GameState::playing){
 		//Loop over all vehicles & check if the cursor overlaps with any of them
 		for(int i=0; i<game.getVehicles().size(); i++){
-			if(game.getVehicles()[i]->isOverlapping(x, y)){
-				//change hover color or something
+			if(i != game.getSelectedVehicleIndex()) {
+				if(game.getVehicles()[i]->isOverlapping(x, y)){
+					Color initialColor = game.getVehicles()[i]->getInitialColor();
+					game.getVehicles()[i]->setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
+				}
+				else{
+					game.getVehicles()[i]->setColor( game.getVehicles()[i]->getInitialColor() );
+				}
 			}
-			// game.getVehicles()[i]->printCoordinates();
 		}
-		// cout << "\n";
 	}
 	glutPostRedisplay();
 }
@@ -161,6 +175,8 @@ void mouse(int button, int state, int x, int y) {
 			for(int i=0; i<game.getVehicles().size(); i++){
 				if(game.getVehicles()[i]->isOverlapping(x, y)){	//if point is inside the vehicle boundary
 					game.setSelectedVehicleIndex(i);		//we found a vehicle that was clicked, so update to be the vehicle to be moved
+					Color initialColor = game.getVehicles()[i]->getInitialColor();
+					game.getVehicles()[i]->setColor(lightenColor(initialColor, HOVER_CLICK_PERCENT_CHANGE));
 				}
 			}
 		}

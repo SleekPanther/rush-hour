@@ -10,8 +10,8 @@ Game::Game(bool debugModeOn){
 
 	//Empty Board is already set up
 	//GameSetup constructor created a default layout, use it to populate the board
-	populateBoard(theSetup.getSetupAsList());
 	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
+	populateBoard(theSetup.getSetupAsList());
 
 	colors = {
 			{.8, .8, 0},
@@ -24,6 +24,8 @@ Game::Game(bool debugModeOn){
 			{.8, 0, .8},
 			{.8, 0, .8}
 			};
+
+	setVehicleColors();
 }
 
 Game::~Game() {
@@ -61,6 +63,10 @@ void Game::setDebugPrintVehicleLocations(bool printBoard){
 
 void Game::setSelectedVehicleIndex(int vehicleIndex) {
 	selectedVehicleIndex=vehicleIndex;
+}
+
+int Game::getSelectedVehicleIndex() const{
+	return selectedVehicleIndex;
 }
 
 unique_ptr<Vehicle> const& Game::getSelectedVehicle() const {
@@ -238,7 +244,24 @@ void Game::populateBoard(vector<int> fileContents) {
 void Game::draw() const{
 	board.draw();
 	for(int i=0; i<vectorOfVehicles.size(); i++){
-		vectorOfVehicles[i]->setColor(colors[i]);
 		vectorOfVehicles[i]->draw();
 	}
+}
+
+void Game::setVehicleColors(){
+	for(int i=0; i<vectorOfVehicles.size(); i++){
+		vectorOfVehicles[i]->setInitialColor(colors[i]);
+		vectorOfVehicles[i]->setColor(colors[i]);
+	}
+
+
+	//lighten color for special vehicle
+	double maxColorValue = 255;
+	int percentToLighten = 60;
+	Color initialColor = vectorOfVehicles[selectedVehicleIndex]->getInitialColor();
+
+	double red= initialColor.red + percentToLighten/maxColorValue;
+	double green = initialColor.green + percentToLighten/maxColorValue;
+	double blue = initialColor.blue + percentToLighten/maxColorValue;
+	vectorOfVehicles[selectedVehicleIndex]->setColor(vector<double>{red, green, blue});
 }

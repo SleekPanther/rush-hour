@@ -63,6 +63,8 @@ public:
 	// Effects: sets selectedVehicleIndex. Used when cursor() moves over a piece
 	void setSelectedVehicleIndex(int vehicleIndex);
 
+	int getSelectedVehicleIndex() const;
+
 	//return pointer to currently selected vehicle. Movement only acts on this 1 vehicle at a time
 	unique_ptr<Vehicle> const& getSelectedVehicle() const;
 
@@ -91,6 +93,8 @@ public:
 
 	
 	void draw() const;
+
+	void setVehicleColors();
 };
 
 #endif

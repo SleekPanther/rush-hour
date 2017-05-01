@@ -20,6 +20,7 @@ protected:
 	vector<Coordinate2D> coordinates;
 	Board & board;		//so the piece knows where to be drawn.		MUST BE A REFERENCE
 	Color color;
+	Color initialColor;	//used to go back to it's orignal color when not hovered
 
 	bool inWinningSpace;
 
@@ -48,7 +49,18 @@ public:
 	// Effects: calculates & returns length of vehicle based on number of coordinates
 	int getLength() const;
 
+	// Requires: 3 doubles between 0 & 1
+	// Modifies: color field
+	// Effects: sets the color from an input vector
 	void setColor(vector<double> rbg);
+
+	void Vehicle::setColor(Color newColor);
+
+	Color getColor() const;
+
+	void setInitialColor(vector<double> rbg);
+
+	Color getInitialColor() const;
 	
 	// Requires: nothing
 	// Modifies: nothing
