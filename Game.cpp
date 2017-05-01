@@ -254,14 +254,7 @@ void Game::setVehicleColors(){
 		vectorOfVehicles[i]->setColor(colors[i]);
 	}
 
-
-	//lighten color for special vehicle
-	double maxColorValue = 255;
-	int percentToLighten = 60;
+	//Now set the initial color of the SpecialVehicle as highlighted
 	Color initialColor = vectorOfVehicles[selectedVehicleIndex]->getInitialColor();
-
-	double red= initialColor.red + percentToLighten/maxColorValue;
-	double green = initialColor.green + percentToLighten/maxColorValue;
-	double blue = initialColor.blue + percentToLighten/maxColorValue;
-	vectorOfVehicles[selectedVehicleIndex]->setColor(vector<double>{red, green, blue});
+	vectorOfVehicles[selectedVehicleIndex]->setColor(lightenColor(initialColor, HOVER_CLICK_PERCENT_CHANGE));
 }
