@@ -65,8 +65,8 @@ bool Vehicle::isInWinningSpace() const {
 void Vehicle::draw() const{
 	int x=0;	//temporary variables to store each coordinate component
 	int y=0;
-	int upCornerX=globalPositions.getUpperCornerX();
-	int upCornerY=globalPositions.getUpperCornerY();
+	int upCornerX=globalPositions.getUpperCornerX() - 3;
+	int upCornerY=globalPositions.getUpperCornerY() - 3;
 	int squareSize=globalPositions.getSquareSize();
 	for(int i=0; i<coordinates.size(); i++){
 		x=coordinates[i].x;
