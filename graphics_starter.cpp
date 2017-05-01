@@ -6,20 +6,17 @@ int window;
 int mouseXPosition;		//cursor function updates these positions
 int mouseYPosition;
 
-double maxColorValue = 255;		//colors go from 0 to 255
-double HOVER_PERCENT_CHANGE = 30;	//how much to brighten/darken a color
-double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/darken a color
 
 enum class GameState {menu, playing, won};
 GameState currentGameState;
 
 Game game;
 
-vector<double> lightenColor(Color color, double percentToLighten){
+Color lightenColor(Color color, double percentToLighten){
 	double red= color.red + percentToLighten/maxColorValue;
 	double green = color.green + percentToLighten/maxColorValue;
 	double blue = color.blue + percentToLighten/maxColorValue;
-	return {red, green, blue};
+	return Color{red, green, blue };
 }
 
 void init() {
@@ -169,7 +166,7 @@ void mouse(int button, int state, int x, int y) {
 	}
 	else if(currentGameState == GameState::playing){
 		if(state==GLUT_DOWN){	//only register clicks, not releases
-			cout << "Mouse clicked\n\n";
+			cout << "Mouse clicked (" << x << ", " << y << ")\n";
 
 			//Loop over vehicles to see if mouse actually clicked any of them
 			for(int i=0; i<game.getVehicles().size(); i++){

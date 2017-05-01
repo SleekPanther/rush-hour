@@ -22,9 +22,12 @@ struct Color {
 	double blue;
 };
 
+static const double maxColorValue = 255;		//colors go from 0 to 255
+static const double HOVER_PERCENT_CHANGE = 30;	//how much to brighten/darken a color
+static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/darken a color
 
 //Lightens an input color by x percent & returns a new color
-// vector<double> lightenColor(Color color, double percentToLighten);
+Color lightenColor(Color color, double percentToLighten);
 
 
 // Program initialization NOT OpenGL/GLUT dependent,
