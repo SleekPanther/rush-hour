@@ -32,6 +32,12 @@ int Vehicle::getLength() const {
 	return coordinates.size();
 }
 
+void Vehicle::setColor(vector<double> rbg){
+	color.red=rbg[0];
+	color.green=rbg[1];
+	color.blue=rbg[2];
+}
+
 string Vehicle::getStringCoordinates() const {
 	string coordString = "Vehicle Coordinates: ";
 	for (int i = 0; i < coordinates.size(); i++) {
@@ -68,6 +74,8 @@ bool Vehicle::isInWinningSpace() const {
 }
 
 void Vehicle::draw() const{
+	glColor3f(color.red, color.green, color.blue);
+
 	int x=0;	//temporary variables to store each coordinate component
 	int y=0;
 	for(int i=0; i<coordinates.size(); i++){

@@ -19,7 +19,8 @@ class Vehicle {
 protected:
 	vector<Coordinate2D> coordinates;
 	Board & board;		//so the piece knows where to be drawn.		MUST BE A REFERENCE
-						// Color color;
+	Color color;
+
 	bool inWinningSpace;
 
 	bool debugPrintBoard;		//set true to display the contents of the board after each move method, false when not debugging
@@ -46,6 +47,8 @@ public:
 	// Modifies: nothing
 	// Effects: calculates & returns length of vehicle based on number of coordinates
 	int getLength() const;
+
+	void setColor(vector<double> rbg);
 	
 	// Requires: nothing
 	// Modifies: nothing

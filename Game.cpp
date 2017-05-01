@@ -14,15 +14,15 @@ Game::Game(bool debugModeOn){
 	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
 
 	colors = {
-			{1, 1, 0},
-			{0, 0, 1},
-			{0, 1, 0},
+			{.8, .8, 0},
+			{0, 0, .8},
+			{0, .8, 0},
 
-			{1, 0, 1},
-			{1, 0, 1},
-			{1, 0, 1},
-			{1, 0, 1},
-			{1, 0, 1}
+			{.8, 0, .8},
+			{.8, 0, .8},
+			{.8, 0, .8},
+			{.8, 0, .8},
+			{.8, 0, .8}
 			};
 }
 
@@ -238,7 +238,7 @@ void Game::populateBoard(vector<int> fileContents) {
 void Game::draw() const{
 	board.draw();
 	for(int i=0; i<vectorOfVehicles.size(); i++){
-		glColor3f(colors[i][0], colors[i][1], colors[i][2]);
+		vectorOfVehicles[i]->setColor(colors[i]);
 		vectorOfVehicles[i]->draw();
 	}
 }
