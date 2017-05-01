@@ -83,7 +83,26 @@ void Vehicle::draw() const{
 	}
 }
 
-bool Vehicle::isOverlapping(int x, int y) const {
-	//Need to check if (x, y) point is inside the vehicle boundary
-	return false;
+bool Vehicle::isOverlapping(int mouseX, int mouseY) const {
+	bool overlapsWithVehicle = false;	//assume it doesn't overlap
+
+	for(int i=0; i<coordinates.size(); i++){
+		int x=coordinates[i].x;
+		int y=coordinates[i].y;
+
+		int leftX = upCornerX +squareSize*x;
+		int topY = upCornerY +squareSize*y;
+		int rightX = upCornerX+squareSize +squareSize*x;
+		int bottomY = upCornerY+squareSize +squareSize*y;
+
+		//Check if a point overlaps the square. Stop early if 1 overlap is found
+		if( (mouseX>=leftX) && (mouseX<=rightX) && (mouseY>=topY) && (mouseY<=bottomY) ){
+			overlapsWithVehicle = true;
+			break;
+		}
+	}
+	if(overlapsWithVehicle){
+		cout << overlapsWithVehicle << ":  overlapped " << "(" << mouseX << ", " << mouseY << ")\n";
+	}
+	return overlapsWithVehicle;
 }
