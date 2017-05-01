@@ -13,6 +13,7 @@
 #include "Coordinate2D.h"
 #include "Board.h"
 #include "GameSetup.h"
+#include "graphics.h"
 
 
 using namespace std;
@@ -32,6 +33,8 @@ private:
 
 	bool debugPrintProgressFile;
 	bool debugPrintPopulateBoard;
+
+	vector<vector<double>> colors;
 
 public:
 	Game();		//default constructor has debug mode off
@@ -59,6 +62,8 @@ public:
 	// Modifies: selectedVehicleIndex
 	// Effects: sets selectedVehicleIndex. Used when cursor() moves over a piece
 	void setSelectedVehicleIndex(int vehicleIndex);
+
+	int getSelectedVehicleIndex() const;
 
 	//return pointer to currently selected vehicle. Movement only acts on this 1 vehicle at a time
 	unique_ptr<Vehicle> const& getSelectedVehicle() const;
@@ -88,6 +93,8 @@ public:
 
 	
 	void draw() const;
+
+	void setVehicleColors();
 };
 
 #endif

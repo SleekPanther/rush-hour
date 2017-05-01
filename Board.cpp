@@ -13,13 +13,13 @@ Board::Board() {
 		{true, true, true, true, true, true, true, true},
 	};
 
-	borderSize = 5;
-	upperCornerX = 0 +borderSize;
-	upperCornerY = 0 +borderSize;
+	borderSize = globalPositions.getBorderSize();
+	upperCornerX = globalPositions.getUpperCornerX();
+	upperCornerY = globalPositions.getUpperCornerY();
 	boardUpperCornerX = upperCornerX -borderSize;
 	boardUpperCornerY = upperCornerY -borderSize;
-	squareSize = 50;
-	squareSizeMinusBorder = squareSize - borderSize;
+	squareSize = globalPositions.getSquareSize();
+	squareSizeMinusBorder = globalPositions.getSquareSizeMinusBorder();
 
 	borderColor = {0, 0, 0};
 	squareColor = {0, 1, 0};
@@ -91,8 +91,6 @@ void Board::draw() const{
 			glEnd();
 		}
 	}
-	//then loop through vehicles & draw
-	//don't need to worry about order of drawing vehicles since they can't overlap
 }
 
 

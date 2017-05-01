@@ -6,6 +6,8 @@
 #include <vector>
 #include "Coordinate2D.h"
 #include "Board.h"
+#include "GlobalWindowPositions.h"
+#include "graphics.h"
 
 using namespace std;
 
@@ -17,10 +19,17 @@ class Vehicle {
 protected:
 	vector<Coordinate2D> coordinates;
 	Board & board;		//so the piece knows where to be drawn.		MUST BE A REFERENCE
-						// Color color;
+	Color color;
+	Color initialColor;	//used to go back to it's orignal color when not hovered
+
 	bool inWinningSpace;
 
 	bool debugPrintBoard;		//set true to display the contents of the board after each move method, false when not debugging
+
+	GlobalWindowPositions globalPositions;	//used to get constants shared with Vehicle about positions & sizes
+	int upCornerX;
+	int upCornerY;
+	int squareSize;
 
 public:
 	Vehicle(Board & board, vector<Coordinate2D> coordinates);
@@ -39,6 +48,19 @@ public:
 	// Modifies: nothing
 	// Effects: calculates & returns length of vehicle based on number of coordinates
 	int getLength() const;
+
+	// Requires: 3 doubles between 0 & 1
+	// Modifies: color field
+	// Effects: sets the color from an input vector
+	void setColor(vector<double> rbg);
+
+	void Vehicle::setColor(Color newColor);
+
+	Color getColor() const;
+
+	void setInitialColor(vector<double> rbg);
+
+	Color getInitialColor() const;
 	
 	// Requires: nothing
 	// Modifies: nothing
@@ -83,12 +105,12 @@ public:
 	// Effects: tells you if the vehicle is the square that wins the game. Only applies for SpecialVehicle
 	bool isInWinningSpace() const;
 
-	void draw();
+	void draw() const;
 
 	// Requires: nothing
 	// Modifies: nothing
 	// Effects: checks if a (x, y) point is inside the vehicle boundary
-	bool isOverlapping(int x, int y) const;
+	bool isOverlapping(int mouseX, int mouseY) const;
 };
 
 #endif
