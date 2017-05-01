@@ -3,6 +3,11 @@
 //board(board) sets the reference in an initializer list. For some reason this cannot happen inside the body
 Vehicle::Vehicle(Board & board, vector<Coordinate2D> coordinates) : board(board), coordinates(coordinates), inWinningSpace(false) {
 	debugPrintBoard = false;		//initially, vehicles DO NOT display the board after every move
+
+	upCornerX=globalPositions.getUpperCornerX() - globalPositions.getBorderSize()/2.0;	//divide by 2 to center in middle of border
+	upCornerY=globalPositions.getUpperCornerY() - globalPositions.getBorderSize()/2.0;	//divide by 2 to center in middle of border
+	squareSize=globalPositions.getSquareSize();
+
 	for (int i = 0; i<coordinates.size(); i++) {
 		board.setSquareOccupied(coordinates[i].x, coordinates[i].y);	//set new position to be occupied
 	}
@@ -65,9 +70,6 @@ bool Vehicle::isInWinningSpace() const {
 void Vehicle::draw() const{
 	int x=0;	//temporary variables to store each coordinate component
 	int y=0;
-	int upCornerX=globalPositions.getUpperCornerX() - 3;
-	int upCornerY=globalPositions.getUpperCornerY() - 3;
-	int squareSize=globalPositions.getSquareSize();
 	for(int i=0; i<coordinates.size(); i++){
 		x=coordinates[i].x;
 		y=coordinates[i].y;
