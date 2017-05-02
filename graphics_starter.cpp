@@ -59,7 +59,7 @@ void displayGameSave() {
 // Initialize OpenGL Graphics
 void initGL() {
 	// Set "clearing" or background color
-	glClearColor(1.0f, 0.0f, 0.0f, 1.0f); // Black and opaque
+	glClearColor(0.7f, 0.7f, 0.0f, 1.0f);
 }
 
 // Handler for window-repaint event. Call back when the window first appears and whenever the window needs to be re-painted.
