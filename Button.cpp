@@ -9,12 +9,20 @@ Button::Button(int width, int height, int upperLeftX, int upperLeftY, string tex
 	this->color=color;
 }
 
+Color Button::getColor() const{
+	return initialColor;
+}
+
 void Button::setColor(Color color) {
 	this->color=color;
 }
 
 bool Button::isOverlapping(int x, int y) {
-	return false;
+	int leftX = upperLeftX;
+	int rightX = upperLeftX + width;
+	int topY = upperLeftY;
+	int bottomY = upperLeftY + height;
+	return (x>=leftX && x<=rightX) && (y>=topY && y<=bottomY);
 }
 
 void Button::draw() const {

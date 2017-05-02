@@ -84,6 +84,8 @@ public:
 
 	void setStatusMessage(string message);
 
+	Button& getSaveButton();
+
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board
 	// Effects: parses a list of numbers & creates vehicles from their coordinates

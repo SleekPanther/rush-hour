@@ -18,6 +18,8 @@ private:
 public:
 	Button(int width, int height, int upperLeftX, int upperLeftY, string text, Color color);
 
+	Color getColor() const;
+
 	void setColor(Color color);
 
 	bool isOverlapping(int x, int y);

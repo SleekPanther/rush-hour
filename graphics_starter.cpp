@@ -169,6 +169,13 @@ void cursor(int x, int y) {
 			}
 		}
 	}
+	if(game.getSaveButton().isOverlapping(x, y)){
+		Color initialColor = game.getSaveButton().getColor();
+		game.getSaveButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
+	}
+	else{
+		game.getSaveButton().setColor(game.getSaveButton().getColor());
+	}
 	glutPostRedisplay();
 }
 

@@ -103,6 +103,10 @@ void Game::setStatusMessage(string message) {
 	statusMessage = message;
 }
 
+Button& Game::getSaveButton(){
+	return saveButton;
+}
+
 void Game::load(){
 	load(progressFilename);
 }
