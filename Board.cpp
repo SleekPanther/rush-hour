@@ -20,7 +20,7 @@ Board::Board() {
 	boardUpperCornerY = upperCornerY -borderSize;
 	squareSize = globalPositions.getSquareSize();
 	squareSizeMinusBorder = globalPositions.getSquareSizeMinusBorder();
-	boardPixelSpan = (occupiedSquares.size()-2) * squareSize +borderSize;	//make containing background square that's as big as the squares inside, but also accounts for the border
+	boardPixelSpan = globalPositions.getBoardPixelSpan();	//make containing background square that's as big as the squares inside, but also accounts for the border
 
 	exitSquareUpperLeftX = boardUpperCornerX + boardPixelSpan;
 	exitSquareUpperLeftY = upperCornerY +squareSize*2;

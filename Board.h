@@ -66,6 +66,10 @@ public:
 
 	void drawExitSquare() const;
 
+	void drawScore() const;
+
+	void drawButtons() const;
+
 	friend ostream& operator << (ostream& outStream, const Board& board);
 
 private:

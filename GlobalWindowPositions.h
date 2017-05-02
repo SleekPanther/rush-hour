@@ -9,6 +9,7 @@ private:
 	static int upperCornerY;
 	static int squareSize;
 	static int squareSizeMinusBorder;
+	static int boardPixelSpan;
 
 public:
 	int getBorderSize() const;
@@ -20,6 +21,8 @@ public:
 	int getSquareSize() const;
 
 	int getSquareSizeMinusBorder() const;
+
+	int getBoardPixelSpan() const;
 };
 
 #endif
