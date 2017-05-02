@@ -19,9 +19,25 @@ Color lightenColor(Color color, double percentToLighten){
 	return Color{red, green, blue };
 }
 
+void drawTextLarge(string text, int x, int y){
+	glColor3f(0, 0, 0);
+	glRasterPos2i(x, y);
+	for (int i = 0; i < text.length(); ++i) {
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, text[i]);
+	}
+}
+
+void drawTextMedium(string text, int x, int y){
+	glColor3f(0, 0, 0);
+	glRasterPos2i(x, y);
+	for (int i = 0; i < text.length(); ++i) {
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, text[i]);
+	}
+}
+
 void init() {
 	windowWidth = 500;
-	windowHeight = 500;
+	windowHeight = 600;
 
 	currentGameState=GameState::playing;
 	// currentGameState=GameState::menu;
@@ -31,24 +47,21 @@ void init() {
 
 void displayMenu() {
 	string message = "Click anywhere to begin";
-	glColor3f(1, 1, 1);
-	glRasterPos2i(100, 250);
-	for (int i = 0; i < message.length(); ++i) {
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
-	}
+	drawTextLarge(game.getStatusMessage(), 100, 250);
 }
 
 void displayGameBegin() {
 	game.draw();
+
+	game.setStatusMessage("");
+	drawTextLarge(game.getStatusMessage(), statusMessageX, statusMessageY);
 }
 
 void displayGameEnd() {
-	string message = "Game Ended";
-	glColor3f(1, 1, 0);
-	glRasterPos2i(100, 250);
-	for (int i = 0; i < message.length(); ++i) {
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
-	}
+	game.draw();
+
+	game.setStatusMessage("You win! Click Restart or New Game");
+	drawTextLarge(game.getStatusMessage(), statusMessageX, statusMessageY);
 }
 
 void displayGameSave() {
@@ -133,9 +146,6 @@ void keyboardSpecial(int key, int x, int y) {
 					game.getMetrics().increaseMoveCount();
 				}
 			}
-	}
-	else if(currentGameState==GameState::won){
-		cout << "Game is over, can't move\n";
 	}
 
 	glutPostRedisplay();

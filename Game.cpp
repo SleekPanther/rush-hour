@@ -39,6 +39,7 @@ Game::Game(bool debugModeOn){
 	setVehicleColors();
 
 	movesMessage = "Moves: ";
+	statusMessage = "Game Playing";
 }
 
 Game::~Game() {
@@ -92,6 +93,14 @@ vector<unique_ptr<Vehicle>> const& Game::getVehicles() const {
 
 ScoreMetrics& Game::getMetrics(){
 	return metrics;
+}
+
+string Game::getStatusMessage() const {
+	return statusMessage;
+}
+
+void Game::setStatusMessage(string message) {
+	statusMessage = message;
 }
 
 void Game::load(){
@@ -263,7 +272,22 @@ void Game::draw() const{
 	for(int i=0; i<vectorOfVehicles.size(); i++){
 		vectorOfVehicles[i]->draw();
 	}
+	drawButtons();
+	drawInstructions();
 	drawMoves();
+}
+
+void Game::drawButtons() const{
+
+}
+
+void Game::drawInstructions() const{
+	int lineHeight = 15;
+	vector<string> instructions = { "Rush Hour", "Save the red car from the traffic jam", "Click to select a Car", "Arrow keys to move"};
+	for(int i=0; i<instructions.size(); i++){
+		drawTextMedium(instructions[i], statusMessageX, buttonY +lineHeight*i);
+	}
+	
 }
 
 void Game::drawMoves() const{

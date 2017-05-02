@@ -38,6 +38,7 @@ private:
 
 	GlobalWindowPositions globalPositions;	//used to get shared constants
 	string movesMessage;
+	string statusMessage;
 
 public:
 	Game();		//default constructor has debug mode off
@@ -76,6 +77,10 @@ public:
 
 	ScoreMetrics& getMetrics();
 
+	string getStatusMessage() const;
+
+	void setStatusMessage(string message);
+
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board
 	// Effects: parses a list of numbers & creates vehicles from their coordinates
@@ -98,6 +103,10 @@ public:
 
 	//Draws the board & buttons by calling various helper methods
 	void draw() const;
+
+	void drawButtons() const;
+
+	void drawInstructions() const;
 
 	//Draw the score (How many moves they made)
 	void drawMoves() const;

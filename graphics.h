@@ -15,6 +15,10 @@
 #endif
 
 #include <vector>
+#include <string>
+
+using namespace std;
+
 
 struct Color {
 	double red;
@@ -26,8 +30,19 @@ static const double maxColorValue = 255;		//colors go from 0 to 255
 static const double HOVER_PERCENT_CHANGE = 30;	//how much to brighten/darken a color
 static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/darken a color
 
+static const int statusMessageX = 50;
+static const int statusMessageY = 500;
+
+static const int buttonX = 50;
+static const int buttonY = 420;
+
 //Lightens an input color by x percent & returns a new color
 Color lightenColor(Color color, double percentToLighten);
+
+//draw text on screen at a location
+void drawTextLarge(string text, int x, int y);
+
+void drawTextMedium(string text, int x, int y);
 
 
 // Program initialization NOT OpenGL/GLUT dependent,
