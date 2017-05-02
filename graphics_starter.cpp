@@ -26,7 +26,7 @@ void init() {
 	currentGameState=GameState::playing;
 	// currentGameState=GameState::menu;
 
-	game.setDebugPrintVehicleLocations(true);
+	// game.setDebugPrintVehicleLocations(true);
 }
 
 void displayMenu() {
@@ -108,17 +108,20 @@ void keyboard(unsigned char key, int x, int y) {
 void keyboardSpecial(int key, int x, int y) {
 	if(currentGameState==GameState::playing) {
 		if(key==GLUT_KEY_DOWN){
-				game.getSelectedVehicle()->moveDown();
-				cout << "Down\n";
+				if(game.getSelectedVehicle()->moveDown()){
+					game.getMetrics().increaseMoveCount();
+				}
 			}
 		else if(key==GLUT_KEY_LEFT){
-				game.getSelectedVehicle()->moveLeft();
-				cout << "Left\n";
+				if(game.getSelectedVehicle()->moveLeft()){
+					game.getMetrics().increaseMoveCount();
+				}
 			}
 		else if(key==GLUT_KEY_RIGHT){
 			if(!game.getSelectedVehicle()->isInWinningSpace()){		//only move if the game isn't over
-				game.getSelectedVehicle()->moveRight();
-				cout << "Right\n";
+				if(game.getSelectedVehicle()->moveRight()){
+					game.getMetrics().increaseMoveCount();
+				}
 			}
 			
 			if(game.getSelectedVehicle()->isInWinningSpace()){	//Check if that move made them win the game
@@ -126,13 +129,16 @@ void keyboardSpecial(int key, int x, int y) {
 			}
 		}
 		else if(key==GLUT_KEY_UP){
-				game.getSelectedVehicle()->moveUp();
-				cout << "Up\n";
+				if(game.getSelectedVehicle()->moveUp()){
+					game.getMetrics().increaseMoveCount();
+				}
 			}
 	}
 	else if(currentGameState==GameState::won){
 		cout << "Game is over, can't move\n";
 	}
+
+	cout << "Movecount = " << game.getMetrics().getMoveCount() << "\n";
 	
 	glutPostRedisplay();
 }

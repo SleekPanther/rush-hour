@@ -71,6 +71,8 @@ public:
 	// Return reference to vector of vehicles
 	vector<unique_ptr<Vehicle>> const& getVehicles() const;
 
+	ScoreMetrics& getMetrics();
+
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board
 	// Effects: parses a list of numbers & creates vehicles from their coordinates

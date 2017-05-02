@@ -88,6 +88,10 @@ vector<unique_ptr<Vehicle>> const& Game::getVehicles() const {
 	return vectorOfVehicles;
 }
 
+ScoreMetrics& Game::getMetrics(){
+	return metrics;
+}
+
 void Game::load(){
 	load(progressFilename);
 }
