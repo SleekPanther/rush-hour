@@ -278,14 +278,14 @@ void Game::draw() const{
 }
 
 void Game::drawButtons() const{
-
+	saveButton.draw();
 }
 
 void Game::drawInstructions() const{
 	int lineHeight = 15;
 	vector<string> instructions = { "Rush Hour", "Save the red car from the traffic jam", "Click to select a Car", "Arrow keys to move"};
 	for(int i=0; i<instructions.size(); i++){
-		drawTextMedium(instructions[i], statusMessageX, buttonY +lineHeight*i);
+		drawTextMedium(instructions[i], statusMessageX, buttonY+buttonHeight  +lineHeight*(i+1));
 	}
 	
 }

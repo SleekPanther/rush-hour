@@ -30,11 +30,12 @@ static const double maxColorValue = 255;		//colors go from 0 to 255
 static const double HOVER_PERCENT_CHANGE = 30;	//how much to brighten/darken a color
 static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/darken a color
 
-static const int statusMessageX = 50;
-static const int statusMessageY = 500;
-
 static const int buttonX = 50;
-static const int buttonY = 420;
+static const int buttonY = 370;
+static const int buttonHeight = 30;
+
+static const int statusMessageX = buttonX;
+static const int statusMessageY = 500;
 
 //Lightens an input color by x percent & returns a new color
 Color lightenColor(Color color, double percentToLighten);

@@ -13,6 +13,7 @@
 #include "Coordinate2D.h"
 #include "Board.h"
 #include "GameSetup.h"
+#include "Button.h"
 #include "graphics.h"
 
 
@@ -39,6 +40,8 @@ private:
 	GlobalWindowPositions globalPositions;	//used to get shared constants
 	string movesMessage;
 	string statusMessage;
+	
+	Button saveButton = Button(60, buttonHeight, buttonX, buttonY, "Start New", Color{ 0, 0, 0 });
 
 public:
 	Game();		//default constructor has debug mode off
