@@ -1,8 +1,8 @@
 #include "GlobalWindowPositions.h"
 
 int GlobalWindowPositions::borderSize = 6;
-int GlobalWindowPositions::upperCornerX = 0 +borderSize;
-int GlobalWindowPositions::upperCornerY = 0 +borderSize;
+int GlobalWindowPositions::upperCornerX = 50 +borderSize;
+int GlobalWindowPositions::upperCornerY = 50 +borderSize;
 int GlobalWindowPositions::squareSize = 50;
 int GlobalWindowPositions::squareSizeMinusBorder = squareSize - borderSize;
 
