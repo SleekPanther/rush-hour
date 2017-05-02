@@ -138,8 +138,6 @@ void keyboardSpecial(int key, int x, int y) {
 		cout << "Game is over, can't move\n";
 	}
 
-	cout << "Movecount = " << game.getMetrics().getMoveCount() << "\n";
-	
 	glutPostRedisplay();
 }
 

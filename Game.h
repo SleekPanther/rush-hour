@@ -36,6 +36,9 @@ private:
 
 	vector<vector<double>> colors;
 
+	GlobalWindowPositions globalPositions;	//used to get shared constants
+	string movesMessage;
+
 public:
 	Game();		//default constructor has debug mode off
 	Game(bool debugModeOn);		//setting option to print to screen on or off
@@ -93,8 +96,11 @@ public:
 	// Effects: loops over vectorOfVehicles & converts current positions to text information about the game state
 	void save();
 
-	
+	//Draws the board & buttons by calling various helper methods
 	void draw() const;
+
+	//Draw the score (How many moves they made)
+	void drawMoves() const;
 
 	void setVehicleColors();
 };

@@ -37,6 +37,8 @@ Game::Game(bool debugModeOn){
 			};
 
 	setVehicleColors();
+
+	movesMessage = "Moves: ";
 }
 
 Game::~Game() {
@@ -260,6 +262,18 @@ void Game::draw() const{
 	board.draw();
 	for(int i=0; i<vectorOfVehicles.size(); i++){
 		vectorOfVehicles[i]->draw();
+	}
+	drawMoves();
+}
+
+void Game::drawMoves() const{
+	glColor3f(0, 0, 0);
+	int moves = metrics.getMoveCount();		//get the current score
+	string moveOutput = movesMessage + to_string(moves);	//concatenate the label with the actual number
+	//Position 2 square from the left of the board, & 1/2 the square size above the top of the board
+	glRasterPos2i(globalPositions.getUpperCornerX() + globalPositions.getSquareSize()*2, globalPositions.getUpperCornerY() - globalPositions.getSquareSize()/2.0);
+	for (int i = 0; i < moveOutput.length(); ++i) {
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, moveOutput[i]);
 	}
 }
 
