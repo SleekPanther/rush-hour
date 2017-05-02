@@ -2,7 +2,7 @@
 
 
 GameSetup::GameSetup() {
-	setupFilename = "setup01.txt";
+	setupFilename = "setup07.txt";
 	//Pick from more setups later
 
 	vehicleLocations = GameSetup::readFile(setupFilename);
