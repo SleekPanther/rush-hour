@@ -11,6 +11,7 @@ private:
 	int width;
 	int upperLeftX;
 	int upperLeftY;
+	int leftTextPadding;	//Buttons are inside rectangles, but give some padding to the left
 	Color initialColor;
 	Color color;
 	string text;

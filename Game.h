@@ -41,7 +41,7 @@ private:
 	string movesMessage;
 	string statusMessage;
 	
-	Button saveButton = Button(60, buttonHeight, buttonX, buttonY, "Start New", Color{ 0, 0, 0 });
+	Button saveButton = Button(40, buttonHeight, buttonX, buttonY, "Save", Color{ .1, .8, .1});
 
 public:
 	Game();		//default constructor has debug mode off
