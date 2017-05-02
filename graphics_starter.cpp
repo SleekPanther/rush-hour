@@ -53,7 +53,6 @@ void displayMenu() {
 void displayGameBegin() {
 	game.draw();
 
-	game.setStatusMessage("");
 	drawTextLarge(game.getStatusMessage(), statusMessageX, statusMessageY);
 }
 
@@ -196,6 +195,12 @@ void mouse(int button, int state, int x, int y) {
 					Color initialColor = game.getVehicles()[i]->getInitialColor();
 					game.getVehicles()[i]->setColor(lightenColor(initialColor, HOVER_CLICK_PERCENT_CHANGE));
 				}
+			}
+
+			//Handle Buttons
+			if(game.getSaveButton().isOverlapping(x, y)){
+				game.save();
+				game.setStatusMessage("Game Saved");
 			}
 		}
 	}
