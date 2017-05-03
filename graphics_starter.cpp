@@ -211,7 +211,6 @@ void mouse(int button, int state, int x, int y) {
 			currentGameState = GameState:: playing;
 		}
 		else if(currentGameState == GameState::playing){
-			cout << "Mouse clicked (" << x << ", " << y << ")\n";
 
 			//Loop over vehicles to see if mouse actually clicked any of them
 			for(int i=0; i<game.getVehicles().size(); i++){

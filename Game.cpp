@@ -210,8 +210,13 @@ void Game::load(string filename) {
 		int previousScore;
 		inputFile >> previousScore;		//save 1st number in file
 		fileContents.erase(fileContents.begin());	//erase the 1st number to just get the vehicles & coordinates
-
 		metrics.setMoveCount(previousScore);
+
+		int oldSetup;
+		inputFile >> oldSetup;		//Now the 1st number in the vector is which setup 
+		fileContents.erase(fileContents.begin());	//erase the setup number leaving a valid setup vector for populateBoard
+		currentSetup = oldSetup;
+
 		populateBoard(fileContents);
 	}
 	else{
@@ -229,7 +234,8 @@ void Game::save() {
 
 	//Save current score of game
 	int currentMoveCount = metrics.getMoveCount();
-	allVehicleInfo = allVehicleInfo + to_string(currentMoveCount) + "\n\n";		//add 2 newlines after to differentiate from vehicle info
+	allVehicleInfo = allVehicleInfo + to_string(currentMoveCount) + "\n";		//add 2 newlines after to differentiate from vehicle info
+	allVehicleInfo = allVehicleInfo + to_string(currentSetup) + "\n\n";		//add which setup it is
 
 	//deal with special vehicle 1st
 	int vehicleLength = vectorOfVehicles[0]->getLength();
@@ -271,8 +277,9 @@ void Game::save() {
 	//insert horizontal and vertical counts at the ver beginning of the string
 	//first calculate the length of the score (how many digits) to see where to insert the other vehicle info
 	int currentMoveCountLength = to_string(currentMoveCount).length();		//how many digits long the number is
-	int newlineCount = 2;		//above we added 2 newlines after the score
-	int vehicleInfStringOffset = currentMoveCountLength + newlineCount;		//how many characters in de we insert the data for horizontalCount & verticalCount
+	int currentSetupLength = to_string(currentSetup).length();
+	int newLineCount = 3;	//1 ater writing currentMoveCount & 2 more after currentSetup
+	int vehicleInfStringOffset = currentMoveCountLength + currentSetupLength + newLineCount;		//how many characters in de we insert the data for horizontalCount & verticalCount
 
 	//insert 2 vehicle counts with separation characters afterward, starting from vehicleInfStringOffset and increasing by 1 every time
 	allVehicleInfo.insert(vehicleInfStringOffset, to_string(horizontalCount));		//1st 1-3 characters are number of moves, followed by 5 blank lines so insert after those
