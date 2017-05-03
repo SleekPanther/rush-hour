@@ -37,7 +37,10 @@ static const int buttonHeight = 30;
 static const int saveButtonWidth = 40;
 static const int loadButtonX = buttonX + saveButtonWidth +buttonSpacing;
 static const int loadButtonWidth = 40;
-// static const int 
+static const int restartButtonX = loadButtonX + loadButtonWidth +buttonSpacing;
+static const int restartButtonWidth = 50;
+static const int newGameButtonX = restartButtonX + restartButtonWidth +buttonSpacing;
+static const int newGameButtonWidth = 70;
 
 static const int statusMessageX = buttonX;
 static const int statusMessageY = 500;

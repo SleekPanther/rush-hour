@@ -45,7 +45,9 @@ private:
 	string statusMessage;
 	
 	Button saveButton = Button(saveButtonWidth, buttonHeight, buttonX, buttonY, "Save", Color{ .1, .8, .1});
-	Button loadButton = Button(loadButtonWidth, buttonHeight, loadButtonX, buttonY, "Load", Color{ .1, .8, .1});
+	Button loadButton = Button(loadButtonWidth, buttonHeight, loadButtonX, buttonY, "Load", Color{ .1, .7, .1});
+	Button restartButton = Button(restartButtonWidth, buttonHeight, restartButtonX, buttonY, "Restart", Color{ .9, .1, .1});
+	Button newGameButton = Button(newGameButtonWidth, buttonHeight, newGameButtonX, buttonY, "New Game", Color{ .1, .9, .1});
 
 public:
 	Game();		//default constructor has debug mode off
@@ -93,6 +95,10 @@ public:
 
 	Button& getLoadButton();
 
+	Button& getRestartButton();
+
+	Button& getNewGameButton();
+
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board
 	// Effects: parses a list of numbers & creates vehicles from their coordinates
@@ -112,6 +118,10 @@ public:
 	// Modifies: progress file
 	// Effects: loops over vectorOfVehicles & converts current positions to text information about the game state
 	void save();
+
+	void restart();
+
+	void newGame();
 
 	//Draws the board & buttons by calling various helper methods
 	void draw() const;

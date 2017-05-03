@@ -169,6 +169,14 @@ void cursor(int x, int y) {
 		}
 	}
 
+	if(game.getSaveButton().isOverlapping(x, y)){
+		Color initialColor = game.getSaveButton().getColor();
+		game.getSaveButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
+	}
+	else{
+		game.getSaveButton().setColor(game.getSaveButton().getColor());
+	}
+
 	if(game.getLoadButton().isOverlapping(x, y)){
 		Color initialColor = game.getLoadButton().getColor();
 		game.getLoadButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
@@ -177,12 +185,20 @@ void cursor(int x, int y) {
 		game.getLoadButton().setColor(game.getLoadButton().getColor());
 	}
 
-	if(game.getSaveButton().isOverlapping(x, y)){
-		Color initialColor = game.getSaveButton().getColor();
-		game.getSaveButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
+	if(game.getRestartButton().isOverlapping(x, y)){
+		Color initialColor = game.getRestartButton().getColor();
+		game.getRestartButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
 	}
 	else{
-		game.getSaveButton().setColor(game.getSaveButton().getColor());
+		game.getRestartButton().setColor(game.getRestartButton().getColor());
+	}
+
+	if(game.getNewGameButton().isOverlapping(x, y)){
+		Color initialColor = game.getNewGameButton().getColor();
+		game.getNewGameButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
+	}
+	else{
+		game.getNewGameButton().setColor(game.getNewGameButton().getColor());
 	}
 	glutPostRedisplay();
 }

@@ -120,6 +120,14 @@ Button& Game::getLoadButton(){
 	return loadButton;
 }
 
+Button& Game::getRestartButton(){
+	return restartButton;
+}
+
+Button& Game::getNewGameButton(){
+	return newGameButton;
+}
+
 void Game::load(){
 	load(progressFilename);
 }
@@ -299,6 +307,8 @@ void Game::draw() const{
 void Game::drawButtons() const{
 	saveButton.draw();
 	loadButton.draw();
+	restartButton.draw();
+	newGameButton.draw();
 }
 
 void Game::drawInstructions() const{
