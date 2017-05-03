@@ -206,11 +206,11 @@ void cursor(int x, int y) {
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
-	if(currentGameState == GameState::menu){
-		currentGameState = GameState:: playing;
-	}
-	else if(currentGameState == GameState::playing){
-		if(state==GLUT_DOWN){	//only register clicks, not releases
+	if(state==GLUT_DOWN){	//only register clicks, not releases
+		if(currentGameState == GameState::menu){
+			currentGameState = GameState:: playing;
+		}
+		else if(currentGameState == GameState::playing){
 			cout << "Mouse clicked (" << x << ", " << y << ")\n";
 
 			//Loop over vehicles to see if mouse actually clicked any of them
@@ -222,21 +222,26 @@ void mouse(int button, int state, int x, int y) {
 				}
 			}
 
-			//Handle Save ONLY if the game is playing
+			//Buttons that only work during gameplay
 			if(game.getSaveButton().isOverlapping(x, y)){
 				game.save();
 				game.setStatusMessage("Game Saved");
 			}
 		}
-	}
-	else if(currentGameState == GameState::won){
-		//click button to restart
-	}
 
-	//Handle buttons that always work
-	if(game.getLoadButton().isOverlapping(x, y)){
-		game.load();
-		game.setStatusMessage("Loaded previous game");
+		//Handle buttons that always work
+		if(game.getLoadButton().isOverlapping(x, y)){
+			game.load();
+			game.setStatusMessage("Loaded previous game");
+		}
+		else if(game.getNewGameButton().isOverlapping(x, y)){
+			game.newGame();
+			game.setStatusMessage("New Game");
+		}
+		else if(game.getRestartButton().isOverlapping(x, y)){
+			game.restart();
+			game.setStatusMessage("Restart");
+		}
 	}
 	
 	glutPostRedisplay();

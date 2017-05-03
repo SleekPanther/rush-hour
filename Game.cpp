@@ -294,6 +294,16 @@ void Game::save() {
 	progressFile.close();
 }
 
+void Game::restart(){
+	cout <<"restart\n";
+	
+}
+
+void Game::newGame(){
+	cout<<"new game\n";
+
+}
+
 void Game::draw() const{
 	board.draw();
 	for(int i=0; i<vectorOfVehicles.size(); i++){
