@@ -168,6 +168,15 @@ void cursor(int x, int y) {
 			}
 		}
 	}
+
+	if(game.getLoadButton().isOverlapping(x, y)){
+		Color initialColor = game.getLoadButton().getColor();
+		game.getLoadButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
+	}
+	else{
+		game.getLoadButton().setColor(game.getLoadButton().getColor());
+	}
+
 	if(game.getSaveButton().isOverlapping(x, y)){
 		Color initialColor = game.getSaveButton().getColor();
 		game.getSaveButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
