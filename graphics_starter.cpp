@@ -40,14 +40,6 @@ void init() {
 	windowHeight = 600;
 
 	currentGameState=GameState::playing;
-	// currentGameState=GameState::menu;
-
-	// game.setDebugPrintVehicleLocations(true);
-}
-
-void displayMenu() {
-	string message = "Click anywhere to begin";
-	drawTextLarge(game.getStatusMessage(), 100, 250);
 }
 
 void displayGameBegin() {
@@ -88,9 +80,7 @@ void display() {
 	
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);	//draw shapes no matter what (ignores order in which a rectangle is drawn)
 
-	if (currentGameState == GameState::menu) {
-		displayMenu();
-	}else if (currentGameState == GameState::playing) {
+	if (currentGameState == GameState::playing) {
 		displayGameBegin();
 	}if (currentGameState == GameState::won) {
 		displayGameEnd();
@@ -207,11 +197,7 @@ void cursor(int x, int y) {
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
 	if(state==GLUT_DOWN){	//only register clicks, not releases
-		if(currentGameState == GameState::menu){
-			currentGameState = GameState:: playing;
-		}
-		else if(currentGameState == GameState::playing){
-
+		if(currentGameState == GameState::playing){
 			//Loop over vehicles to see if mouse actually clicked any of them
 			for(int i=0; i<game.getVehicles().size(); i++){
 				if(game.getVehicles()[i]->isOverlapping(x, y)){	//if point is inside the vehicle boundary
@@ -232,14 +218,17 @@ void mouse(int button, int state, int x, int y) {
 		if(game.getLoadButton().isOverlapping(x, y)){
 			game.load();
 			game.setStatusMessage("Loaded previous game");
+			currentGameState=GameState::playing;
 		}
 		else if(game.getNewGameButton().isOverlapping(x, y)){
 			game.newGame();
 			game.setStatusMessage("New Game");
+			currentGameState=GameState::playing;
 		}
 		else if(game.getRestartButton().isOverlapping(x, y)){
 			game.restart();
 			game.setStatusMessage("Restart");
+			currentGameState=GameState::playing;
 		}
 	}
 	
