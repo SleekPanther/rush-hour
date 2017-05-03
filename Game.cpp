@@ -8,11 +8,6 @@ Game::Game(bool debugModeOn){
 	debugPrintProgressFile = debugModeOn;		//change this to NOT print progress to screen when saving
 	debugPrintPopulateBoard = debugModeOn;
 
-	//Empty Board is already set up
-	//GameSetup constructor created a default layout, use it to populate the board
-	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
-	populateBoard(theSetup.getSetupAsList());
-
 	colors = {
 			{230/255.0, 0/255.0, 0/255.0},	//special vehicle red
 
@@ -36,7 +31,10 @@ Game::Game(bool debugModeOn){
 			{0/255.0, 0/255.0, 90/255.0},
 			};
 
-	setVehicleColors();
+	//Empty Board is already set up
+	//GameSetup constructor created a default layout, use it to populate the board
+	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
+	populateBoard(theSetup.getSetupAsList());
 
 	movesMessage = "Moves: ";
 	statusMessage = "Game Playing";
@@ -273,6 +271,8 @@ void Game::populateBoard(vector<int> fileContents) {
 		}
 		cout << "Board with vehicles from populateBoard()\n" << board << '\n';
 	}
+
+	setVehicleColors();
 }
 
 void Game::draw() const{
