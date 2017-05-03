@@ -41,7 +41,8 @@ private:
 	string movesMessage;
 	string statusMessage;
 	
-	Button saveButton = Button(40, buttonHeight, buttonX, buttonY, "Save", Color{ .1, .8, .1});
+	Button saveButton = Button(saveButtonWidth, buttonHeight, buttonX, buttonY, "Save", Color{ .1, .8, .1});
+	Button loadButton = Button(loadButtonWidth, buttonHeight, loadButtonX, buttonY, "Load", Color{ .1, .8, .1});
 
 public:
 	Game();		//default constructor has debug mode off
@@ -84,7 +85,10 @@ public:
 
 	void setStatusMessage(string message);
 
+	//Methods to return reference to buttons to be called in graphics_started
 	Button& getSaveButton();
+
+	Button& getLoadButton();
 
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board

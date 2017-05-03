@@ -197,7 +197,7 @@ void mouse(int button, int state, int x, int y) {
 				}
 			}
 
-			//Handle Buttons
+			//Handle Save ONLY if the game is playing
 			if(game.getSaveButton().isOverlapping(x, y)){
 				game.save();
 				game.setStatusMessage("Game Saved");
@@ -206,6 +206,12 @@ void mouse(int button, int state, int x, int y) {
 	}
 	else if(currentGameState == GameState::won){
 		//click button to restart
+	}
+
+	//Handle buttons that always work
+	if(game.getLoadButton().isOverlapping(x, y)){
+		game.load();
+		game.setStatusMessage("Loaded previous game");
 	}
 	
 	glutPostRedisplay();

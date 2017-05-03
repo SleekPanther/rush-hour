@@ -30,9 +30,14 @@ static const double maxColorValue = 255;		//colors go from 0 to 255
 static const double HOVER_PERCENT_CHANGE = 30;	//how much to brighten/darken a color
 static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/darken a color
 
+static const int buttonSpacing = 5;
 static const int buttonX = 50;
 static const int buttonY = 370;
 static const int buttonHeight = 30;
+static const int saveButtonWidth = 40;
+static const int loadButtonX = buttonX + saveButtonWidth +buttonSpacing;
+static const int loadButtonWidth = 40;
+// static const int 
 
 static const int statusMessageX = buttonX;
 static const int statusMessageY = 500;
