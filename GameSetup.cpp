@@ -2,9 +2,15 @@
 
 
 GameSetup::GameSetup() {
-	setupFilename = "setup01.txt";
-	//Pick from more setups later
+}
 
+GameSetup::GameSetup(int setupNumber) {
+	string setupFilename = setupBaseFilename + to_string(setupNumber) + setupExtension;
+	cout << "setu " << setupFilename << "\n";
+	ifstream testFile(setupFilename);		//attempt to open the file & see if it exists
+	if(!testFile){
+		setupFilename = defaultSetupFilename;
+	}
 	vehicleLocations = GameSetup::readFile(setupFilename);
 }
 

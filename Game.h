@@ -25,6 +25,9 @@ class Game {
 private:
 	Board board;
 	GameSetup theSetup;
+	int randomSetupLowerBound;
+	int randomSetupUpperBound;
+	int currentSetup;
 	vector<unique_ptr<Vehicle>> vectorOfVehicles;
 	int selectedVehicleIndex;	//An integer index in vectorOfVehicles. So that movement only applies to 1 vehicle at a time
 	ScoreMetrics metrics;

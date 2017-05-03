@@ -7,6 +7,17 @@ Game::Game(bool debugModeOn){
 	progressFilename="progress.txt";
 	debugPrintProgressFile = debugModeOn;		//change this to NOT print progress to screen when saving
 	debugPrintPopulateBoard = debugModeOn;
+	
+	randomSetupLowerBound = 1;
+	randomSetupUpperBound = 7;
+
+	currentSetup=0;		//give it 0 so it never equals randomSetup the 1st time
+	int randomSetup = GameSetup::getRandomInt(randomSetupLowerBound, randomSetupUpperBound);
+	while(randomSetup == currentSetup){
+		randomSetup = GameSetup::getRandomInt(randomSetupLowerBound, randomSetupUpperBound);
+	}
+	currentSetup=randomSetup;
+	theSetup = GameSetup(randomSetup);
 
 	colors = {
 			{230/255.0, 0/255.0, 0/255.0},	//special vehicle red

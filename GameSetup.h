@@ -16,10 +16,14 @@ using namespace std;
 class GameSetup {
 private:
 	vector<int> vehicleLocations;
-	string setupFilename;		//the specific setup the constructor should open
+	string setupFilename0;		//the specific setup the constructor should open
+	string setupBaseFilename = "setup0";
+	string setupExtension = ".txt";
+	string defaultSetupFilename = "setup01.txt";
 
 public:
-	GameSetup();		//default constructor
+	GameSetup();
+	GameSetup(int setupNumber);
 	~GameSetup();
 
 	// Requires: lowerBound < higherBound
