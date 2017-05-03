@@ -44,15 +44,18 @@ private:
 	string movesMessage;
 	string statusMessage;
 	
-	Button saveButton = Button(saveButtonWidth, buttonHeight, buttonX, buttonY, "Save", Color{ .1, .8, .1});
-	Button loadButton = Button(loadButtonWidth, buttonHeight, loadButtonX, buttonY, "Load", Color{ .1, .7, .1});
-	Button restartButton = Button(restartButtonWidth, buttonHeight, restartButtonX, buttonY, "Restart", Color{ .9, .1, .1});
-	Button newGameButton = Button(newGameButtonWidth, buttonHeight, newGameButtonX, buttonY, "New Game", Color{ .1, .9, .1});
+	Button saveButton = Button(saveButtonWidth, buttonHeight, buttonX, buttonY, "Save", Color{.1, .9, .1});
+	Button loadButton = Button(loadButtonWidth, buttonHeight, loadButtonX, buttonY, "Load", Color{ 230/255.0, 152/255.0, 0});
+	Button restartButton = Button(restartButtonWidth, buttonHeight, restartButtonX, buttonY, "Restart", Color{.9, .1, .1});
+	Button newGameButton = Button(newGameButtonWidth, buttonHeight, newGameButtonX, buttonY, "New Game", Color{.1, .9, .1});
 
 public:
 	Game();		//default constructor has debug mode off
 	Game(bool debugModeOn);		//setting option to print to screen on or off
 	~Game();
+
+	//Sets the board to the initial setup & redraws the vehicles
+	void createGame();
 
 	// Requires: nothing
 	// Modifies: boolean debug variables

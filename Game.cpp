@@ -12,12 +12,6 @@ Game::Game(bool debugModeOn){
 	randomSetupUpperBound = 7;
 
 	currentSetup=0;		//give it 0 so it never equals randomSetup the 1st time
-	int randomSetup = GameSetup::getRandomInt(randomSetupLowerBound, randomSetupUpperBound);
-	while(randomSetup == currentSetup){
-		randomSetup = GameSetup::getRandomInt(randomSetupLowerBound, randomSetupUpperBound);
-	}
-	currentSetup=randomSetup;
-	theSetup = GameSetup(randomSetup);
 
 	colors = {
 			{230/255.0, 0/255.0, 0/255.0},	//special vehicle red
@@ -42,13 +36,20 @@ Game::Game(bool debugModeOn){
 			{0/255.0, 0/255.0, 90/255.0},
 			};
 
-	//Empty Board is already set up
-	//GameSetup constructor created a default layout, use it to populate the board
-	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicle (the SpecialVehicle)
-	populateBoard(theSetup.getSetupAsList());
-
 	movesMessage = "Moves: ";
 	statusMessage = "Game Playing";
+
+	newGame();
+}
+
+void Game::createGame(){
+	metrics.setMoveCount(0);	//reset score since this is called in restart() & newGame()
+	theSetup = GameSetup(currentSetup);		//get a setup by number from whatever the current setup number is
+
+	//Empty Board is already set up
+	//GameSetup constructor created a default layout, use it to populate the board
+	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicles (the SpecialVehicle)
+	populateBoard(theSetup.getSetupAsList());
 }
 
 Game::~Game() {
@@ -295,13 +296,17 @@ void Game::save() {
 }
 
 void Game::restart(){
-	cout <<"restart\n";
-	
+	createGame();		//rebuilds the game using the current setup
 }
 
 void Game::newGame(){
-	cout<<"new game\n";
-
+	//Pick a random setup, but remember the current one and choose a number that's different
+	int randomSetup = GameSetup::getRandomInt(randomSetupLowerBound, randomSetupUpperBound);
+	while(randomSetup == currentSetup){
+		randomSetup = GameSetup::getRandomInt(randomSetupLowerBound, randomSetupUpperBound);
+	}
+	currentSetup=randomSetup;	//update change the current setup
+	createGame();
 }
 
 void Game::draw() const{
