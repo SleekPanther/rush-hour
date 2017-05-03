@@ -128,6 +128,76 @@ Button& Game::getNewGameButton(){
 	return newGameButton;
 }
 
+void Game::populateBoard(vector<int> fileContents) {
+	board = Board();	//clear the board
+	vectorOfVehicles.clear();
+
+	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as each number has been read
+
+	int numOfHorizontal = fileContents[vectorIteratorIndex++];
+	int numOfVertical = fileContents[vectorIteratorIndex++];
+	int lengthOfSpecial = fileContents[vectorIteratorIndex++];
+	
+	vector<Coordinate2D> tempCoordinates;	//Temp vector that will be used for all vehicles
+	int xComponentIndex, yComponentIndex;	//updated for every coordinate created
+
+
+	//CREATE SPECIAL VEHICLE 
+	//loop over length of vehicle to create vector of coordinates
+	for (int i = 0; i < lengthOfSpecial; i++) {
+		xComponentIndex = vectorIteratorIndex++;
+		yComponentIndex = vectorIteratorIndex++;
+		tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
+	}
+	vectorOfVehicles.push_back(make_unique<SpecialVehicle>(board, tempCoordinates));
+	tempCoordinates.clear();
+
+
+	//HORIZONTAL VEHICLES
+	for (int i = 0; i < numOfHorizontal; i++) {
+		//Take in as many coordinate as needed
+		int lengthOfThisHorizontal = fileContents[vectorIteratorIndex++];
+		for (int j = 0; j < lengthOfThisHorizontal; j++) {
+			xComponentIndex = vectorIteratorIndex++;
+			yComponentIndex = vectorIteratorIndex++;
+			tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
+		}//End of loop that collects all the coordinates for a single vertical vehicle
+
+		 //Create the vertical vehicle from this loop and add the pointer to the vector of pointers
+		vectorOfVehicles.push_back(make_unique<HorizontalVehicle>(board, tempCoordinates));
+
+		tempCoordinates.clear();
+	}//End of create all horizontal vehicles loop
+	
+	
+	//CREATE VERTICAL VEHICLES
+	for (int i = 0; i < numOfVertical; i++) {
+		//Take in as many coordinate as needed
+		int lengthOfThisVertical = fileContents[vectorIteratorIndex++];
+		for(int j = 0; j < lengthOfThisVertical; j++) {
+			xComponentIndex = vectorIteratorIndex++;
+			yComponentIndex = vectorIteratorIndex++;
+			tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
+		}//End of loop that collects all the coordinates for a single vertical vehicle
+
+		//Create the vertical vehicle from this loop and add the pointer to the vector of pointers
+		vectorOfVehicles.push_back(make_unique<VerticalVehicle>(board, tempCoordinates));
+
+		tempCoordinates.clear();
+	}//End of create all vertical vehicles loop
+
+
+	if(debugPrintPopulateBoard){
+		cout << "populateBoard()\n";
+		for (int i=0; i < vectorOfVehicles.size(); i++) {
+			cout << "Vehicle [" << i << "] is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. " << vectorOfVehicles[i]->getStringCoordinates() << '\n'; 
+		}
+		cout << "Board with vehicles from populateBoard()\n" << board << '\n';
+	}
+
+	setVehicleColors();
+}
+
 void Game::load(){
 	load(progressFilename);
 }
@@ -222,76 +292,6 @@ void Game::save() {
 		progressFile << allVehicleInfo;
 	}
 	progressFile.close();
-}
-
-void Game::populateBoard(vector<int> fileContents) {
-	board = Board();	//clear the board
-	vectorOfVehicles.clear();
-
-	int vectorIteratorIndex = 0;		//go through all vector indexes, incrementing as each number has been read
-
-	int numOfHorizontal = fileContents[vectorIteratorIndex++];
-	int numOfVertical = fileContents[vectorIteratorIndex++];
-	int lengthOfSpecial = fileContents[vectorIteratorIndex++];
-	
-	vector<Coordinate2D> tempCoordinates;	//Temp vector that will be used for all vehicles
-	int xComponentIndex, yComponentIndex;	//updated for every coordinate created
-
-
-	//CREATE SPECIAL VEHICLE 
-	//loop over length of vehicle to create vector of coordinates
-	for (int i = 0; i < lengthOfSpecial; i++) {
-		xComponentIndex = vectorIteratorIndex++;
-		yComponentIndex = vectorIteratorIndex++;
-		tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
-	}
-	vectorOfVehicles.push_back(make_unique<SpecialVehicle>(board, tempCoordinates));
-	tempCoordinates.clear();
-
-
-	//HORIZONTAL VEHICLES
-	for (int i = 0; i < numOfHorizontal; i++) {
-		//Take in as many coordinate as needed
-		int lengthOfThisHorizontal = fileContents[vectorIteratorIndex++];
-		for (int j = 0; j < lengthOfThisHorizontal; j++) {
-			xComponentIndex = vectorIteratorIndex++;
-			yComponentIndex = vectorIteratorIndex++;
-			tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
-		}//End of loop that collects all the coordinates for a single vertical vehicle
-
-		 //Create the vertical vehicle from this loop and add the pointer to the vector of pointers
-		vectorOfVehicles.push_back(make_unique<HorizontalVehicle>(board, tempCoordinates));
-
-		tempCoordinates.clear();
-	}//End of create all horizontal vehicles loop
-	
-	
-	//CREATE VERTICAL VEHICLES
-	for (int i = 0; i < numOfVertical; i++) {
-		//Take in as many coordinate as needed
-		int lengthOfThisVertical = fileContents[vectorIteratorIndex++];
-		for(int j = 0; j < lengthOfThisVertical; j++) {
-			xComponentIndex = vectorIteratorIndex++;
-			yComponentIndex = vectorIteratorIndex++;
-			tempCoordinates.push_back( Coordinate2D(fileContents[xComponentIndex], fileContents[yComponentIndex]) );
-		}//End of loop that collects all the coordinates for a single vertical vehicle
-
-		//Create the vertical vehicle from this loop and add the pointer to the vector of pointers
-		vectorOfVehicles.push_back(make_unique<VerticalVehicle>(board, tempCoordinates));
-
-		tempCoordinates.clear();
-	}//End of create all vertical vehicles loop
-
-
-	if(debugPrintPopulateBoard){
-		cout << "populateBoard()\n";
-		for (int i=0; i < vectorOfVehicles.size(); i++) {
-			cout << "Vehicle [" << i << "] is a "<< vectorOfVehicles[i]->getVehicleType()<< " Vehicle. " << vectorOfVehicles[i]->getStringCoordinates() << '\n'; 
-		}
-		cout << "Board with vehicles from populateBoard()\n" << board << '\n';
-	}
-
-	setVehicleColors();
 }
 
 void Game::draw() const{
