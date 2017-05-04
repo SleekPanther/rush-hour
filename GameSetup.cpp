@@ -1,10 +1,14 @@
 #include "GameSetup.h"
 
-
 GameSetup::GameSetup() {
-	setupFilename = "setup07.txt";
-	//Pick from more setups later
+}
 
+GameSetup::GameSetup(int setupNumber) {
+	string setupFilename = setupBaseFilename + to_string(setupNumber) + setupExtension;
+	ifstream testFile(setupFilename);		//attempt to open the file & see if it exists
+	if(!testFile){
+		setupFilename = defaultSetupFilename;
+	}
 	vehicleLocations = GameSetup::readFile(setupFilename);
 }
 
@@ -12,6 +16,11 @@ GameSetup::~GameSetup() {
 }
 
 int GameSetup::getRandomInt(int lowerBound, int upperBound){
+	if(lowerBound>upperBound){	//reverse parameters if passed in backwards
+		int temp = lowerBound;
+		lowerBound = upperBound;
+		upperBound = temp;
+	}
 	random_device randomGenerator;
 	int range = upperBound - lowerBound +1;		//+1 to make upperBound inclusive
 	return randomGenerator() % range  + lowerBound;
@@ -39,5 +48,5 @@ void GameSetup::printVector(vector<int> vector){
 	for(int i=0; i<vector.size(); i++){
 		cout << vector[i] << ", ";
 	}
-	cout << endl;
+	cout << '\n';
 }

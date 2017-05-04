@@ -15,6 +15,10 @@
 #endif
 
 #include <vector>
+#include <string>
+
+using namespace std;
+
 
 struct Color {
 	double red;
@@ -22,26 +26,54 @@ struct Color {
 	double blue;
 };
 
+
+//Constants for pixel size, positions, brightness adjustments
 static const double maxColorValue = 255;		//colors go from 0 to 255
 static const double HOVER_PERCENT_CHANGE = 30;	//how much to brighten/darken a color
 static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/darken a color
 
-//Lightens an input color by x percent & returns a new color
-Color lightenColor(Color color, double percentToLighten);
+static const Color textColor = {0, 0, 0};
+
+static const int buttonSpacing = 5;
+static const int buttonX = 50;
+static const int buttonY = 370;
+static const int buttonHeight = 30;
+static const int saveButtonWidth = 40;
+static const int loadButtonX = buttonX + saveButtonWidth +buttonSpacing;
+static const int loadButtonWidth = 40;
+static const int restartButtonX = loadButtonX + loadButtonWidth +buttonSpacing;
+static const int restartButtonWidth = 50;
+static const int newGameButtonX = restartButtonX + restartButtonWidth +buttonSpacing;
+static const int newGameButtonWidth = 70;
+
+static const int statusMessageX = buttonX;
+static const int statusMessageY = 500;
 
 
-// Program initialization NOT OpenGL/GLUT dependent,
-// as we haven't created a GLUT window yet
+//Lightens an input color by adding adding to red, green & blue components & returns a new color
+Color lightenColor(Color color, double rgbIncrease);
+
+//draw text on screen at a specific location
+void drawTextLarge(string text, int x, int y);
+
+void drawTextMedium(string text, int x, int y);
+
+
+// Program initialization NOT OpenGL/GLUT dependent, as we haven't created a GLUT window yet
 void init(void);
 
-// Callback functions for GLUT */
+//Display different things based on the GameState
+void displayGameBegin();
+
+void displayGameEnd();
+
+
+// Callback functions for GLUT
 
 // Draw the window - this is where all the GL actions are
 void display(void);
 
-// Called when window is resized,
-// also when window is first created,
-// before the first call to display().
+// Called when window is resized, also when window is first created, before the first call to display()
 void reshape(int w, int h);
 
 // Refresh the display, called when system is idle
@@ -56,13 +88,13 @@ void keyboardSpecial(unsigned char key, int x, int y);
 // Handle "mouse cursor moved" events 
 void cursor(int x, int y);
 
-//handle mouse click events
+//Handle mouse click events
 void mouse(int button, int state, int x, int y);
 
 // Handle "mouse moved with button pressed" events
 void drag(int x, int y);
 
-//for glutTimerFunc
+//For glutTimerFunc
 void timer(int extra);
 
 

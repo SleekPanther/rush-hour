@@ -20,6 +20,15 @@ Board::Board() {
 	boardUpperCornerY = upperCornerY -borderSize;
 	squareSize = globalPositions.getSquareSize();
 	squareSizeMinusBorder = globalPositions.getSquareSizeMinusBorder();
+	boardPixelSpan = globalPositions.getBoardPixelSpan();	//make containing background square that's as big as the squares inside, but also accounts for the border
+
+	exitSquareUpperLeftX = boardUpperCornerX + boardPixelSpan;
+	exitSquareUpperLeftY = upperCornerY +squareSize*2;
+
+	exitSquareWidth = squareSize*2;
+
+
+	exitMessage = "Exit";
 
 	borderColor = {0, 0, 0};
 	squareColor = {0, 1, 0};
@@ -67,7 +76,6 @@ void Board::draw() const{
 	//draw board background container (acts as the border because inner squares are drawn smaller to give the illusion of a border)
 	glBegin(GL_QUADS);
 	glColor3f(borderColor.red, borderColor.green, borderColor.blue);
-	int boardPixelSpan = (occupiedSquares.size()-2) * squareSize +borderSize;	//make containing background square that's as big as the squares inside, but also accounts for the border
 	glVertex2i(boardUpperCornerX, boardUpperCornerY);		//top left
 	glVertex2i(boardUpperCornerX + boardPixelSpan, boardUpperCornerY);		//top right
 	glVertex2i(boardUpperCornerX + boardPixelSpan, boardUpperCornerY + boardPixelSpan);	//bottom right
@@ -90,6 +98,24 @@ void Board::draw() const{
 			glVertex2i(upperCornerX +squareSize*i, upperCornerY+squareSizeMinusBorder +squareSize*j);		//bottom left
 			glEnd();
 		}
+	}
+
+	drawExitSquare();
+}
+
+void Board::drawExitSquare() const{
+	glBegin(GL_QUADS);
+	glColor3f(0, 1, 0);
+	glVertex2i(exitSquareUpperLeftX, exitSquareUpperLeftY);	//top left
+	glVertex2i(exitSquareUpperLeftX +exitSquareWidth, exitSquareUpperLeftY);	//top right
+	glVertex2i(exitSquareUpperLeftX +exitSquareWidth, exitSquareUpperLeftY +squareSizeMinusBorder);	//bottom right
+	glVertex2i(exitSquareUpperLeftX, exitSquareUpperLeftY +squareSizeMinusBorder);	//bottom left
+	glEnd();
+
+	glColor3f(0, 0, 0);
+	glRasterPos2i(exitSquareUpperLeftX +borderSize, exitSquareUpperLeftY+squareSize/2.0);
+	for (int i = 0; i < exitMessage.length(); ++i) {
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exitMessage[i]);
 	}
 }
 

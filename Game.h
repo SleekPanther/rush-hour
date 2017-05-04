@@ -13,33 +13,46 @@
 #include "Coordinate2D.h"
 #include "Board.h"
 #include "GameSetup.h"
+#include "Button.h"
 #include "graphics.h"
-
 
 using namespace std;
 
-//IMPORTANT game must call isInWinningSpace() after EVERY attempted move, otherwise SpecialVehicle will check vector indexes that don't exist
 
 class Game {
 private:
 	Board board;
+	ScoreMetrics metrics;	//keeps track of the score
 	GameSetup theSetup;
-	vector<unique_ptr<Vehicle>> vectorOfVehicles;
+	int randomSetupLowerBound;
+	int randomSetupUpperBound;
+	int currentSetup;	//store which number setup, so current one can be restarted & saved
+	vector<unique_ptr<Vehicle>> vectorOfVehicles;	//Objects that move on the board
 	int selectedVehicleIndex;	//An integer index in vectorOfVehicles. So that movement only applies to 1 vehicle at a time
-	ScoreMetrics metrics;
 
 	string progressFilename;
-	string defaultSetupFilename;
 
-	bool debugPrintProgressFile;
+	bool debugPrintProgressFile;	//used for testing
 	bool debugPrintPopulateBoard;
 
-	vector<vector<double>> colors;
+	vector<vector<double>> colors;	//vector of colors for the vehicles. Always drawn in the same order, 1st color is SpecialVehicle
+
+	GlobalWindowPositions globalPositions;	//used to get shared constants
+	string movesMessage;
+	string statusMessage;
+	
+	Button saveButton = Button(saveButtonWidth, buttonHeight, buttonX, buttonY, "Save", Color{.1, .9, .1});
+	Button loadButton = Button(loadButtonWidth, buttonHeight, loadButtonX, buttonY, "Load", Color{ 230/255.0, 152/255.0, 0});
+	Button restartButton = Button(restartButtonWidth, buttonHeight, restartButtonX, buttonY, "Restart", Color{.9, .1, .1});
+	Button newGameButton = Button(newGameButtonWidth, buttonHeight, newGameButtonX, buttonY, "New Game", Color{.1, .9, .1});
 
 public:
 	Game();		//default constructor has debug mode off
 	Game(bool debugModeOn);		//setting option to print to screen on or off
 	~Game();
+
+	//Sets the board to the initial setup & redraws the vehicles
+	void createGame();
 
 	// Requires: nothing
 	// Modifies: boolean debug variables
@@ -71,13 +84,26 @@ public:
 	// Return reference to vector of vehicles
 	vector<unique_ptr<Vehicle>> const& getVehicles() const;
 
+	ScoreMetrics& getMetrics();
+
+	string getStatusMessage() const;
+
+	void setStatusMessage(string message);
+
+	//Methods to return reference to buttons to be called in graphics_started
+	Button& getSaveButton();
+
+	Button& getLoadButton();
+
+	Button& getRestartButton();
+
+	Button& getNewGameButton();
+
 	// Requires: vector of integers with valid list of vehicles & coordinates
 	// Modifies: board
 	// Effects: parses a list of numbers & creates vehicles from their coordinates
 	void populateBoard(vector<int> fileContents);
 
-	// Requires: nothing
-	// Modifies: board
 	// Effects: calls overloaded load() to load the default progress file
 	void load();
 
@@ -91,8 +117,20 @@ public:
 	// Effects: loops over vectorOfVehicles & converts current positions to text information about the game state
 	void save();
 
-	
+	//Pick a new random setup (different from the current one) & start the game
+	void newGame();
+
+	void restart();
+
+	//Draws the board & buttons by calling various helper methods
 	void draw() const;
+
+	void drawButtons() const;
+
+	void drawInstructions() const;
+
+	//Draw the score (How many moves they made)
+	void drawMoves() const;
 
 	void setVehicleColors();
 };

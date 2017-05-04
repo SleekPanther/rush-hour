@@ -23,6 +23,12 @@ private:
 	int borderSize;		//
 	int squareSize;		//how wide a square on the board is. Width of vehicle, used to draw board
 	int squareSizeMinusBorder;		//how wide a square on the board is. Width of vehicle, used to draw board
+	int boardPixelSpan; 	//make containing background square that's as big as the squares inside, but also accounts for the border
+	int exitSquareUpperLeftX;
+	int exitSquareUpperLeftY;
+
+	string exitMessage;
+	int exitSquareWidth;
 
 	Color borderColor;
 	Color squareColor;
@@ -55,7 +61,14 @@ public:
 	// Effects: Sets a square in the board to true (occupied)
 	void setSquareOccupied(int x, int y);
 
+	//Makes a grid of squares with borders
 	void draw() const;
+
+	void drawExitSquare() const;
+
+	void drawScore() const;
+
+	void drawButtons() const;
 
 	friend ostream& operator << (ostream& outStream, const Board& board);
 

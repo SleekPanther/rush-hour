@@ -11,9 +11,6 @@
 
 using namespace std;
 
-//Draw should draw indivual rectangles & just joined together due to proximity
-//Hovering over a piece should lighten the color
-// or we could have a function constantly changing to color to make it glow
 
 class Vehicle {
 protected:
