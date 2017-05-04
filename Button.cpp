@@ -20,7 +20,7 @@ void Button::setColor(Color color) {
 	this->color=color;
 }
 
-bool Button::isOverlapping(int x, int y) {
+bool Button::isOverlapping(int x, int y) const{
 	int leftX = upperLeftX;
 	int rightX = upperLeftX + width;
 	int topY = upperLeftY;

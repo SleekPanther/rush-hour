@@ -7,13 +7,13 @@ using namespace std;
 
 class Button{
 private:
-	int height;
+	int height;		//dimensions of a rectangle
 	int width;
 	int upperLeftX;
 	int upperLeftY;
 	int leftTextPadding;	//Buttons are inside rectangles, but give some padding to the left
-	Color initialColor;
-	Color color;
+	Color initialColor;		//base color that hover color change is based on
+	Color color;	//the actual color seen when drawing
 	string text;
 
 public:
@@ -23,7 +23,10 @@ public:
 
 	void setColor(Color color);
 
-	bool isOverlapping(int x, int y);
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: checks if a point is inside the rectangle boundary
+	bool isOverlapping(int x, int y) const;
 
 	void draw() const;
 };

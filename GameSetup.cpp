@@ -17,6 +17,11 @@ GameSetup::~GameSetup() {
 }
 
 int GameSetup::getRandomInt(int lowerBound, int upperBound){
+	if(lowerBound>upperBound){	//reverse parameters if passed in backwards
+		int temp = lowerBound;
+		lowerBound = upperBound;
+		upperBound = temp;
+	}
 	random_device randomGenerator;
 	int range = upperBound - lowerBound +1;		//+1 to make upperBound inclusive
 	return randomGenerator() % range  + lowerBound;
@@ -44,5 +49,5 @@ void GameSetup::printVector(vector<int> vector){
 	for(int i=0; i<vector.size(); i++){
 		cout << vector[i] << ", ";
 	}
-	cout << endl;
+	cout << '\n';
 }

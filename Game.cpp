@@ -324,6 +324,7 @@ void Game::draw() const{
 	drawButtons();
 	drawInstructions();
 	drawMoves();
+	drawTextLarge(getStatusMessage(), statusMessageX, statusMessageY);	//draw status message
 }
 
 void Game::drawButtons() const{

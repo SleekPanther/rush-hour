@@ -16,7 +16,6 @@ using namespace std;
 class GameSetup {
 private:
 	vector<int> vehicleLocations;
-	string setupFilename0;		//the specific setup the constructor should open
 	string setupBaseFilename = "setup0";
 	string setupExtension = ".txt";
 	string defaultSetupFilename = "setup01.txt";
@@ -26,11 +25,14 @@ public:
 	GameSetup(int setupNumber);
 	~GameSetup();
 
-	// Requires: lowerBound < higherBound
+	// Requires: nothing
 	// Modifies: nothing
 	// Effects: returns a random number in the specified range
 	static int getRandomInt(int lowerBound, int upperBound);
 
+	// Requires: nothing
+	// Modifies: nothing
+	// Effects: returns the list of vehicle coordinates
 	vector<int> getSetupAsList() const;
 
 	//static since any Game needs to be able to read files
@@ -39,6 +41,7 @@ public:
 	// Effects: reads a file of integers & returns a vector
 	static vector<int> readFile(string filename);
 
+	//Prints a vector separated by commas. Mainly for testing
 	static void printVector(vector<int> vector);
 };
 
