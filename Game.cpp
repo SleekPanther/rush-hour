@@ -9,7 +9,7 @@ Game::Game(bool debugModeOn){
 	debugPrintPopulateBoard = debugModeOn;
 	
 	randomSetupLowerBound = 1;
-	randomSetupUpperBound = 7;
+	randomSetupUpperBound = 9;
 
 	currentSetup=0;		//give it 0 so it never equals randomSetup the 1st time
 
