@@ -6,7 +6,6 @@
 
 using namespace std;
 
-//This is basiaclly a struct, but a class with public fields to allow easier overloaded operators
 
 class Coordinate2D {
 public:
@@ -29,6 +28,7 @@ public:
 	// Effects: updates fields with input parameters
 	void setCoordinate(int x, int y);
 
+	//Returns "(x, y)" for human readable printing/debugging
 	string toString() const;
 
 	friend ostream& operator << (ostream& outStream, const Coordinate2D& coordinate);

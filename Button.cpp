@@ -10,6 +10,7 @@ Button::Button(int width, int height, int upperLeftX, int upperLeftY, string tex
 	this->color=initialColor;
 
 	leftTextPadding=6;
+	lineHeight=18;
 }
 
 Color Button::getColor() const{
@@ -37,6 +38,5 @@ void Button::draw() const {
 	glVertex2i(upperLeftX, upperLeftY+height);	//bottom left
 	glEnd();
 
-	int lineHeight=18;
 	drawTextMedium(text, upperLeftX +leftTextPadding, upperLeftY +lineHeight);
 }

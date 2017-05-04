@@ -1,6 +1,5 @@
 #include "GameSetup.h"
 
-
 GameSetup::GameSetup() {
 }
 

@@ -12,6 +12,7 @@ private:
 	int upperLeftX;
 	int upperLeftY;
 	int leftTextPadding;	//Buttons are inside rectangles, but give some padding to the left
+	int lineHeight;			//Approximate height of text inside button (used so it can be position with upper left corner instead of the bottom of text)
 	Color initialColor;		//base color that hover color change is based on
 	Color color;	//the actual color seen when drawing
 	string text;

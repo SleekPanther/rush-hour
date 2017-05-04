@@ -122,11 +122,10 @@ bool Vehicle::isOverlapping(int mouseX, int mouseY) const {
 		int bottomY = upCornerY+squareSize +squareSize*y;
 
 		//Check if a point overlaps the square. Stop early if 1 overlap is found
-		if( (mouseX>=leftX) && (mouseX<=rightX) && (mouseY>=topY) && (mouseY<=bottomY) ){
+		if( (mouseX>=leftX) && (mouseX<=rightX) && (mouseY>=topY) && (mouseY<=bottomY) ){	//x between left/right edges & y between to & bottom edges
 			overlapsWithVehicle = true;
 			break;
 		}
 	}
-	
 	return overlapsWithVehicle;
 }

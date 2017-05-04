@@ -25,8 +25,10 @@ Board::Board() {
 	exitSquareUpperLeftX = boardUpperCornerX + boardPixelSpan;
 	exitSquareUpperLeftY = upperCornerY +squareSize*2;
 
-	exitMessage = "Exit";
 	exitSquareWidth = squareSize*2;
+
+
+	exitMessage = "Exit";
 
 	borderColor = {0, 0, 0};
 	squareColor = {0, 1, 0};

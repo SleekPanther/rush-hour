@@ -47,7 +47,7 @@ void Game::createGame(){
 	theSetup = GameSetup(currentSetup);		//get a setup by number from whatever the current setup number is
 
 	//Empty Board is already set up
-	//GameSetup constructor created a default layout, use it to populate the board
+	//GameSetup constructor created a layout, use it to populate the board
 	selectedVehicleIndex=0;		//choose the 0th item in vectorOfVehicles (the SpecialVehicle)
 	populateBoard(theSetup.getSetupAsList());
 }
@@ -220,6 +220,7 @@ void Game::load(string filename) {
 		populateBoard(fileContents);
 	}
 	else{
+		setStatusMessage("There was no game saved");
 		cout << "There was no game saved" << endl;
 	}
 	inputFile.close();
@@ -302,10 +303,6 @@ void Game::save() {
 	progressFile.close();
 }
 
-void Game::restart(){
-	createGame();		//rebuilds the game using the current setup
-}
-
 void Game::newGame(){
 	//Pick a random setup, but remember the current one and choose a number that's different
 	int randomSetup = GameSetup::getRandomInt(randomSetupLowerBound, randomSetupUpperBound);
@@ -314,6 +311,10 @@ void Game::newGame(){
 	}
 	currentSetup=randomSetup;	//update change the current setup
 	createGame();
+}
+
+void Game::restart(){
+	createGame();		//rebuilds the game using the current setup
 }
 
 void Game::draw() const{
