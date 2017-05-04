@@ -264,8 +264,8 @@ void runGame(int argc, char** argv){
 int main(int argc, char** argv) {
 	cout << "Enter 1 to play, 0 to test: ";
 	int choice;
-	//cin >> choice;
-	choice = 1;
+	cin >> choice;
+	// choice = 1;	//Hack for playing mode
 	if(choice==0){		//testing mode
 		cout << boolalpha;
 		runAllTests();

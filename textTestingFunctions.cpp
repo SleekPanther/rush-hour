@@ -447,6 +447,7 @@ void chooseLoadSave(){
 	if(answer==0){
 		cout << "Erasing board & Loading previous setup\n";
 		game.load("progress-backup.txt");
+		cout << "Score was: " << game.getMetrics().getMoveCount() << '\n';
 	}
 
 	cout << "Enter 1 to save game: ";
