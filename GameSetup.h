@@ -16,6 +16,7 @@ using namespace std;
 class GameSetup {
 private:
 	vector<int> vehicleLocations;
+	vector<vector<int>> setups;		//vector of int vectors containing valid setups,  which can be read from a file
 	string setupBaseFilename = "setup0";
 	string setupExtension = ".txt";
 	string defaultSetupFilename = "setup01.txt";
