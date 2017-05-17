@@ -3,3 +3,4 @@
 
 #visual studio build folder
 **/Debug
+.delete_this_file_if_program_dies

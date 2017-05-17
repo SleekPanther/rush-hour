@@ -4,7 +4,7 @@ Game::Game() : Game(false) {
 }
 
 Game::Game(bool debugModeOn){
-	progressFilename="progress.txt";
+	progressFilename=".delete_this_file_if_program_dies";
 	debugPrintProgressFile = debugModeOn;		//change this to NOT print progress to screen when saving
 	debugPrintPopulateBoard = debugModeOn;
 	

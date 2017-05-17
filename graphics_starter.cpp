@@ -204,8 +204,8 @@ void mouse(int button, int state, int x, int y) {
 
 		//Handle buttons that always work
 		if(game.getLoadButton().isOverlapping(x, y)){
-			game.load();
 			game.setStatusMessage("Loaded previous game");
+			game.load();
 			currentGameState=GameState::playing;	//update game state incase they clicked after winning a game
 		}
 		else if(game.getNewGameButton().isOverlapping(x, y)){
