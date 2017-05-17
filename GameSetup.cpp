@@ -24,7 +24,6 @@ GameSetup::GameSetup(int setupNumber): GameSetup() {
 	// vehicleLocations = GameSetup::readFile(setupFilename);
 
 	setupNumber = setupNumber -1;	//adjust for vector indexes
-	cout << setupNumber << "\n";
 	vehicleLocations = setups[setupNumber];
 }
 
