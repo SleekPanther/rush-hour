@@ -88,10 +88,11 @@ void refresh(void){
 
 // http://www.theasciicode.com.ar/ascii-control-characters/escape-ascii-code-27.html
 void keyboard(unsigned char key, int x, int y) {
-	if (key == 27) {	// escape
-		glutDestroyWindow(window);
-		exit(0);
-	}
+	//Close window on "Esc" key
+	//if (key == 27) {	// escape
+	//	glutDestroyWindow(window);
+	//	exit(0);
+	//}
 	
 	glutPostRedisplay();
 }
