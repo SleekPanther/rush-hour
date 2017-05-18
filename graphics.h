@@ -34,6 +34,7 @@ static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/dark
 
 static const Color textColor = {0, 0, 0};
 
+static const int SQUARE_SIZE = 50;
 static const int BORDER_SIZE = 6;
 static const int BOARD_UPPER_LEFT_X = 50;
 static const int BOARD_UPPER_LEFT_Y = 50;

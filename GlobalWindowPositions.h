@@ -7,6 +7,7 @@ private:
 	static int borderSize;		//done
 	static int upperCornerX;		//i think done
 	static int upperCornerY;		//i think done
+	static int squareSize;		//done
 	static int squareSizeMinusBorder;
 	static int boardPixelSpan;
 

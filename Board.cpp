@@ -13,14 +13,13 @@ Board::Board() {
 		{true, true, true, true, true, true, true, true},
 	};
 
-	squareSize = globalPositions.getSquareSize();
 	squareSizeMinusBorder = globalPositions.getSquareSizeMinusBorder();
 	boardPixelSpan = globalPositions.getBoardPixelSpan();	//make containing background square that's as big as the squares inside, but also accounts for the border
 
 	exitSquareUpperLeftX = BOARD_UPPER_LEFT_X + boardPixelSpan;
-	exitSquareUpperLeftY = SQUARE_UPPER_LEFT_Y +squareSize*2;
+	exitSquareUpperLeftY = SQUARE_UPPER_LEFT_Y +SQUARE_SIZE*2;
 
-	exitSquareWidth = squareSize*2;
+	exitSquareWidth = SQUARE_SIZE*2;
 
 
 	exitMessage = "Exit";
@@ -83,14 +82,14 @@ void Board::draw() const{
 		for(int j=0; j<rowAndColumnCount; j++){		//j controls how many rows in a column, y values (top to bottom)
 			glBegin(GL_QUADS);
 			glColor3f(1, 1, 1);
-			// cout << "tl ("<<(SQUARE_UPPER_LEFT_X +squareSize*i)<<", "<<(SQUARE_UPPER_LEFT_Y +squareSize*j) <<")";
-			glVertex2i(SQUARE_UPPER_LEFT_X +squareSize*i, SQUARE_UPPER_LEFT_Y +squareSize*j);		//top left
-			// cout << "\ttr ("<<(SQUARE_UPPER_LEFT_X + squareSizeMinusBorder +squareSize*i)<<", "<< (SQUARE_UPPER_LEFT_Y +squareSize*j ) << ")";
-			glVertex2i(SQUARE_UPPER_LEFT_X + squareSizeMinusBorder +squareSize*i, SQUARE_UPPER_LEFT_Y +squareSize*j);		//top right
-			// cout << "\t\tbr ("<<(SQUARE_UPPER_LEFT_X + squareSizeMinusBorder +squareSize*i)<<", "<<(SQUARE_UPPER_LEFT_Y+squareSizeMinusBorder + squareSize*j)<<")";
-			glVertex2i(SQUARE_UPPER_LEFT_X + squareSizeMinusBorder +squareSize*i, SQUARE_UPPER_LEFT_Y+squareSizeMinusBorder + squareSize*j);		//bottom right
-			// cout << "\tbl ("<<(SQUARE_UPPER_LEFT_X +squareSize*i)<<", "<<(SQUARE_UPPER_LEFT_Y+squareSizeMinusBorder +squareSize*j ) <<")\n";
-			glVertex2i(SQUARE_UPPER_LEFT_X +squareSize*i, SQUARE_UPPER_LEFT_Y+squareSizeMinusBorder +squareSize*j);		//bottom left
+			// cout << "tl ("<<(SQUARE_UPPER_LEFT_X +SQUARE_SIZE*i)<<", "<<(SQUARE_UPPER_LEFT_Y +SQUARE_SIZE*j) <<")";
+			glVertex2i(SQUARE_UPPER_LEFT_X +SQUARE_SIZE*i, SQUARE_UPPER_LEFT_Y +SQUARE_SIZE*j);		//top left
+			// cout << "\ttr ("<<(SQUARE_UPPER_LEFT_X + squareSizeMinusBorder +SQUARE_SIZE*i)<<", "<< (SQUARE_UPPER_LEFT_Y +SQUARE_SIZE*j ) << ")";
+			glVertex2i(SQUARE_UPPER_LEFT_X + squareSizeMinusBorder +SQUARE_SIZE*i, SQUARE_UPPER_LEFT_Y +SQUARE_SIZE*j);		//top right
+			// cout << "\t\tbr ("<<(SQUARE_UPPER_LEFT_X + squareSizeMinusBorder +SQUARE_SIZE*i)<<", "<<(SQUARE_UPPER_LEFT_Y+squareSizeMinusBorder + SQUARE_SIZE*j)<<")";
+			glVertex2i(SQUARE_UPPER_LEFT_X + squareSizeMinusBorder +SQUARE_SIZE*i, SQUARE_UPPER_LEFT_Y+squareSizeMinusBorder + SQUARE_SIZE*j);		//bottom right
+			// cout << "\tbl ("<<(SQUARE_UPPER_LEFT_X +SQUARE_SIZE*i)<<", "<<(SQUARE_UPPER_LEFT_Y+squareSizeMinusBorder +SQUARE_SIZE*j ) <<")\n";
+			glVertex2i(SQUARE_UPPER_LEFT_X +SQUARE_SIZE*i, SQUARE_UPPER_LEFT_Y+squareSizeMinusBorder +SQUARE_SIZE*j);		//bottom left
 			glEnd();
 		}
 	}
@@ -108,7 +107,7 @@ void Board::drawExitSquare() const{
 	glEnd();
 
 	glColor3f(0, 0, 0);
-	glRasterPos2i(exitSquareUpperLeftX +BORDER_SIZE, exitSquareUpperLeftY+squareSize/2.0);
+	glRasterPos2i(exitSquareUpperLeftX + BORDER_SIZE, exitSquareUpperLeftY + SQUARE_SIZE / 2.0);
 	for (int i = 0; i < exitMessage.length(); ++i) {
 		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exitMessage[i]);
 	}
