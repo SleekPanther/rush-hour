@@ -34,7 +34,7 @@ static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/dark
 
 static const Color textColor = {0, 0, 0};
 
-static const int SQUARE_SIZE = 54;
+static const int SQUARE_SIZE = 50;
 static const int BORDER_SIZE = 6;
 static const int SQUARE_SIZE_MINUS_BORDER = SQUARE_SIZE - BORDER_SIZE;
 static const int BOARD_WIDTH = 6 * SQUARE_SIZE +BORDER_SIZE;
@@ -46,7 +46,6 @@ static const int SQUARE_UPPER_LEFT_Y = BOARD_UPPER_LEFT_Y +BORDER_SIZE;
 
 static const int VEHICLE_UPPER_LEFT_X = SQUARE_UPPER_LEFT_X - BORDER_SIZE/2.0;	//divide by 2 to center in middle of border
 static const int VEHICLE_UPPER_LEFT_Y = SQUARE_UPPER_LEFT_Y - BORDER_SIZE/2.0;	//divide by 2 to center in middle of border
-// static const int 
 
 static const int buttonSpacing = 5;
 static const int buttonX = 50;
