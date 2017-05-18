@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include "Coordinate2D.h"
-#include "GlobalWindowPositions.h"
 #include "graphics.h"
 
 using namespace std;
@@ -15,7 +14,6 @@ private:
 	vector<vector<bool>> occupiedSquares;
 	Coordinate2D winningSpace;		//Used by Special Vehicle to check if it won the game
 
-	GlobalWindowPositions globalPositions;	//used to get constants shared with Vehicle about positions & sizes
 	int exitSquareUpperLeftX;
 	int exitSquareUpperLeftY;
 

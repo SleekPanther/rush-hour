@@ -6,7 +6,6 @@
 #include <vector>
 #include "Coordinate2D.h"
 #include "Board.h"
-#include "GlobalWindowPositions.h"
 #include "graphics.h"
 
 using namespace std;
@@ -22,8 +21,6 @@ protected:
 	bool inWinningSpace;
 
 	bool debugPrintBoard;		//set true to display the contents of the board after each move method, false when not debugging
-
-	GlobalWindowPositions globalPositions;	//used to get constants shared with Vehicle about positions & sizes
 
 public:
 	Vehicle(Board & board, vector<Coordinate2D> coordinates);

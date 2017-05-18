@@ -37,7 +37,6 @@ private:
 
 	vector<vector<double>> colors;	//vector of colors for the vehicles. Always drawn in the same order, 1st color is SpecialVehicle
 
-	GlobalWindowPositions globalPositions;	//used to get shared constants
 	string movesMessage;
 	string statusMessage;
 	
