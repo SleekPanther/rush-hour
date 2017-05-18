@@ -349,7 +349,7 @@ void Game::drawMoves() const{
 	int moves = metrics.getMoveCount();		//get the current score
 	string moveOutput = movesMessage + to_string(moves);	//concatenate the label with the actual number
 	//Position 2 square from the left of the board, & 1/2 the square size above the top of the board
-	glRasterPos2i(SQUARE_UPPER_LEFT_X + globalPositions.getSquareSize()*2, globalPositions.getUpperCornerY() - globalPositions.getSquareSize()/2.0);
+	glRasterPos2i(SQUARE_UPPER_LEFT_X + globalPositions.getSquareSize()*2, SQUARE_UPPER_LEFT_Y - globalPositions.getSquareSize()/2.0);
 	for (int i = 0; i < moveOutput.length(); ++i) {
 		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, moveOutput[i]);
 	}

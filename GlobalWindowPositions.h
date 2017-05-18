@@ -4,10 +4,9 @@
 //Simple a collection of global variables accessible by Board & vehicles
 class GlobalWindowPositions{
 private:
-	static int borderSize;
-	static int upperCornerX;
-	static int upperCornerY;
-	static int squareSize;
+	static int borderSize;		//done
+	static int upperCornerX;		//i think done
+	static int upperCornerY;		//i think done
 	static int squareSizeMinusBorder;
 	static int boardPixelSpan;
 
