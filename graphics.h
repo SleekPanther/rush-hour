@@ -36,6 +36,7 @@ static const Color textColor = {0, 0, 0};
 
 static const int SQUARE_SIZE = 50;
 static const int BORDER_SIZE = 6;
+static const int SQUARE_SIZE_MINUS_BORDER = SQUARE_SIZE - BORDER_SIZE;
 static const int BOARD_UPPER_LEFT_X = 50;
 static const int BOARD_UPPER_LEFT_Y = 50;
 static const int SQUARE_UPPER_LEFT_X = BOARD_UPPER_LEFT_X +BORDER_SIZE;
