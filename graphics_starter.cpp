@@ -227,17 +227,24 @@ void drag(int x, int y){
 
 void timer(int extra) {
 	if(currentGameState == GameState::playing){
-		// if(game.getRestartButton().isColorMaxed()){
-			Color initialColor = game.getRestartButton().getColor();
-			game.getRestartButton().setColor(lightenColor(initialColor, 1));
-			cout << " ("<< initialColor.red << ", " << initialColor.green << ", " << initialColor.blue << ")" << "\n";
-		// }
-		// else{
-
-		// }
+		//Lighten if color is less than 255, darken if < the initial color
+		if(game.getSelectedVehicle()->shouldLighten()){
+			int lightenIncrease = 1;	//positive to lighten
+			game.getSelectedVehicle()->setColor(lightenColor(game.getSelectedVehicle()->getColor(), lightenIncrease));
+			if(game.getSelectedVehicle()->isColorMaxed()){	//change to darken if it's maxed
+				game.getSelectedVehicle()->setDarken();
+			}
+		}
+		else{
+			int lightenIncrease = -1;	//negative to darken
+			game.getSelectedVehicle()->setColor(lightenColor(game.getSelectedVehicle()->getColor(), lightenIncrease));
+			if(game.getSelectedVehicle()->isColorInitial()){	//change to lighten if it is the initial color
+				game.getSelectedVehicle()->setLighten();
+			}
+		}
 	}
 
-	glutTimerFunc(5, timer, 0);
+	glutTimerFunc(10, timer, 0);
 	glutPostRedisplay();
 }
 

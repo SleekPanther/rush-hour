@@ -3,6 +3,7 @@
 //board(board) sets the reference in an initializer list. For some reason this cannot happen inside the body
 Vehicle::Vehicle(Board & board, vector<Coordinate2D> coordinates) : board(board), coordinates(coordinates), inWinningSpace(false) {
 	debugPrintBoard = false;		//initially, vehicles DO NOT display the board after every move
+	colorGlowState = VehicleGlowState::lightening;
 
 	for (int i = 0; i<coordinates.size(); i++) {
 		board.setSquareOccupied(coordinates[i].x, coordinates[i].y);	//set new position to be occupied
@@ -50,6 +51,42 @@ void Vehicle::setInitialColor(vector<double> rbg){
 
 Color Vehicle::getInitialColor() const{
 	return initialColor;
+}
+
+bool Vehicle::isColorMaxed() const{
+	if(getColor().red >= 1.0 || getColor().green >= 1.0 || getColor().blue >= 1.0){
+		return true;
+	}
+	return false;
+}
+
+bool Vehicle::isColorInitial() const{
+	if(getColor().red <= getInitialColor().red || getColor().green <= getInitialColor().green || getColor().blue <= getInitialColor().blue){
+		return true;
+	}
+	return false;
+}
+
+bool Vehicle::shouldLighten() const{
+	if(colorGlowState == VehicleGlowState::lightening){
+		return true;
+	}
+	return false;
+}
+
+bool Vehicle::shouldDarken() const{
+	if(colorGlowState == VehicleGlowState::darkening){
+		return true;
+	}
+	return false;
+}
+
+void Vehicle::setLighten(){
+	colorGlowState = VehicleGlowState::lightening;
+}
+
+void Vehicle::setDarken(){
+	colorGlowState = VehicleGlowState::darkening;
 }
 
 string Vehicle::getStringCoordinates() const {

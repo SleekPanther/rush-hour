@@ -10,6 +10,7 @@
 
 using namespace std;
 
+enum class VehicleGlowState {lightening, darkening};
 
 class Vehicle {
 protected:
@@ -17,6 +18,7 @@ protected:
 	Board & board;		//so the piece knows where to be drawn.		MUST BE A REFERENCE
 	Color color;
 	Color initialColor;	//used to go back to it's orignal color when not hovered
+	VehicleGlowState colorGlowState;
 
 	bool inWinningSpace;
 
@@ -52,6 +54,18 @@ public:
 	void setInitialColor(vector<double> rbg);
 
 	Color getInitialColor() const;
+
+	bool isColorMaxed() const;
+
+	bool isColorInitial() const;
+
+	bool shouldLighten() const;
+
+	bool shouldDarken() const;
+
+	void setLighten();
+
+	void setDarken();
 	
 	// Requires: nothing
 	// Modifies: nothing

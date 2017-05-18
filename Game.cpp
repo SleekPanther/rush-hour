@@ -360,8 +360,4 @@ void Game::setVehicleColors(){
 		vectorOfVehicles[i]->setInitialColor(colors[i]);
 		vectorOfVehicles[i]->setColor(colors[i]);
 	}
-
-	//Now set the initial color of the SpecialVehicle as highlighted
-	Color initialColor = vectorOfVehicles[selectedVehicleIndex]->getInitialColor();
-	vectorOfVehicles[selectedVehicleIndex]->setColor(lightenColor(initialColor, HOVER_CLICK_PERCENT_CHANGE));
 }
