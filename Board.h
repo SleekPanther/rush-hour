@@ -16,11 +16,6 @@ private:
 	Coordinate2D winningSpace;		//Used by Special Vehicle to check if it won the game
 
 	GlobalWindowPositions globalPositions;	//used to get constants shared with Vehicle about positions & sizes
-	int upperCornerX;
-	int upperCornerY;
-	int boardUpperCornerX;	//used by board so border extends on upper left of 1st square drawn
-	int boardUpperCornerY;	//used by board so border extends on upper left of 1st square drawn
-	int borderSize;		//
 	int squareSize;		//how wide a square on the board is. Width of vehicle, used to draw board
 	int squareSizeMinusBorder;		//how wide a square on the board is. Width of vehicle, used to draw board
 	int boardPixelSpan; 	//make containing background square that's as big as the squares inside, but also accounts for the border

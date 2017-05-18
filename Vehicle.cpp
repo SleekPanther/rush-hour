@@ -4,8 +4,6 @@
 Vehicle::Vehicle(Board & board, vector<Coordinate2D> coordinates) : board(board), coordinates(coordinates), inWinningSpace(false) {
 	debugPrintBoard = false;		//initially, vehicles DO NOT display the board after every move
 
-	upCornerX=globalPositions.getUpperCornerX() - globalPositions.getBorderSize()/2.0;	//divide by 2 to center in middle of border
-	upCornerY=globalPositions.getUpperCornerY() - globalPositions.getBorderSize()/2.0;	//divide by 2 to center in middle of border
 	squareSize=globalPositions.getSquareSize();
 
 	for (int i = 0; i<coordinates.size(); i++) {
@@ -101,10 +99,10 @@ void Vehicle::draw() const{
 		y=coordinates[i].y;
 
 		glBegin(GL_QUADS);
-		glVertex2i(upCornerX +squareSize*x,  upCornerY +squareSize*y);		//top left
-		glVertex2i(upCornerX+squareSize +squareSize*x,  upCornerY +squareSize*y);		//top right
-		glVertex2i(upCornerX+squareSize +squareSize*x,  upCornerY+squareSize +squareSize*y);		//bottom right
-		glVertex2i(upCornerX +squareSize*x,  upCornerY+squareSize +squareSize*y);		//bottom left
+		glVertex2i(VEHICLE_UPPER_LEFT_X +squareSize*x,  VEHICLE_UPPER_LEFT_Y +squareSize*y);		//top left
+		glVertex2i(VEHICLE_UPPER_LEFT_X+squareSize +squareSize*x,  VEHICLE_UPPER_LEFT_Y +squareSize*y);		//top right
+		glVertex2i(VEHICLE_UPPER_LEFT_X+squareSize +squareSize*x,  VEHICLE_UPPER_LEFT_Y+squareSize +squareSize*y);		//bottom right
+		glVertex2i(VEHICLE_UPPER_LEFT_X +squareSize*x,  VEHICLE_UPPER_LEFT_Y+squareSize +squareSize*y);		//bottom left
 		glEnd();
 	}
 }
@@ -116,10 +114,10 @@ bool Vehicle::isOverlapping(int mouseX, int mouseY) const {
 		int x=coordinates[i].x;
 		int y=coordinates[i].y;
 
-		int leftX = upCornerX +squareSize*x;
-		int topY = upCornerY +squareSize*y;
-		int rightX = upCornerX+squareSize +squareSize*x;
-		int bottomY = upCornerY+squareSize +squareSize*y;
+		int leftX = VEHICLE_UPPER_LEFT_X +squareSize*x;
+		int topY = VEHICLE_UPPER_LEFT_Y +squareSize*y;
+		int rightX = VEHICLE_UPPER_LEFT_X+squareSize +squareSize*x;
+		int bottomY = VEHICLE_UPPER_LEFT_Y+squareSize +squareSize*y;
 
 		//Check if a point overlaps the square. Stop early if 1 overlap is found
 		if( (mouseX>=leftX) && (mouseX<=rightX) && (mouseY>=topY) && (mouseY<=bottomY) ){	//x between left/right edges & y between to & bottom edges

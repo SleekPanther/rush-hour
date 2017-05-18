@@ -14,9 +14,9 @@ Game game;	//Global game object where most interactions take place
 
 
 Color lightenColor(Color color, double rgbIncrease){
-	double red = color.red + rgbIncrease/maxColorValue;	//add 
-	double green = color.green + rgbIncrease/maxColorValue;
-	double blue = color.blue + rgbIncrease/maxColorValue;
+	double red = color.red + rgbIncrease/MAX_COLOR_VALUE;	//add 
+	double green = color.green + rgbIncrease/MAX_COLOR_VALUE;
+	double blue = color.blue + rgbIncrease/MAX_COLOR_VALUE;
 	return Color{red, green, blue };
 }
 

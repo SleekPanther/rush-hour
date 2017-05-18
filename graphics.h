@@ -28,11 +28,21 @@ struct Color {
 
 
 //Constants for pixel size, positions, brightness adjustments
-static const double maxColorValue = 255;		//colors go from 0 to 255
+static const double MAX_COLOR_VALUE = 255;		//colors go from 0 to 255
 static const double HOVER_PERCENT_CHANGE = 30;	//how much to brighten/darken a color
 static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/darken a color
 
 static const Color textColor = {0, 0, 0};
+
+static const int BORDER_SIZE = 6;
+static const int BOARD_UPPER_LEFT_X = 50;
+static const int BOARD_UPPER_LEFT_Y = 50;
+static const int SQUARE_UPPER_LEFT_X = BOARD_UPPER_LEFT_X +BORDER_SIZE;
+static const int SQUARE_UPPER_LEFT_Y = BOARD_UPPER_LEFT_Y +BORDER_SIZE;
+
+static const int VEHICLE_UPPER_LEFT_X = SQUARE_UPPER_LEFT_X - BORDER_SIZE/2.0;	//divide by 2 to center in middle of border
+static const int VEHICLE_UPPER_LEFT_Y = SQUARE_UPPER_LEFT_Y - BORDER_SIZE/2.0;	//divide by 2 to center in middle of border
+// static const int 
 
 static const int buttonSpacing = 5;
 static const int buttonX = 50;
