@@ -148,35 +148,35 @@ void cursor(int x, int y) {
 	}
 
 	if(game.getSaveButton().isOverlapping(x, y)){
-		Color initialColor = game.getSaveButton().getColor();
+		Color initialColor = game.getSaveButton().getInitialColor();
 		game.getSaveButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
 	}
 	else{
-		game.getSaveButton().setColor(game.getSaveButton().getColor());
+		game.getSaveButton().setColor(game.getSaveButton().getInitialColor());
 	}
 
 	if(game.getLoadButton().isOverlapping(x, y)){
-		Color initialColor = game.getLoadButton().getColor();
+		Color initialColor = game.getLoadButton().getInitialColor();
 		game.getLoadButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
 	}
 	else{
-		game.getLoadButton().setColor(game.getLoadButton().getColor());
+		game.getLoadButton().setColor(game.getLoadButton().getInitialColor());
 	}
 
 	if(game.getRestartButton().isOverlapping(x, y)){
-		Color initialColor = game.getRestartButton().getColor();
+		Color initialColor = game.getRestartButton().getInitialColor();
 		game.getRestartButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
 	}
 	else{
-		game.getRestartButton().setColor(game.getRestartButton().getColor());
+		game.getRestartButton().setColor(game.getRestartButton().getInitialColor());
 	}
 
 	if(game.getNewGameButton().isOverlapping(x, y)){
-		Color initialColor = game.getNewGameButton().getColor();
+		Color initialColor = game.getNewGameButton().getInitialColor();
 		game.getNewGameButton().setColor(lightenColor(initialColor, HOVER_PERCENT_CHANGE));
 	}
 	else{
-		game.getNewGameButton().setColor(game.getNewGameButton().getColor());
+		game.getNewGameButton().setColor(game.getNewGameButton().getInitialColor());
 	}
 	glutPostRedisplay();
 }
@@ -226,8 +226,19 @@ void drag(int x, int y){
 }
 
 void timer(int extra) {
+	if(currentGameState == GameState::playing){
+		// if(game.getRestartButton().isColorMaxed()){
+			Color initialColor = game.getRestartButton().getColor();
+			game.getRestartButton().setColor(lightenColor(initialColor, 1));
+			cout << " ("<< initialColor.red << ", " << initialColor.green << ", " << initialColor.blue << ")" << "\n";
+		// }
+		// else{
+
+		// }
+	}
+
+	glutTimerFunc(5, timer, 0);
 	glutPostRedisplay();
-	glutTimerFunc(30, timer, 0);
 }
 
 void runGame(int argc, char** argv){

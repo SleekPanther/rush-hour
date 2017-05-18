@@ -13,8 +13,12 @@ Button::Button(int width, int height, int upperLeftX, int upperLeftY, string tex
 	lineHeight=18;
 }
 
-Color Button::getColor() const{
+Color Button::getInitialColor() const{
 	return initialColor;
+}
+
+Color Button::getColor() const{
+	return color;
 }
 
 void Button::setColor(Color color) {
