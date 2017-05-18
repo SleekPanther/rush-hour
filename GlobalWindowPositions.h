@@ -8,8 +8,8 @@ private:
 	static int upperCornerX;		//i think done
 	static int upperCornerY;		//i think done
 	static int squareSize;		//done
-	static int squareSizeMinusBorder;
-	static int boardPixelSpan;
+	static int squareSizeMinusBorder;	//done
+	static int boardPixelSpan;	//done
 
 public:
 	int getBorderSize() const;

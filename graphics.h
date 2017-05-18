@@ -34,9 +34,11 @@ static const double HOVER_CLICK_PERCENT_CHANGE = 60;	//how much to brighten/dark
 
 static const Color textColor = {0, 0, 0};
 
-static const int SQUARE_SIZE = 50;
+static const int SQUARE_SIZE = 54;
 static const int BORDER_SIZE = 6;
 static const int SQUARE_SIZE_MINUS_BORDER = SQUARE_SIZE - BORDER_SIZE;
+static const int BOARD_WIDTH = 6 * SQUARE_SIZE +BORDER_SIZE;
+
 static const int BOARD_UPPER_LEFT_X = 50;
 static const int BOARD_UPPER_LEFT_Y = 50;
 static const int SQUARE_UPPER_LEFT_X = BOARD_UPPER_LEFT_X +BORDER_SIZE;
@@ -48,7 +50,7 @@ static const int VEHICLE_UPPER_LEFT_Y = SQUARE_UPPER_LEFT_Y - BORDER_SIZE/2.0;	/
 
 static const int buttonSpacing = 5;
 static const int buttonX = 50;
-static const int buttonY = 370;
+static const int buttonY = 400;
 static const int buttonHeight = 30;
 static const int saveButtonWidth = 40;
 static const int loadButtonX = buttonX + saveButtonWidth +buttonSpacing;
@@ -59,7 +61,7 @@ static const int newGameButtonX = restartButtonX + restartButtonWidth +buttonSpa
 static const int newGameButtonWidth = 70;
 
 static const int statusMessageX = buttonX;
-static const int statusMessageY = 500;
+static const int statusMessageY = buttonY + 130;
 
 
 //Lightens an input color by adding adding to red, green & blue components & returns a new color

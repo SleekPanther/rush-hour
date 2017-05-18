@@ -13,9 +13,7 @@ Board::Board() {
 		{true, true, true, true, true, true, true, true},
 	};
 
-	boardPixelSpan = globalPositions.getBoardPixelSpan();	//make containing background square that's as big as the squares inside, but also accounts for the border
-
-	exitSquareUpperLeftX = BOARD_UPPER_LEFT_X + boardPixelSpan;
+	exitSquareUpperLeftX = BOARD_UPPER_LEFT_X + BOARD_WIDTH;
 	exitSquareUpperLeftY = SQUARE_UPPER_LEFT_Y +SQUARE_SIZE*2;
 
 	exitSquareWidth = SQUARE_SIZE*2;
@@ -70,9 +68,9 @@ void Board::draw() const{
 	glBegin(GL_QUADS);
 	glColor3f(borderColor.red, borderColor.green, borderColor.blue);
 	glVertex2i(BOARD_UPPER_LEFT_X, BOARD_UPPER_LEFT_Y);		//top left
-	glVertex2i(BOARD_UPPER_LEFT_X + boardPixelSpan, BOARD_UPPER_LEFT_Y);		//top right
-	glVertex2i(BOARD_UPPER_LEFT_X + boardPixelSpan, BOARD_UPPER_LEFT_Y + boardPixelSpan);	//bottom right
-	glVertex2i(BOARD_UPPER_LEFT_X, BOARD_UPPER_LEFT_Y + boardPixelSpan);		//bottom left
+	glVertex2i(BOARD_UPPER_LEFT_X + BOARD_WIDTH, BOARD_UPPER_LEFT_Y);		//top right
+	glVertex2i(BOARD_UPPER_LEFT_X + BOARD_WIDTH, BOARD_UPPER_LEFT_Y + BOARD_WIDTH);	//bottom right
+	glVertex2i(BOARD_UPPER_LEFT_X, BOARD_UPPER_LEFT_Y + BOARD_WIDTH);		//bottom left
 	glEnd();
 
 	//draw grid square 	DRAWS VERTICAL COLUMNS TOP TO BOTTOM, THEN COLUMNS LEFT TO RIGHT
